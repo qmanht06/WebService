@@ -5,17 +5,20 @@ import "./Product.css";
 
 const Product = ({ id, name }) => {
   return (
-    <div className="container">
-      <img className="imgContainer" src={imgShoe01} alt="Error" />
-      <div className="info-Container">
-        <div className="productInfo">{name}</div>
-
-        <div className="sellerInfo">
-          <div className="productPrice">20000 đ</div>
-          <div className="sellerAmount">Sell: 5K</div>
+    <div className="product-container">
+      <Link to={`/product/${id}`}>
+        <img className="img-container" src={imgShoe01} alt="Error" />
+        <div className="info-container">
+          <div className="product-info">{name}</div>
+          <div className="seller-info">
+            <div className="product-price">
+              <span>20000</span>
+              <span className="units"> đ</span>
+            </div>
+            <div className="seller-amount">Sell: 5K</div>
+          </div>
         </div>
-        <Link to={`/product/${id}`}>View</Link>
-      </div>
+      </Link>
     </div>
   );
 };
