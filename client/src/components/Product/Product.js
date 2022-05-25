@@ -5,7 +5,7 @@ import "./Product.css";
 
 const Product = ({ id, name }) => {
   return (
-    <div className="product-container">
+    <div className="product-container col-xl-6">
       <Link to={`/product/${id}`}>
         <img className="img-container" src={imgShoe01} alt="Error" />
         <div className="info-container">
