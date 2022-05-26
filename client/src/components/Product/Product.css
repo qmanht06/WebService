@@ -9,7 +9,8 @@
     width: 100%;
     height: 310px;
     box-sizing: border-box;
-    /* transition: all 0.5s ease; */
+    border-radius: 5px;
+    transition: all 0.5s ease;
 }
 
 .img-container{
