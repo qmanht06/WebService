@@ -3,7 +3,6 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import ProductList from "../../components/Product/ProductList";
-
 import './Home.css';
 
 const Home = () => {
@@ -11,7 +10,7 @@ const Home = () => {
     <div>
       <Header />
       <div className="home-body">
-       <ProductList />
+        <ProductList />
       </div>
       <Footer />
     </div>
