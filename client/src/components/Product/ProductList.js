@@ -13,7 +13,11 @@ import {
 
 const ProductList = () => {
   const Products = [
-    { id: 1, name: "Shoe_01", url: SHOE_01 },
+    {
+      id: 1,
+      name: "Shoe_01 is the best shoe I have in the store",
+      url: SHOE_01,
+    },
     { id: 2, name: "Shoe_02", url: SHOE_02 },
     { id: 3, name: "Shoe_03", url: SHOE_03 },
     { id: 4, name: "Shoe_04", url: SHOE_04 },
