@@ -9,9 +9,7 @@ import "./Product.css";
 const Product = ({ id, name, url }) => {
   return (
     <div className="col-xs-2 col-sm-2 col-md-4 col-lg-6 col-xl-6">
-      {/* product-item */}
       <div className="product-container">
-        {/* item-image */}
         <div
           className="img-container"
           style={{ backgroundImage: `url(${url})` }}
