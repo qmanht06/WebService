@@ -1,26 +1,62 @@
 :root {
     --text-color: #e74c3c;
 }
-
+ 
 .product-container {
-    flex-basis: calc(25% - 10px);
-    padding-top: 2px;
+    padding: 2px 5px 5px 5px;
     margin-bottom: 5px;
     margin-right: 5px;
-    box-sizing: border-box;
-    font-size: 20px;
+    position: relative;
+    transition: all 0.5s ease;
 }
 
+/*  Animations  */
 .product-container:hover {
+    background-color: rgba(0, 0, 0, 0.2);
     padding-top: 0;
+}
+
+.product-container:hover .img-container {
+    opacity: 0.7;
+}
+
+.product-container:hover .icon{
+    opacity: 1;
+    z-index: 1;
+}
+
+.icon-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.icon {
+    z-index: -1;
+    width: 30px;
+    height: 30px;
+    margin:10px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    opacity: 0; 
+    transition: all 0.5s ease;
+}
+
+.icon:hover {
     border: 1px solid var(--text-color);
+    background-color: #e9f5f5;
+    transform: scale(1.2);
 }
 
-.img-container {
-    max-width: 100%;
-    height: auto;
-}
 
+/*  Font Design && Display  */
 .info-container {
     padding: 0 10px 0 10px;
     display: flex;
@@ -51,4 +87,4 @@
 
 .units{
     font-size: 0.75rem;
-}
+} 

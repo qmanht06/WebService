@@ -18,11 +18,11 @@ const ProductList = () => {
 
   return (
     <div className="grid">
-    <div className="row">
-      {Products.map((item) => (
-        <Product key={item.id} id={item.id} name={item.name} />
-      ))}
-    </div>
+      <div className="row body">
+        {Products.map((item) => (
+          <Product key={item.id} id={item.id} name={item.name} />
+        ))}
+      </div>
     </div>
   );
 };
