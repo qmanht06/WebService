@@ -20,9 +20,11 @@ const Product = ({ id, name, url }) => {
           <span className="product-price-old">70000đ</span>
           <span className="product-price-current">50000đ</span>
         </div>
-        <div className="item-actions">
-          {/* <FontAwesomeIcon icon="fa-star" /> */}
-          {/* <FontAwesomeIcon icon="fa-solid fa-star" /> */}
+        <div className="product-actions">
+          <div className="star-icon">
+            {/* <FontAwesomeIcon icon="fa-star" /> */}
+            {/* <FontAwesomeIcon icon="fa-solid fa-star" /> */}
+          </div>
           <span className="sell-amount">Sell: 5K</span>
         </div>
         {/* <img src={shoppingCartIcon} alt="test"></img> */}
