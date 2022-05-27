@@ -85,7 +85,7 @@
     overflow: hidden;
     padding: 0 10px;
     margin: 10px 0;
-    display: block;
+    /* display: block; */
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
