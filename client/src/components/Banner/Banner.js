@@ -1,12 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+// import { useEffect } from 'react';
 // import "./Banner_Seceond.css";
 // import { BANNER_01, BANNER_02, BANNER_03, BANNER_04, BANNER_05 } from './ShoeBanner';
 // import { PREV_ARROW, NEXT_ARROW } from './BannerArrow';
 import Slider from "./Slider";
+import SaleAdvertisement from './SaleAdvertisement';
 
 const Banner = () => {
     return (
-        <Slider />
+        <div>
+            <Slider />
+            <SaleAdvertisement />
+        </div>
     )
 }
 export default Banner;

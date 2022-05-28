@@ -1,44 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import './Slider.css';
 import ArrowButton from './ArrowButton';
-import DataSlider from './DataSlider';
+import DataSlider from './DataSource/DataSlider';
 
 const Slider = () => {
     const [slideIndex, setSlideIndex] = useState(1);
-    // const [autoIndex, setAutoIndex] = useState(1);
-
-    // useEffect(() => {
-    //     setInterval(function () {
-    //         nextSlide();
-    //     }, 2000);
-
-    //     return () => {
-    //         setAutoIndex(1);
-    //     }
-    // }, [autoIndex]);
+    const slideLength = DataSlider.length;
+    let slideInterval;
+    const intervalTime = 2000;
+    const autoScroll = true;
 
     const nextSlide = () => {
-        if (slideIndex !== DataSlider.length) {
-            setSlideIndex(slideIndex + 1)
-        }
-        else if (slideIndex === DataSlider.length) {
-            setSlideIndex(1)
-        }
+        setSlideIndex(slideIndex === slideLength ? 1 : slideIndex + 1);
+        console.log('next');
     }
 
     const prevSlide = () => {
-        if (slideIndex !== 1) {
-            setSlideIndex(slideIndex - 1)
-        }
-        else if (slideIndex === 1) {
-            setSlideIndex(DataSlider.length)
-        }
+        setSlideIndex(slideIndex === 1 ? slideLength : slideIndex - 1);
+        console.log('prev');
     }
 
     const moveDot = index => {
         setSlideIndex(index);
-        // setAutoIndex(autoIndex + 1);
     }
+
+    const autoNavigation = () => {
+        slideInterval = setInterval(nextSlide, intervalTime);
+    }
+
+    useEffect(() => {
+        setSlideIndex(1);
+    }, [])
+
+    useEffect(() => {
+        if (autoScroll) {
+            autoNavigation();
+        }
+
+        return () => {
+            clearInterval(slideInterval);
+        }
+    }, [slideIndex]);
 
     return (
         <div className="container-slider">
@@ -47,10 +49,12 @@ const Slider = () => {
                     <div
                         key={item.id}
                         className={slideIndex === index + 1 ? "slide active-anim" : "slide"}
+                        style={{ backgroundImage: `url(${item.url})` }}
                     >
-                        <img
+                        {/* <img
                             src={item.url}
-                        />
+                            alt=""
+                        /> */}
                     </div>
                 )
             })}
