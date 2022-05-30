@@ -34,6 +34,15 @@ const Signup = () => {
     <div>
       <div class="d-flex align-item-center justify-content-center container">
         <div class="w-100 w-400 ">
+          <div className="logo">
+            <Link to="/">
+              <img
+                className="logoImg"
+                src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+                alt="amazon-logo"
+              />
+            </Link>
+          </div>
           <div class="card ">
             <div class="card-body ">
               <h2 class="text-center mb-4">Sign Up</h2>
