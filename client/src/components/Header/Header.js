@@ -25,7 +25,7 @@ const Header = () => {
       </div>
 
       <div className={styles.userNav}>
-        <Link to="/signup" className={styles.headerNav}>
+        <Link to="/login" className={styles.headerNav}>
           <span className={styles.headerNavTextFirst}>Hello,</span>
           <span className={styles.headerNavTextSecond}>User Name</span>
         </Link>
