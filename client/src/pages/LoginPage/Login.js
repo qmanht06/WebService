@@ -27,37 +27,37 @@ const Login = () => {
 
   return (
     <div>
-      <div class="d-flex align-item-center justify-content-center container">
-        <div class="w-100 w-400">
-          <div className="logo">
+      <div className="d-flex align-item-center justify-content-center container">
+        <div className="w-100 w-400">
+          <div classNameName="logo">
             <Link to="/">
               <img
-                className="logoImg"
-                src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+                classNameName="logoImg"
+                src="https://thumbs.dreamstime.com/b/simple-vector-filled-flat-amazon-icon-logo-solid-black-pictogram-isolated-white-background-amazon-logo-159029074.jpg"
                 alt="amazon-logo"
               />
             </Link>
           </div>
-          <div class="card ">
-            <div class="card-body ">
-              <h2 class="text-center mb-4">Log In</h2>
-              <form class="align-item-center justify-content-center text-center">
-                <div class="form-group">
-                  <label class>Email</label>
-                  <input class="form-control"></input>
+          <div className="card ">
+            <div className="card-body ">
+              <h2 className="text-center mb-4">Log In</h2>
+              <form className="align-item-center justify-content-center text-center">
+                <div className="form-group">
+                  <label className>Email</label>
+                  <input className="form-control"></input>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label>Password</label>
-                  <input class="form-control"></input>
+                  <input className="form-control"></input>
                 </div>
-                <button type="submit" class="w-100 btn">
+                <button type="submit" className="w-100 btn">
                   Log In
                 </button>
               </form>
             </div>
           </div>
 
-          <div class="text-center w-100 mt-2">
+          <div className="text-center w-100 mt-2">
             Need an account? <Link to="/Signup">Sign Up</Link>
           </div>
         </div>
