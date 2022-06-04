@@ -17,11 +17,11 @@ const SaleAdvertisement = () => {
                             <div className="sale-container">
                                 <div className="sale-title">Khuyến mãi đặc biệt</div>
                                 <div className="sale-title sale-info">Upto 50% Off</div>
-                                <button type="button" >Mua Ngay</button>
+                                <button type="button" className="add-to-cart-btn">Mua Ngay</button>
                             </div>
                         </div>
                     )
-                }
+                } else return null;
             })}
 
             {/* <div
