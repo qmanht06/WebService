@@ -32,8 +32,8 @@ const Signup = () => {
 
   return (
     <div>
-      <div class="d-flex align-item-center justify-content-center container">
-        <div class="w-100 w-400 ">
+      <div className="d-flex align-item-center justify-content-center container">
+        <div className="w-100 w-400 ">
           <div className="logo">
             <Link to="/">
               <img
@@ -43,30 +43,30 @@ const Signup = () => {
               />
             </Link>
           </div>
-          <div class="card ">
-            <div class="card-body ">
-              <h2 class="text-center mb-4">Sign Up</h2>
-              <form class="align-item-center justify-content-center text-center">
-                <div class="form-group">
-                  <label class>Email</label>
-                  <input class="form-control"></input>
+          <div className="card ">
+            <div className="card-body ">
+              <h2 className="text-center mb-4">Sign Up</h2>
+              <form className="align-item-center justify-content-center text-center">
+                <div className="form-group">
+                  <label className>Email</label>
+                  <input className="form-control"></input>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label>Password</label>
-                  <input class="form-control"></input>
+                  <input className="form-control"></input>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label>Password Confirmation</label>
-                  <input class="form-control"></input>
+                  <input className="form-control"></input>
                 </div>
-                <button type="submit" class="w-100 btn">
+                <button type="submit" className="w-100 btn">
                   Sign Up
                 </button>
               </form>
             </div>
           </div>
 
-          <div class="text-center w-100 mt-2">
+          <div className="text-center w-100 mt-2">
             Already have an account? <Link to="/login">Log In</Link>
           </div>
         </div>

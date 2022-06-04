@@ -2,12 +2,22 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const UserChema = new Schema({
-    username: {
-
+    userName: {
+        type: String
     },
     password: {
-
+        type: String
     },
+    fullName: {
+        type: String
+    },
+    email: {
+        type: String
+    },
+    permission: {
+        type: String,
+        enum: ['User', 'Admin']
+    }
 },  {
     timestamps: true
 })
