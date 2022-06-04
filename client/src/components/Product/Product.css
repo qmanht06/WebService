@@ -11,6 +11,7 @@
     border-radius: 5px;
     transition: all 0.5s ease;
     box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+    color: black;
 }
 
 .img-container{
@@ -114,6 +115,16 @@
 /* .item-action {
     font-size: 0.5rem;
 } */
-.sell-amount {
-    font-size: 0.8rem;
+
+.product-actions {
+    padding-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem
+}
+
+.star-icon {
+    color:#ffce3d;
 }

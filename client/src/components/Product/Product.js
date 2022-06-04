@@ -7,7 +7,6 @@ import "./Product.css";
 
 const Product = ({ id, name, url }) => {
   return (
-
     <div className="col-xs-1 col-sm-2 col-md-4 col-lg-6 col-xl-6">
       <Link to={`/product/${id}`}>
         <div className="product-container">
@@ -23,10 +22,12 @@ const Product = ({ id, name, url }) => {
           </div>
           <div className="product-actions">
             <div className="star-icon">
-              <i class="fa-thin fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              {/* <FontAwesomeIcon icon="fa-star" /> */}
-              {/* <FontAwesomeIcon icon="fa-solid fa-star" /> */}
+              {/* <i class="fa-thin fa-star"></i> */}
+              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star-half-stroke"></i>
             </div>
             <span className="sell-amount">Sell: 5K</span>
           </div>
@@ -40,7 +41,6 @@ const Product = ({ id, name, url }) => {
         </div>
       </Link>
     </div>
-
   );
 };
 

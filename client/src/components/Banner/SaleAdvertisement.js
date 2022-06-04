@@ -8,7 +8,7 @@ const SaleAdvertisement = () => {
             {DataSlider.map((item, index) => {
                 if (index < 2) {
                     return (
-                        <div className="info-container">
+                        <div className="info-container" key={index}>
                             <img
                                 className="image-wrapper"
                                 src={item.url}
