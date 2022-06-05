@@ -5,6 +5,7 @@ import Home from "./pages/HomePage/Home";
 import Signup from "./pages/SignupPage/Signup";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import Login from "./pages/LoginPage/Login";
+import CartPage from "./pages/CartPage/CartPage";
 function App() {
   return (
     <Switch>
@@ -19,6 +20,9 @@ function App() {
       </Route>
       <Route exact path="/login">
         <Login />
+      </Route>
+      <Route exact path="/cart">
+        <CartPage />
       </Route>
     </Switch>
   );

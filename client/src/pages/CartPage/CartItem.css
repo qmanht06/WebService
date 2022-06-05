@@ -1,0 +1,6 @@
+.cart-item-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #ebebeb;
+}
