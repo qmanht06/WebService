@@ -27,7 +27,8 @@
 /*  Animations  */
 .product-container:hover {
     background-color: rgba(0, 0, 0, 0.2);
-    padding-top: 5px;
+    /* padding-top: 5px; */
+    transform: translateY(-5px);
 }
 
 .product-container:hover .img-container {

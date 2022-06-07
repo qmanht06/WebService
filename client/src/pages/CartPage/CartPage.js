@@ -2,8 +2,11 @@ import React from "react";
 import "./CartPage.css";
 import Header from "../../components/Header/Header";
 import CartItem from "./CartItem";
+import { connect } from "react-redux";
 
-const CartPage = () => {
+const CartPage = (props) => {
+  const cartList = props.cartList;
+
   return (
     <div>
       <Header />
@@ -17,12 +20,19 @@ const CartPage = () => {
           <div style={{ width: "5%" }}>Xóa</div>
         </div>
         <div className="cart-body">
-          <CartItem />
-          <CartItem />
+          {cartList.map((item) => (
+            <CartItem key={item.id} product={item} />
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default CartPage;
+const mapStateToProps = (state) => {
+  const cartList = state.cart.cartList;
+
+  return { cartList: cartList };
+};
+
+export default connect(mapStateToProps)(CartPage);

@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./Header.module.css";
 import { UilSearch } from "@iconscout/react-unicons";
 import { UilShoppingCartAlt } from "@iconscout/react-unicons";
 
-const Header = () => {
+import { connect } from "react-redux";
+import { searchFilterChanged } from "../../react-redux/actions/filterActions";
+
+const Header = (props) => {
+  const [searchText, setSearchText] = useState("");
+  const searchFilterChanged = props.searchFilterChanged;
+
+  const handleSearchTextChanged = (e) => {
+    console.log(e.target.value);
+    setSearchText(e.target.value);
+    searchFilterChanged(e.target.value);
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -18,7 +30,12 @@ const Header = () => {
         </Link>
       </div>
       <div className={styles.search}>
-        <input type="text" className={styles.searchInput} />
+        <input
+          type="text"
+          className={styles.searchInput}
+          onChange={handleSearchTextChanged}
+          value={searchText}
+        />
         <div className={styles.searchIcon}>
           <UilSearch size="24" color="#000" />
         </div>
@@ -66,4 +83,11 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchFilterChanged: (searchText) =>
+      dispatch(searchFilterChanged(searchText)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Header);
