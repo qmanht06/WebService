@@ -22,12 +22,11 @@ const Product = ({ id, name, url }) => {
           </div>
           <div className="product-actions">
             <div className="star-icon">
-              {/* <i class="fa-thin fa-star"></i> */}
-              <i className="fa-solid fa-star"></i>
               <i className="fa-solid fa-star"></i>
               <i className="fa-solid fa-star"></i>
               <i className="fa-solid fa-star"></i>
               <i className="fa-solid fa-star-half-stroke"></i>
+              <i className="fa-regular fa-star"></i>
             </div>
             <span className="sell-amount">Sell: 5K</span>
           </div>
