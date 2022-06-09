@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import "./Product.css";
 
 const Product = ({ id, name, url }) => {
+  const currency = { style: 'currency', currency: 'VND' }
   return (
     <div className="col-xs-1 col-sm-2 col-md-4 col-lg-6 col-xl-6">
       <Link to={`/product/${id}`}>
@@ -17,8 +18,8 @@ const Product = ({ id, name, url }) => {
 
           <div className="product-name">{name}</div>
           <div className="product-price">
-            <span className="product-price-old">70000đ</span>
-            <span className="product-price-current">50000đ</span>
+            <span className="product-price-old">{Number(100000).toLocaleString('en-US', currency)}</span>
+            <span className="product-price-current">{Number(70000).toLocaleString('en-US', currency)}</span>
           </div>
           <div className="product-actions">
             <div className="star-icon">
