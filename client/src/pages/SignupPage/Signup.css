@@ -67,6 +67,7 @@
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
   background-clip: border-box;
+  -webkit-background-clip: border-box; /*This is for Microsoft Edge*/
 }
 
 .card-body {
@@ -140,6 +141,7 @@ label {
   color: #495057;
   background-color: #fff;
   background-clip: padding-box;
+  -webkit-background-clip: padding-box; /*This is for Microsoft Edge*/
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
 }
@@ -163,6 +165,7 @@ input {
   vertical-align: middle;
   -webkit-user-select: none;
   user-select: none;
+  -ms-user-select: none; /*This is for Microsoft Edge*/
   background-color: transparent;
   border: 1px solid transparent;
   font-size: 1rem;

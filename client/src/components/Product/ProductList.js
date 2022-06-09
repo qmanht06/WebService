@@ -18,10 +18,10 @@ const ProductList = (props) => {
 
 const mapStateToProps = (state) => {
   const dataSource = state.products.productList;
-  const searchText = state.filters.searchText;
+  const searchText = state.filters.searchText.toLowerCase();
 
   const productItemList = dataSource.filter((product) => {
-    return product.name.includes(searchText);
+    return product.name.toLowerCase().includes(searchText);
   });
 
   return { productItemList: productItemList };
