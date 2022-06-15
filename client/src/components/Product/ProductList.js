@@ -1,6 +1,7 @@
 import React from "react";
 import Product from "./Product";
 import { connect } from "react-redux";
+// import { fetchProductList } from "../../react-redux/actions/productActions";
 
 const ProductList = (props) => {
   const productItemList = props.productItemList;
@@ -9,7 +10,7 @@ const ProductList = (props) => {
     <div className="grid">
       <div className="row body">
         {productItemList.map((item) => (
-          <Product key={item.id} id={item.id} name={item.name} url={item.url} />
+          <Product key={item.id} product={item} />
         ))}
       </div>
     </div>
@@ -26,5 +27,12 @@ const mapStateToProps = (state) => {
 
   return { productItemList: productItemList };
 };
+
+// const mapDispatchToProps = (dispatch) => {
+//   console.log("ok");
+//   return {
+//     fetchProductList: (data) => dispatch(fetchProductList(data)),
+//   }
+// }
 
 export default connect(mapStateToProps)(ProductList);

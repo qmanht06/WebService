@@ -1,6 +1,7 @@
 import React from 'react';
-import DataSlider from "./DataSource/DataSlider";
+import DataSlider from '../../data/DataSlider';
 import "./SaleAdvertisement.css";
+import { Link } from "react-router-dom";
 
 const SaleAdvertisement = () => {
     return (
@@ -17,7 +18,12 @@ const SaleAdvertisement = () => {
                             <div className="sale-container">
                                 <div className="sale-title">Khuyến mãi đặc biệt</div>
                                 <div className="sale-title sale-info">Upto 50% Off</div>
-                                <button type="button" className="add-to-cart-btn">Mua Ngay</button>
+                                <Link to={`/product/${item.id}`}>
+                                    <button type="button" className="show-info-btn">
+                                        Mua Ngay
+                                    </button>
+                                </Link>
+
                             </div>
                         </div>
                     )

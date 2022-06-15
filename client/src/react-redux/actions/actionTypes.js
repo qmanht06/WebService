@@ -9,3 +9,4 @@ export const SALE_FILTER_CHANGED = "filter/SALE_FILTER_CHANGED";
 
 export const ADD_PRODUCT = "products/ADD_PRODUCT";
 export const SET_PRODUCT_LIST = "products/SET_PRODUCT_LIST";
+export const FETCH_PRODUCT_LIST = "products/FETCH_PRODUCT_LIST";

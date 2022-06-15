@@ -1,24 +1,44 @@
 import React, { useState } from "react";
 import Header from "../../components/Header/Header";
 import "./ProductPage.css";
-import imgShoe01 from "../../assets/images/shoe_01.jpg";
 import { useParams } from "react-router-dom";
+import * as selectors from "../../react-redux/selectors";
+import { connect } from "react-redux";
+import { addProductToCart } from "../../react-redux/actions/cartActions";
 
-const Product = () => {
-  const [amount, setAmount] = useState(1);
+const ProductPage = (props) => {
+  const [quantity, setQuantity] = useState(1);
+  const { addProductToCart } = props;
+  // console.log(props);
 
-  let shoeID = useParams().id;
-  console.log(shoeID);
+  let shoeId = useParams().id - 1;
+  console.log(shoeId);
+  const { id, name, imageURL, price } = props.data[shoeId];
+  console.log(id);
+
+  const handleAddToCartClicked = () => {
+    const cartItem = {
+      id: id,
+      url: imageURL,
+      name: name,
+      price: price,
+      quantity: quantity,
+    };
+
+    addProductToCart(cartItem);
+    console.log(cartItem);
+    setQuantity(1);
+  }
 
   return (
     <div>
       <Header />
       <div className="container-wrapper">
-        <div className="imageContainer">
-          <img className="imageShoe" src={imgShoe01} alt="Error" />
+        <div className="image-container">
+          <img className="image-shoe" src={imageURL} alt="Error" />
         </div>
-        <div className="infoContainer">
-          <div className="title">Shoe_{shoeID}</div>
+        <div className="info-container">
+          <div className="title">{name}</div>
           <div className="introduction">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
@@ -32,9 +52,9 @@ const Product = () => {
           </div>
           <br />
           <span className="price">20000 đ.</span>
-          <div className="filterContainer">
+          <div className="filter-container">
             <div className="filter">
-              <div className="filterTitle">Color</div>
+              <div className="filter-citle">Color</div>
               <select className="select" defaultValue="Green">
                 <option>Red</option>
                 <option>Blue</option>
@@ -44,7 +64,7 @@ const Product = () => {
               </select>
             </div>
             <div className="filter">
-              <div className="filterTitle">Size</div>
+              <div className="filter-citle">Size</div>
               <select className="select" defaultValue="30">
                 <option>28</option>
                 <option>29</option>
@@ -54,17 +74,17 @@ const Product = () => {
               </select>
             </div>
           </div>
-          <div className="addContainer">
-            <div className="amountContainer">
-              <button type="button" onClick={() => setAmount(amount - 1)}>
+          <div className="add-container">
+            <div className="quantity-container">
+              <button type="button" onClick={() => setQuantity(quantity - 1)}>
                 -
               </button>
-              <div className="amount">{amount}</div>
-              <button type="button" onClick={() => setAmount(amount + 1)}>
+              <div className="quantity">{quantity}</div>
+              <button type="button" onClick={() => setQuantity(quantity + 1)}>
                 +
               </button>
             </div>
-            <button type="button" className="cartBtn">
+            <button type="button" className="add-to-cart-btn" onClick={handleAddToCartClicked}>
               ADD TO CART
             </button>
           </div>
@@ -74,4 +94,15 @@ const Product = () => {
   );
 };
 
-export default Product;
+const mapStateToProps = (state) => {
+  const data = selectors.productSelector(state);
+  return { data: data }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addProductToCart: (product) => dispatch(addProductToCart(product))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);

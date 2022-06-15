@@ -1,6 +1,6 @@
 import React from "react";
 import "./Slider.css";
-import { PREV_ARROW, NEXT_ARROW } from './DataSource/BannerArrow';
+import { PREV_ARROW, NEXT_ARROW } from '../../data/BannerArrow';
 
 const ArrowButton = ({ direction, moveSlide }) => {
     // console.log(direction, moveSlide);

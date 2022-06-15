@@ -3,9 +3,17 @@ import "./CartPage.css";
 import Header from "../../components/Header/Header";
 import CartItem from "./CartItem";
 import { connect } from "react-redux";
+import {Link} from "react-router-dom";
 
 const CartPage = (props) => {
   const cartList = props.cartList;
+  const init = 0;
+  const total = cartList
+    ? cartList.reduce(
+      (prev, curr) => prev + curr.quantity * curr.price,
+      init
+    )
+    : 0;
 
   return (
     <div>
@@ -23,6 +31,20 @@ const CartPage = (props) => {
           {cartList.map((item) => (
             <CartItem key={item.id} product={item} />
           ))}
+        </div>
+        <div className="cart-footer">
+          <div>
+            <span className="cart-footer-title">Total:&nbsp;&nbsp;&nbsp;</span>
+            <span className="cart-total-price">{total}&nbsp;₫</span>
+          </div>
+          <div className="">
+            <Link to={'/'}>
+              <button type="button" className="cart-btn back-btn">Tiếp tục mua hàng</button>
+            </Link>
+            <Link to={'/login'}>
+              <button type="button" className="cart-btn buy-btn">Tiến hành đặt hàng</button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

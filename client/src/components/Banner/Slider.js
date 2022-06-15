@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './Slider.css';
 import ArrowButton from './ArrowButton';
-import DataSlider from './DataSource/DataSlider';
+import DataSlider from '../../data/DataSlider';
 
 const Slider = () => {
     const [slideIndex, setSlideIndex] = useState(1);
     const slideLength = DataSlider.length;
     let slideInterval;
-    const intervalTime = 2000;
+    const intervalTime = 5000;
     const autoScroll = true;
 
     const nextSlide = () => {

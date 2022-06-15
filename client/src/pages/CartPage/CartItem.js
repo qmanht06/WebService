@@ -18,13 +18,15 @@ const CartItem = (props) => {
         </Link>
       </div>
       <div style={{ width: "28%" }}>
-        <div className="cart-item-info">
-          <div className="item-name">{name}</div>
-          <div className="item-size">Size: 35</div>
-        </div>
+        <Link>
+          <div className="cart-item-info">
+            <div className="item-name">{name}</div>
+            <div className="item-size">Size: 35</div>
+          </div>
+        </Link>
       </div>
       <div style={{ width: "17%" }}>
-        <div className="cart-item-price">{price}</div>
+        <div className="cart-item-price">{price}₫</div>
       </div>
       <div style={{ width: "18%" }}>
         <div className="cart-item-quantity">
@@ -46,7 +48,7 @@ const CartItem = (props) => {
         </div>
       </div>
       <div style={{ width: "13%" }}>
-        <div className="cart-item-sum">{price * quantity}</div>
+        <div className="cart-item-sum">{Number(price) * Number(quantity)}₫</div>
       </div>
       <div style={{ width: "5%" }}>
         <div className="cart-item-remove">
