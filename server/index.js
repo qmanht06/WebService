@@ -1,15 +1,28 @@
-const express = require('express')
-const app = express()
-app.use(express.json())
+import express from 'express';
+import Products from "./src/data/Products";
+import Cart from "./src/data/Cart";
 
-const connectDB = require('./config/db/index')
+require('dotenv').config();
 
-const authRouter = require('./routes/auth')
+const app = express();
+const PORT = process.env.PORT || 8080;
 
-connectDB.connectDB()
+// const connectDB = require('./config/db/index');
+// const authRouter = require('./routes/auth');
 
-app.use('/api/auth', authRouter)
+// connectDB.connectDB();
 
-const PORT = 5000
+app.use(express.json());
+// app.use('/api/auth', authRouter);
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
+app.get('/api/products', (req, res) => {
+    res.json(Products);
+})
+
+app.get('/api/cart', (req, res) => {
+    res.json(Cart);
+})
+
+app.listen(PORT, () => {
+    console.log(`PORT ${PORT}: Server running.....`);
+})

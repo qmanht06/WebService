@@ -19,6 +19,7 @@
 }
 
 .item-name {
+    color: #201e1d;
     font-size: 16px;
     font-weight: 400;
 }
@@ -52,9 +53,9 @@
     font-weight: 700;
 }
 
-.cart-item-remove {
+/* .cart-item-remove {
     
-}
+} */
 
 .item-remove-btn {
     width: 40px;

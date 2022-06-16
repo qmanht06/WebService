@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./CartPage.css";
 import Header from "../../components/Header/Header";
 import CartItem from "./CartItem";
 import { connect } from "react-redux";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { fetchCartList } from "../../react-redux/actions/cartActions";
 
 const CartPage = (props) => {
   const cartList = props.cartList;
+  const { fetchCartList } = props;
   const init = 0;
   const total = cartList
     ? cartList.reduce(
@@ -14,6 +16,10 @@ const CartPage = (props) => {
       init
     )
     : 0;
+
+  useEffect(() => {
+    fetchCartList()
+  }, [])
 
   return (
     <div>
@@ -57,4 +63,11 @@ const mapStateToProps = (state) => {
   return { cartList: cartList };
 };
 
-export default connect(mapStateToProps)(CartPage);
+const mapDispatchToProps = (dispatch) => {
+  console.log("ok");
+  return {
+    fetchCartList: (data) => dispatch(fetchCartList(data)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartPage);

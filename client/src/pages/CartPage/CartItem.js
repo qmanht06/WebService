@@ -18,7 +18,7 @@ const CartItem = (props) => {
         </Link>
       </div>
       <div style={{ width: "28%" }}>
-        <Link>
+        <Link to={`/product/${id}`}>
           <div className="cart-item-info">
             <div className="item-name">{name}</div>
             <div className="item-size">Size: 35</div>

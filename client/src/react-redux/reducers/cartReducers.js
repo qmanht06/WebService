@@ -22,6 +22,11 @@ const initialState = {
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
+    case types.SET_CART_LIST:
+      return {
+        ...state,
+        cartList: action.payload,
+      };
     case types.INCREASE_QUANTITY:
       return {
         ...state,

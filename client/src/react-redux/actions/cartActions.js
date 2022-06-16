@@ -19,3 +19,13 @@ export const removeProductFromCart = (productID) => ({
   type: types.REMOVE_FROM_CART,
   payload: productID,
 });
+
+export const fetchCartList = () => ({
+  type: types.FETCH_CART_LIST,
+});
+
+export const setCartList = (data) => ({
+  type: types.SET_CART_LIST,
+  payload: data,
+})
+
