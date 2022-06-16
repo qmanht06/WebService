@@ -10,7 +10,6 @@ export const setProductList = (data) => ({
   payload: data,
 });
 
-export const fetchProductList = (productId) => ({
+export const fetchProductList = () => ({
   type: types.FETCH_PRODUCT_LIST,
-  payload: productId,
 })

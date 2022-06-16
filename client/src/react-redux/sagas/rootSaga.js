@@ -1,17 +1,28 @@
-import { all, takeLatest } from "redux-saga/effects";
+import { call, put, all, takeLatest } from "redux-saga/effects";
 import * as types from "../actions/actionTypes";
+import axios from "axios";
 
 //Async functions
-// async function fetchData(productId) {
-//     const response = await productApi.get(productId);
-//     console.log(response);
-//     return response;
-// }
+async function fetchData() {
+    try {
+        const response = await axios.get('/api/products');
+        console.log("axios res: ", response);
+        if (response && response.data ){
+            return response.data;
+        } else return [];
+    } catch (err) {
+        console.log("err");
+        console.log();
+        return "False";
+    }
+}
 
 //Workers
-export function* fetchProductList(action) {
-    yield console.log("Worker!")
-    // yield put({ type: types.SET_PRODUCT_LIST, payload: response });
+export function* fetchProductList() {
+    console.log("Worker!")
+    const response = yield call(fetchData);
+    yield console.log("fetch data: ", response);
+    yield put({ type: types.SET_PRODUCT_LIST, payload: response });
 }
 
 //Watchers
