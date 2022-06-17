@@ -5,10 +5,10 @@ import CartItem from "./CartItem";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchCartList } from "../../react-redux/actions/cartActions";
+import * as selectors from "../../react-redux/selectors";
 
 const CartPage = (props) => {
-  const cartList = props.cartList;
-  const { fetchCartList } = props;
+  const { cartList, quantity, fetchCartList } = props;
   const init = 0;
   const total = cartList
     ? cartList.reduce(
@@ -20,6 +20,8 @@ const CartPage = (props) => {
   useEffect(() => {
     fetchCartList()
   }, [])
+
+  console.log(quantity);
 
   return (
     <div>
@@ -58,9 +60,12 @@ const CartPage = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  const cartList = state.cart.cartList;
+  const data = selectors.cartSelector(state);
+  // const test = selectors.productSelector(state);
+  // console.log("product: ",test);
+  console.log("cart: ", data);
 
-  return { cartList: cartList };
+  return { cartList: data.cartList, quantity: data.cartTotalQuantity };
 };
 
 const mapDispatchToProps = (dispatch) => {

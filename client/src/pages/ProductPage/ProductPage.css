@@ -6,10 +6,12 @@
 
 .image-container {
   flex: 2;
+  display: flex;
+  align-items: center;
 }
 
 .image-shoe {
-  width: 100%;
+  width: 80%;
   height: 60vh;
   object-fit: cover;
 }
@@ -28,7 +30,7 @@
 }
 
 .price {
-  font-weight: 100;
+  font-weight: 400;
   font-size: 40px;
 }
 
@@ -42,6 +44,7 @@
 .filter {
   display: flex;
   align-items: center;
+  margin-right: 20px;
 }
 
 .filter-title {

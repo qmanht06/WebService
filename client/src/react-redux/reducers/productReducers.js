@@ -23,6 +23,7 @@ import * as types from "../actions/actionTypes";
 
 const initialState = {
   productList: [],
+  product: {},
 }
 
 const productReducer = (state = initialState, action) => {
@@ -37,6 +38,11 @@ const productReducer = (state = initialState, action) => {
         ...state,
         productList: [...state.productList, action.payload],
       };
+    case types.SET_SINGLE_PRODUCT:
+      return {
+        ...state,
+        product: action.payload,
+      }
     default:
       return state;
   }

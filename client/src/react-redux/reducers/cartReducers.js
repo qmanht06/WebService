@@ -1,5 +1,5 @@
 import * as types from "../actions/actionTypes";
-import * as shoes from "../../data/ImageShoe";
+// import * as shoes from "../../data/ImageShoe";
 
 // const initialState = {
 //   cartList: [
@@ -17,7 +17,8 @@ import * as shoes from "../../data/ImageShoe";
 // };
 
 const initialState = {
-  cartList: []
+  cartList: [],
+  cartTotalQuantity: 0,
 }
 
 const cartReducer = (state = initialState, action) => {
@@ -25,7 +26,8 @@ const cartReducer = (state = initialState, action) => {
     case types.SET_CART_LIST:
       return {
         ...state,
-        cartList: action.payload,
+        cartList: action.payload.cartList,
+        cartTotalQuantity: action.payload.cartTotalQuantity
       };
     case types.INCREASE_QUANTITY:
       return {
@@ -54,12 +56,12 @@ const cartReducer = (state = initialState, action) => {
       if (checkExist) {
         return {
           ...state,
-          cartList: state.cartList.map((item) => item.id === checkExist.id ? { ...item, quantity: item.quantity + action.payload.quantity } : item)
+          cartList: state.cartList.map((item) => item.id === checkExist.id ? { ...item, quantity: item.quantity + action.payload.quantity } : item),
         }
       } else {
         return {
           ...state,
-          cartList: [...state.cartList, action.payload]
+          cartList: [...state.cartList, action.payload],
         }
       }
     case types.REMOVE_FROM_CART:

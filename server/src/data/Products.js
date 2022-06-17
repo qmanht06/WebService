@@ -13,7 +13,7 @@ const Products = [
         "countInStock": 44371,
         "rating": 20700,
         "numReviews": 80761,
-        "id": "1"
+        "id": "1",
     },
     {
         "name": "Fantastic Steel C Shoe",
@@ -27,7 +27,7 @@ const Products = [
         "countInStock": 85687,
         "rating": 40418,
         "numReviews": 19569,
-        "id": "2"
+        "id": "2",
     },
     {
         "name": "Handmade Wood Shoe",
@@ -41,7 +41,7 @@ const Products = [
         "countInStock": 62116,
         "rating": 43983,
         "numReviews": 76576,
-        "id": "3"
+        "id": "3",
     },
     {
         "name": "Incredible Concrete C Shoe",
@@ -55,7 +55,7 @@ const Products = [
         "countInStock": 92440,
         "rating": 54662,
         "numReviews": 52243,
-        "id": "4"
+        "id": "4",
     },
     {
         "name": "Ergonomic Plasti Shoe",
@@ -69,7 +69,7 @@ const Products = [
         "countInStock": 72492,
         "rating": 36683,
         "numReviews": 61492,
-        "id": "5"
+        "id": "5",
     },
     {
         "name": "Elegant Cotton  Shoe",
@@ -83,7 +83,7 @@ const Products = [
         "countInStock": 30408,
         "rating": 23150,
         "numReviews": 58651,
-        "id": "6"
+        "id": "6",
     },
     {
         "name": "Ergonomic Plastic Shoe",
@@ -97,7 +97,7 @@ const Products = [
         "countInStock": 36360,
         "rating": 42352,
         "numReviews": 93511,
-        "id": "7"
+        "id": "7",
     },
     {
         "name": "Generic Frozen Shoe",
@@ -111,7 +111,7 @@ const Products = [
         "countInStock": 19455,
         "rating": 39267,
         "numReviews": 25475,
-        "id": "8"
+        "id": "8",
     },
     {
         "name": "Awesome Fresh Shoe",
@@ -125,7 +125,7 @@ const Products = [
         "countInStock": 74490,
         "rating": 65474,
         "numReviews": 48207,
-        "id": "9"
+        "id": "9",
     },
     {
         "name": "Refined Cotton Shoe",
@@ -139,7 +139,7 @@ const Products = [
         "countInStock": 72844,
         "rating": 32750,
         "numReviews": 37875,
-        "id": "10"
+        "id": "10",
     },
     {
         "name": "Recycled Soft Shoe",
@@ -153,7 +153,7 @@ const Products = [
         "countInStock": 74430,
         "rating": 28441,
         "numReviews": 68278,
-        "id": "11"
+        "id": "11",
     },
     {
         "name": "Bespoke Soft Sa Shoe",
@@ -167,7 +167,7 @@ const Products = [
         "countInStock": 91139,
         "rating": 53559,
         "numReviews": 59665,
-        "id": "12"
+        "id": "12",
     },
     {
         "name": "Modern Plastic  Shoe",
@@ -181,7 +181,7 @@ const Products = [
         "countInStock": 39699,
         "rating": 19378,
         "numReviews": 30653,
-        "id": "13"
+        "id": "13",
     },
     {
         "name": "Sleek Sof Shoe",
@@ -195,7 +195,7 @@ const Products = [
         "countInStock": 6895,
         "rating": 39276,
         "numReviews": 69400,
-        "id": "14"
+        "id": "14",
     },
     {
         "name": "Handmade Cotton  Shoe",
@@ -209,7 +209,7 @@ const Products = [
         "countInStock": 27160,
         "rating": 68403,
         "numReviews": 81984,
-        "id": "15"
+        "id": "15",
     },
     {
         "name": "Gorgeous Metal Ke Shoe",
@@ -223,7 +223,7 @@ const Products = [
         "countInStock": 97551,
         "rating": 33070,
         "numReviews": 45491,
-        "id": "16"
+        "id": "16",
     },
     {
         "name": "Licensed Metal Shoe",
@@ -237,7 +237,7 @@ const Products = [
         "countInStock": 67455,
         "rating": 40495,
         "numReviews": 2196,
-        "id": "17"
+        "id": "17",
     },
     {
         "name": "Luxurious Rubbe Shoe",
@@ -251,7 +251,7 @@ const Products = [
         "countInStock": 31974,
         "rating": 59130,
         "numReviews": 70617,
-        "id": "18"
+        "id": "18",
     },
     {
         "name": "Recycled Rubber Shoe",
@@ -265,7 +265,7 @@ const Products = [
         "countInStock": 23363,
         "rating": 41196,
         "numReviews": 31877,
-        "id": "19"
+        "id": "19",
     },
     {
         "name": "Bespoke Cotton Shoe",
@@ -279,7 +279,7 @@ const Products = [
         "countInStock": 17286,
         "rating": 30529,
         "numReviews": 46185,
-        "id": "20"
+        "id": "20",
     },
     {
         "name": "Ergonomic Froze Shoe",
@@ -293,7 +293,7 @@ const Products = [
         "countInStock": 72205,
         "rating": 41660,
         "numReviews": 44415,
-        "id": "21"
+        "id": "21",
     },
     {
         "name": "Elegant Plast Shoe",
@@ -307,7 +307,7 @@ const Products = [
         "countInStock": 4848,
         "rating": 30626,
         "numReviews": 83963,
-        "id": "22"
+        "id": "22",
     },
     {
         "name": "Handcrafted Bronze Shoe",
@@ -321,7 +321,7 @@ const Products = [
         "countInStock": 92884,
         "rating": 72789,
         "numReviews": 76172,
-        "id": "23"
+        "id": "23",
     }
 ]
 
