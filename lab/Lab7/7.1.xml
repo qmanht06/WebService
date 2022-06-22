@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<students>
+    <student>
+        <mssv>20194056</mssv>
+        <name>Lê Minh Hoàng</name>
+        <class>khmt03-k64</class>
+        <address>Hà Nội</address>
+        <phone>0974438963</phone>
+    </student>
+	
+    <student>
+    	<mssv>20183554</mssv>
+        <name>Nguyễn Tùng Lâm</name>
+        <class>khmt03-k63</class>
+        <address>Hà Nội</address>
+        <phone>0999999999</phone>
+    </student>
+</students>
