@@ -7,10 +7,12 @@ import { UilShoppingCartAlt } from "@iconscout/react-unicons";
 
 import { connect } from "react-redux";
 import { searchFilterChanged } from "../../react-redux/actions/filterActions";
+import { cartSelector } from "../../react-redux/selectors";
 
 const Header = (props) => {
   const [searchText, setSearchText] = useState("");
   const searchFilterChanged = props.searchFilterChanged;
+  const quantity = props.quantity;
 
   const handleSearchTextChanged = (e) => {
     console.log(e.target.value);
@@ -74,7 +76,7 @@ const Header = (props) => {
         style={{ flexDirection: "row" }}
       >
         <div style={{ position: "relative" }}>
-          <span className={styles.quantity}>10</span>
+          <span className={styles.quantity}>{quantity}</span>
           <UilShoppingCartAlt size="30" color="#fff" />
         </div>
         <span className={styles.cartText}>Cart</span>
@@ -83,6 +85,11 @@ const Header = (props) => {
   );
 };
 
+const mapStateToPropss = (state) => {
+  const quantity = cartSelector(state).cartTotalQuantity;
+  return {quantity: quantity}
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     searchFilterChanged: (searchText) =>
@@ -90,4 +97,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToPropss, mapDispatchToProps)(Header);

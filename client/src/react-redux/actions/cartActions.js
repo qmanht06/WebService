@@ -29,3 +29,7 @@ export const setCartList = (data) => ({
   payload: data,
 })
 
+export const totalQuantityChanged = (quantity) => ({
+  type: types.CHANGE_TOTAL_QUANTITY,
+  payload: quantity,
+})

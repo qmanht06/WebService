@@ -42,7 +42,8 @@ export function* getCartData() {
 export function* addProductToCart(action) {
     console.log("payload: ", action.payload);
     const response = yield call(postCartItem, action.payload);
-    console.log("fetch data: ", response);
+    console.log("fetch data: ", response || 0);
+    yield put({type: types.CHANGE_TOTAL_QUANTITY, payload: response.quantity})
 }
 
 export function* removeProductFromCart() {

@@ -8,13 +8,8 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-const cartList = CartList;
-const cartTotalQuantity = cartList.reduce((prev, curr) => prev + curr.quantity, 0);
-
-const Cart = {
-    cartList: cartList,
-    cartTotalQuantity: cartTotalQuantity,
-}
+let cartList = CartList;
+let cartTotalQuantity = cartList.reduce((prev, curr) => prev + curr.quantity, 0);
 
 // const connectDB = require('./config/db/index');
 // const authRouter = require('./routes/auth');
@@ -39,15 +34,22 @@ app.get("/api/products/:id", (req, res) => {
 })
 
 //Cart Router
-app.get('/api/cart', (req, res) => {
-    res.json(Cart);
-})
-
 app.post('/api/cart/', (req, res) => {
     console.log("request body: ", req.body);
     cartList.push(req.body.cartItem);
     console.log(cartList);
-    // res.json(cartList);
+    // let quantity = cartList.reduce((prev, curr) => prev + curr.quantity, 0);
+    cartTotalQuantity += req.body.cartItem.quantity;
+    res.json({quantity: cartTotalQuantity});
+})
+
+app.get('/api/cart', (req, res) => {
+    let Cart = {
+        cartList: cartList,
+        cartTotalQuantity: cartTotalQuantity,
+    };
+
+    res.json(Cart);
 })
 
 app.listen(PORT, () => {

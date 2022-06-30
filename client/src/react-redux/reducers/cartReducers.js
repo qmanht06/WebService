@@ -18,7 +18,7 @@ import * as types from "../actions/actionTypes";
 
 const initialState = {
   cartList: [],
-  cartTotalQuantity: 0,
+  cartTotalQuantity: 5,
 }
 
 const cartReducer = (state = initialState, action) => {
@@ -69,6 +69,11 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         cartList: state.cartList.filter((item) => item.id !== action.payload),
       };
+    case types.CHANGE_TOTAL_QUANTITY:
+      return {
+        ...state,
+        cartTotalQuantity: action.payload,
+      }
     default:
       return state;
   }
