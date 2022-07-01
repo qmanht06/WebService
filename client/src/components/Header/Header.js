@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./Header.module.css";
@@ -7,15 +7,24 @@ import { UilShoppingCartAlt } from "@iconscout/react-unicons";
 
 import { connect } from "react-redux";
 import { searchFilterChanged } from "../../react-redux/actions/filterActions";
+import { fetchCartList } from "../../react-redux/actions/cartActions";
 import { cartSelector } from "../../react-redux/selectors";
 
 const Header = (props) => {
   const [searchText, setSearchText] = useState("");
-  const searchFilterChanged = props.searchFilterChanged;
-  const quantity = props.quantity;
+  const { fetchCartList, searchFilterChanged } = props;
 
+  useEffect(() => {
+    fetchCartList()
+  }, [])
+  // let quantity = localStorage.getItem('quantity') || props.quantity;
+  let quantity = props.quantity;
+
+  // useEffect(() => {
+  //   fetchCartList()
+  // })
   const handleSearchTextChanged = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setSearchText(e.target.value);
     searchFilterChanged(e.target.value);
   };
@@ -94,6 +103,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     searchFilterChanged: (searchText) =>
       dispatch(searchFilterChanged(searchText)),
+    fetchCartList: () => dispatch(fetchCartList())  
   };
 };
 

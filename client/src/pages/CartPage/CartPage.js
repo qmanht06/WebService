@@ -21,7 +21,7 @@ const CartPage = (props) => {
     fetchCartList()
   }, [])
 
-  console.log(quantity);
+  // console.log(quantity);
 
   return (
     <div>
