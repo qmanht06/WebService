@@ -6,6 +6,7 @@ import Signup from "./pages/SignupPage/Signup";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import Login from "./pages/LoginPage/Login";
 import CartPage from "./pages/CartPage/CartPage";
+import PostManagePage from "./pages/PostManagePage/PostManagePage";
 function App() {
   return (
     <Switch>
@@ -23,6 +24,9 @@ function App() {
       </Route>
       <Route exact path="/cart">
         <CartPage />
+      </Route>
+      <Route exact path="/product-manage">
+        <PostManagePage />
       </Route>
     </Switch>
   );

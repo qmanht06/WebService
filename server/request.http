@@ -6,3 +6,16 @@ Content-Type: application/json
     "password": "qmanh"
 
 }
+
+###
+
+POST http://localhost:5000/api/product
+Content-Type: application/json
+
+{
+    "productName": "productName",
+    "productImage": "productImage",
+    "productDescription": "productPrice",
+    "productPrice": "productCategory",
+    "productCategory": "productCategory"
+}
