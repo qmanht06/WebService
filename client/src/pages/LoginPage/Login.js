@@ -40,14 +40,14 @@ const Login = () => {
           </div>
           <div className="card ">
             <div className="card-body ">
-              <h2 className="text-center mb-4">Log In</h2>
+              <h2 className="text-center mb-4 font-300">Log In</h2>
               <form className="align-item-center justify-content-center text-center">
                 <div className="form-group">
-                  <label>Email</label>
+                  <label className="text-left font-200">Email</label>
                   <input className="form-control"></input>
                 </div>
                 <div className="form-group">
-                  <label>Password</label>
+                  <label className="text-left font-200">Password</label>
                   <input className="form-control"></input>
                 </div>
                 <button type="submit" className="w-100 btn">
@@ -57,7 +57,7 @@ const Login = () => {
             </div>
           </div>
 
-          <div className="text-center w-100 mt-2">
+          <div className="text-center w-100 mt-2 font-150">
             Need an account? <Link to="/Signup">Sign Up</Link>
           </div>
         </div>
