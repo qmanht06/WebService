@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import "./Signup.css";
+import "./Signup.scss";
 //import { useAuth } from "../contexts/AuthContext";
 const Signup = () => {
   // const emailRef = useRef();

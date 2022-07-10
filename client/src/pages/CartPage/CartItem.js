@@ -1,5 +1,5 @@
 import React from "react";
-import "./CartItem.css";
+import "./CartItem.scss";
 import { connect } from "react-redux";
 import * as actions from "../../react-redux/actions/cartActions";
 import { Link } from "react-router-dom";
