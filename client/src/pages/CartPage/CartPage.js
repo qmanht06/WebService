@@ -1,5 +1,5 @@
 import React from "react";
-import "./CartPage.css";
+import "./CartPage.scss";
 import Header from "../../components/Header/Header";
 import CartItem from "./CartItem";
 import { connect } from "react-redux";

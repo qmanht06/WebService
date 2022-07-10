@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // import imgShoe01 from "../../assets/images/shoe_01.jpg";
 // import shoppingCartIcon from "../../assets/images/shopping-cart.png";
 // import productViewIcon from "../../assets/images/view.png";
-import "./Product.css";
+import "./Product.scss";
 
 const Product = (props) => {
   const currency = { style: 'currency', currency: 'VND' };

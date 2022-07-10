@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "../../components/Header/Header";
-import "./ProductPage.css";
+import "./ProductPage.scss";
 import { useParams } from "react-router-dom";
 import * as selectors from "../../react-redux/selectors";
 import { connect } from "react-redux";
