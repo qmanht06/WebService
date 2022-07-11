@@ -7,6 +7,16 @@
   @media (max-width: 1000px) {
     padding: 70px 30px;
   }
+  .Footer-title {
+  // color: "green";
+  // textAlign: "center";
+  // marginTop: "-50px"
+  color: white;
+  text-align: center;
+  margin-top: -50px;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
 
   .Container {
     display: flex;
@@ -51,13 +61,4 @@
   }
 }
 
-.h1 {
-  // color: "green";
-  // textAlign: "center";
-  // marginTop: "-50px"
-  color: white;
-  text-align: center;
-  margin-top: -50px;
-  font-size: 26px;
-  margin-bottom: 20px;
-}
+

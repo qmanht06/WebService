@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 const Footer = () => {
   return (
     <div className={cx("Footer")}>
-      <h1 className={cx("h1")}>Amazon: Expect more. Pay less.</h1>
+      <h1 className={cx("Footer-title")}>Amazon: Expect more. Pay less.</h1>
       <div className={cx("Container")}>
         <div className={cx("Row")}>
           <div className={cx("Column")}>
