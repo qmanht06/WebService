@@ -6,11 +6,12 @@ import * as selectors from "../../react-redux/selectors";
 import { connect } from "react-redux";
 import { addProductToCart } from "../../react-redux/actions/cartActions";
 import { getSingleProduct } from "../../react-redux/actions/productActions";
+import { Products } from "../../data/Products";
 
 const ProductPage = (props) => {
   const [quantity, setQuantity] = useState(1);
-  const { addProductToCart, getSingleProduct } = props;
-  const currency = { style: 'currency', currency: 'VND' };
+  // const { addProductToCart, getSingleProduct } = props;
+  const currency = { style: "currency", currency: "VND" };
 
   // useEffect(() => {
   //   getSingleProduct(shoeID);
@@ -23,7 +24,10 @@ const ProductPage = (props) => {
   const shoeID = location.slice(9);
   console.log("shoeId: ", shoeID);
 
-  const { id, name, imageURL, price } = props.data;
+  // props.data
+  const { id, name, imageURL, price } = Products.find(
+    (item) => item.id === shoeID
+  );
   console.log("id: ", id);
 
   const handleAddToCartClicked = () => {
@@ -35,10 +39,10 @@ const ProductPage = (props) => {
       quantity: quantity,
     };
 
-    addProductToCart(cartItem);
+    // addProductToCart(cartItem);
     console.log(cartItem);
     setQuantity(1);
-  }
+  };
 
   return (
     <div>
@@ -61,7 +65,9 @@ const ProductPage = (props) => {
             PageMaker including versions of Lorem Ipsum.
           </div>
           <br />
-          <span className="price">{Number(price).toLocaleString('en-US', currency)}</span>
+          <span className="price">
+            {Number(price).toLocaleString("en-US", currency)}
+          </span>
           <div className="filter-container">
             <div className="filter">
               <div className="filter-title">Color</div>
@@ -94,7 +100,11 @@ const ProductPage = (props) => {
                 +
               </button>
             </div>
-            <button type="button" className="add-to-cart-btn" onClick={handleAddToCartClicked}>
+            <button
+              type="button"
+              className="add-to-cart-btn"
+              onClick={handleAddToCartClicked}
+            >
               ADD TO CART
             </button>
           </div>
@@ -107,14 +117,14 @@ const ProductPage = (props) => {
 const mapStateToProps = (state) => {
   const data = selectors.productSelector(state);
   // console.log(data);
-  return { data: data.product }
-}
+  return { data: data.product };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addProductToCart: (product) => dispatch(addProductToCart(product)),
     getSingleProduct: (productId) => dispatch(getSingleProduct(productId)),
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);

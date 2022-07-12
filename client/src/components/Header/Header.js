@@ -95,15 +95,16 @@ const Header = (props) => {
 };
 
 const mapStateToPropss = (state) => {
-  const quantity = cartSelector(state).cartTotalQuantity;
-  return {quantity: quantity}
-}
+  // const quantity = cartSelector(state).cartTotalQuantity;
+  // return {quantity: quantity};
+  return {};
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     searchFilterChanged: (searchText) =>
       dispatch(searchFilterChanged(searchText)),
-    fetchCartList: () => dispatch(fetchCartList())  
+    fetchCartList: () => dispatch(fetchCartList()),
   };
 };
 
