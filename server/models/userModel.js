@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const brypt = require("bcryptjs");
+const bcrypt = require("bcryptjs");
 const Schema = mongoose.Schema;
 
-const UserChema = new Schema(
+const UserSchema = new Schema(
   {
     userName: {
       type: String,
@@ -37,15 +37,19 @@ const UserChema = new Schema(
   }
 );
 
-
 //Encrypt password when write in database
-UserChema.pre("save", async function (next) {
-  if (this.isModified("password")) {
-    next();
-  }
+// UserSchema.pre("save", async function (next) {
+//   if (this.isModified("password")) {
+//     next();
+//   }
 
-  const salt = await brypt.genSalt(10);
-  this.password = await brypt.hash(this.password, salt);
-});
+//   const salt = await bcrypt.genSalt(10);
+//   this.password = await bcrypt.hash(this.password, salt);
+// });
 
-module.exports = mongoose.model("user", UserChema);
+//decrypt password
+UserSchema.methods.matchPassword = async function (enteredPassword) {
+  //return await bcrypt.compare(enteredPassword, this.password)
+  return await (enteredPassword === this.password);
+};
+module.exports = mongoose.model("user", UserSchema);

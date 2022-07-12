@@ -18,8 +18,10 @@ app.use("/api/users", userRouter);
 //app.use("/api/auth", authRouter);
 app.use("/api/product", productRouter);
 
-app.use(notFound)
-app.use(errorHandler)
+
+
+app.use(notFound);
+app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
