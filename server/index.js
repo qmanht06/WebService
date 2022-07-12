@@ -1,17 +1,20 @@
-const express = require('express')
-const app = express()
-app.use(express.json())
+const express = require("express");
+const dotenv = require("dotenv");
 
-const connectDB = require('./config/db/index')
+const app = express();
+app.use(express.json());
+dotenv.config();
 
-const authRouter = require('./routes/auth')
-const productRouter = require('./routes/product')
+const connectDB = require("./config/db/index");
 
-connectDB.connectDB()
+const authRouter = require("./routes/auth");
+const productRouter = require("./routes/product");
 
-app.use('/api/auth', authRouter)
-app.use('/api/product', productRouter)
+connectDB.connectDB();
 
-const PORT = 5000
+app.use("/api/auth", authRouter);
+app.use("/api/product", productRouter);
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
