@@ -54,7 +54,7 @@ const ProductPage = (props) => {
           <span className="price">20000 đ.</span>
           <div className="filter-container">
             <div className="filter">
-              <div className="filter-citle">Color</div>
+              <div className="filter-title">Color</div>
               <select className="select" defaultValue="Green">
                 <option>Red</option>
                 <option>Blue</option>
@@ -64,7 +64,7 @@ const ProductPage = (props) => {
               </select>
             </div>
             <div className="filter">
-              <div className="filter-citle">Size</div>
+              <div className="filter-title">Size</div>
               <select className="select" defaultValue="30">
                 <option>28</option>
                 <option>29</option>

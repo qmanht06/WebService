@@ -57,7 +57,7 @@ const CartItem = (props) => {
             className="item-remove-btn"
             onClick={() => removeProductFromCart(id)}
           >
-            <i className="fa-solid fa-trash-can"></i>
+            <i className="fa-solid fa-trash-can fa-xs"></i>
           </button>
         </div>
       </div>

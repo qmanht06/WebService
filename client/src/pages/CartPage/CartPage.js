@@ -33,11 +33,11 @@ const CartPage = (props) => {
           ))}
         </div>
         <div className="cart-footer">
-          <div>
+          <div className="cart-info">
             <span className="cart-footer-title">Total:&nbsp;&nbsp;&nbsp;</span>
             <span className="cart-total-price">{total}&nbsp;₫</span>
           </div>
-          <div className="">
+          <div className="cart-btn">
             <Link to={'/'}>
               <button type="button" className="cart-btn back-btn">Tiếp tục mua hàng</button>
             </Link>
