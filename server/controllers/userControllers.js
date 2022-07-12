@@ -24,7 +24,7 @@ const registerUser = asyncHandler(async (req, res) => {
       _id: user._id,
       userName: user.userName,
       email: user.email,
-      password: user.password,
+      //password: user.password,
       fullName: user.fullName,
       isAdmin: user.isAdmin,
     });
@@ -49,15 +49,8 @@ const authUser = asyncHandler(async (req, res) => {
       isAdmin: user.isAdmin,
     });
   } else {
-
-    res.json({
-     
-      email: user.email,
-      password: user.password,
-      matchPassword:await user.matchPassword(password)
-    });
-    // res.status(400);
-    // throw new Error("Invalid Email or Password!");
+    res.status(400);
+    throw new Error("Invalid Email or Password!");
   }
 });
 

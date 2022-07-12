@@ -37,6 +37,11 @@ const UserSchema = new Schema(
   }
 );
 
+//decrypt password
+UserSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
+
 //Encrypt password when write in database
 // UserSchema.pre("save", async function (next) {
 //   if (this.isModified("password")) {
@@ -46,10 +51,13 @@ const UserSchema = new Schema(
 //   const salt = await bcrypt.genSalt(10);
 //   this.password = await bcrypt.hash(this.password, salt);
 // });
+UserSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    next();
+  }
 
-//decrypt password
-UserSchema.methods.matchPassword = async function (enteredPassword) {
-  //return await bcrypt.compare(enteredPassword, this.password)
-  return await (enteredPassword === this.password);
-};
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
+
 module.exports = mongoose.model("user", UserSchema);
