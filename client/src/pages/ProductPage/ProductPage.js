@@ -1,20 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import "./ProductPage.scss";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import * as selectors from "../../react-redux/selectors";
 import { connect } from "react-redux";
 import { addProductToCart } from "../../react-redux/actions/cartActions";
+import { getSingleProduct } from "../../react-redux/actions/productActions";
 
 const ProductPage = (props) => {
   const [quantity, setQuantity] = useState(1);
-  const { addProductToCart } = props;
-  // console.log(props);
+  const { addProductToCart, getSingleProduct } = props;
+  const currency = { style: 'currency', currency: 'VND' };
 
-  let shoeId = useParams().id - 1;
-  console.log(shoeId);
-  const { id, name, imageURL, price } = props.data[shoeId];
-  console.log(id);
+  // useEffect(() => {
+  //   getSingleProduct(shoeID);
+  //   console.log("ok");
+  // }, []);
+
+  const location = useLocation().pathname;
+  console.log("location: ", location);
+
+  const shoeID = location.slice(9);
+  console.log("shoeId: ", shoeID);
+
+  const { id, name, imageURL, price } = props.data;
+  console.log("id: ", id);
 
   const handleAddToCartClicked = () => {
     const cartItem = {
@@ -51,7 +61,7 @@ const ProductPage = (props) => {
             PageMaker including versions of Lorem Ipsum.
           </div>
           <br />
-          <span className="price">20000 đ.</span>
+          <span className="price">{Number(price).toLocaleString('en-US', currency)}</span>
           <div className="filter-container">
             <div className="filter">
               <div className="filter-title">Color</div>
@@ -96,12 +106,14 @@ const ProductPage = (props) => {
 
 const mapStateToProps = (state) => {
   const data = selectors.productSelector(state);
-  return { data: data }
+  // console.log(data);
+  return { data: data.product }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addProductToCart: (product) => dispatch(addProductToCart(product))
+    addProductToCart: (product) => dispatch(addProductToCart(product)),
+    getSingleProduct: (productId) => dispatch(getSingleProduct(productId)),
   }
 }
 

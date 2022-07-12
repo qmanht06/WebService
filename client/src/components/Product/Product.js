@@ -19,10 +19,10 @@ const Product = (props) => {
     }
   }
   const ratingStar = processRating(rating / 10000);
-  console.log(ratingStar);
+  // console.log(ratingStar);
 
   return (
-    <div className="col-xs-1 col-sm-2 col-md-4 col-lg-6 col-xl-6">
+    <div className="col-xs-1 col-sm-3 col-md-4 col-lg-5 col-xl-6">
       <Link to={`/product/${id}`}>
         <div className="product-container">
           <div
@@ -39,11 +39,11 @@ const Product = (props) => {
             <div className="star-icon">
               {Array.from({ length: 5 }).map((item, index) => {
                 if (index < ratingStar.star) {
-                  return <i className="fa-solid fa-star"></i>
+                  return <i className="fa-solid fa-star" key={index}></i>
                 } else if (ratingStar.halfStar) {
                   ratingStar.halfStar = false;
-                  return <i className="fa-solid fa-star-half-stroke"></i>
-                } else return <i className="fa-regular fa-star"></i>
+                  return <i className="fa-solid fa-star-half-stroke" key={index}></i>
+                } else return <i key={index} className="fa-regular fa-star"></i>
               })}
             </div>
             <span className="sell-amount">Sell: 5K</span>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Slider.scss";
 import ArrowButton from "./ArrowButton";
 import DataSlider from "../../data/DataSlider";
@@ -46,16 +47,20 @@ const Slider = () => {
     <div className="container-slider">
       {DataSlider.map((item, index) => {
         return (
-          <div
-            key={item.id}
-            className={slideIndex === index + 1 ? "slide active-anim" : "slide"}
-            style={{ backgroundImage: `url(${item.url})` }}
-          >
-            {/* <img
-                            src={item.url}
+          <Link to={`/product/${item.id}`}>
+            <div
+              key={item.id}
+              className={
+                slideIndex === index + 1 ? "slide active-anim" : "slide"
+              }
+              style={{ backgroundImage: `url(${item.url})` }}
+            >
+              {/* <img
+                src={item.url}
                             alt=""
-                        /> */}
-          </div>
+                /> */}
+            </div>
+          </Link>
         );
       })}
       <ArrowButton moveSlide={nextSlide} direction={"next"} />
