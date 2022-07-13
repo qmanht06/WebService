@@ -4,7 +4,7 @@ const router = express.Router()
 const argon2 = require('argon2')
 const jwt = require('jsonwebtoken')
 //const {registerUser} = require('../controllers/userControllers')
-const User = require('../models/userModel')
+const User = require('../models/user')
 
 
 
