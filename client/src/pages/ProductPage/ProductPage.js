@@ -1,20 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
-import "./ProductPage.css";
-import { useParams } from "react-router-dom";
+import "./ProductPage.scss";
+import { useParams, useLocation } from "react-router-dom";
 import * as selectors from "../../react-redux/selectors";
 import { connect } from "react-redux";
 import { addProductToCart } from "../../react-redux/actions/cartActions";
+import { getSingleProduct } from "../../react-redux/actions/productActions";
+import { Products } from "../../data/Products";
 
 const ProductPage = (props) => {
   const [quantity, setQuantity] = useState(1);
-  const { addProductToCart } = props;
-  // console.log(props);
+  // const { addProductToCart, getSingleProduct } = props;
+  const currency = { style: "currency", currency: "VND" };
 
-  let shoeId = useParams().id - 1;
-  console.log(shoeId);
-  const { id, name, imageURL, price } = props.data[shoeId];
-  console.log(id);
+  // useEffect(() => {
+  //   getSingleProduct(shoeID);
+  //   console.log("ok");
+  // }, []);
+
+  const location = useLocation().pathname;
+  console.log("location: ", location);
+
+  const shoeID = location.slice(9);
+  console.log("shoeId: ", shoeID);
+
+  // props.data
+  const { id, name, imageURL, price } = Products.find(
+    (item) => item.id === shoeID
+  );
+  console.log("id: ", id);
 
   const handleAddToCartClicked = () => {
     const cartItem = {
@@ -25,10 +39,10 @@ const ProductPage = (props) => {
       quantity: quantity,
     };
 
-    addProductToCart(cartItem);
+    // addProductToCart(cartItem);
     console.log(cartItem);
     setQuantity(1);
-  }
+  };
 
   return (
     <div>
@@ -51,10 +65,12 @@ const ProductPage = (props) => {
             PageMaker including versions of Lorem Ipsum.
           </div>
           <br />
-          <span className="price">20000 đ.</span>
+          <span className="price">
+            {Number(price).toLocaleString("en-US", currency)}
+          </span>
           <div className="filter-container">
             <div className="filter">
-              <div className="filter-citle">Color</div>
+              <div className="filter-title">Color</div>
               <select className="select" defaultValue="Green">
                 <option>Red</option>
                 <option>Blue</option>
@@ -64,7 +80,7 @@ const ProductPage = (props) => {
               </select>
             </div>
             <div className="filter">
-              <div className="filter-citle">Size</div>
+              <div className="filter-title">Size</div>
               <select className="select" defaultValue="30">
                 <option>28</option>
                 <option>29</option>
@@ -84,7 +100,11 @@ const ProductPage = (props) => {
                 +
               </button>
             </div>
-            <button type="button" className="add-to-cart-btn" onClick={handleAddToCartClicked}>
+            <button
+              type="button"
+              className="add-to-cart-btn"
+              onClick={handleAddToCartClicked}
+            >
               ADD TO CART
             </button>
           </div>
@@ -96,13 +116,15 @@ const ProductPage = (props) => {
 
 const mapStateToProps = (state) => {
   const data = selectors.productSelector(state);
-  return { data: data }
-}
+  // console.log(data);
+  return { data: data.product };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addProductToCart: (product) => dispatch(addProductToCart(product))
-  }
-}
+    addProductToCart: (product) => dispatch(addProductToCart(product)),
+    getSingleProduct: (productId) => dispatch(getSingleProduct(productId)),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);

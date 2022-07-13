@@ -1,5 +1,5 @@
 import React from "react";
-import "./CartItem.css";
+import "./CartItem.scss";
 import { connect } from "react-redux";
 import * as actions from "../../react-redux/actions/cartActions";
 import { Link } from "react-router-dom";
@@ -18,7 +18,7 @@ const CartItem = (props) => {
         </Link>
       </div>
       <div style={{ width: "28%" }}>
-        <Link>
+        <Link to={`/product/${id}`}>
           <div className="cart-item-info">
             <div className="item-name">{name}</div>
             <div className="item-size">Size: 35</div>
@@ -57,7 +57,7 @@ const CartItem = (props) => {
             className="item-remove-btn"
             onClick={() => removeProductFromCart(id)}
           >
-            <i className="fa-solid fa-trash-can"></i>
+            <i className="fa-solid fa-trash-can fa-xs"></i>
           </button>
         </div>
       </div>

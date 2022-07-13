@@ -1,6 +1,6 @@
 import React from 'react';
 import DataSlider from '../../data/DataSlider';
-import "./SaleAdvertisement.css";
+import "./SaleAdvertisement.scss";
 import { Link } from "react-router-dom";
 
 const SaleAdvertisement = () => {

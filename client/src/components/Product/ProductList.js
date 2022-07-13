@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Product from "./Product";
 import { connect } from "react-redux";
-// import { fetchProductList } from "../../react-redux/actions/productActions";
+import { fetchProductList } from "../../react-redux/actions/productActions";
+import { Products } from "../../data/Products";
 
 const ProductList = (props) => {
-  const productItemList = props.productItemList;
+  // props.productItemList
+  const productItemList = Products;
+  // const {fetchProductList} = props;
+
+  // useEffect(() => {
+  //   fetchProductList();
+  // },[]);
 
   return (
     <div className="grid">
@@ -28,11 +35,11 @@ const mapStateToProps = (state) => {
   return { productItemList: productItemList };
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   console.log("ok");
-//   return {
-//     fetchProductList: (data) => dispatch(fetchProductList(data)),
-//   }
-// }
+const mapDispatchToProps = (dispatch) => {
+  console.log("ok");
+  return {
+    fetchProductList: (data) => dispatch(fetchProductList(data)),
+  };
+};
 
-export default connect(mapStateToProps)(ProductList);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);

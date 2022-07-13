@@ -1,19 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import styles from "./Header.module.css";
+import styles from "./Header.module.scss";
 import { UilSearch } from "@iconscout/react-unicons";
 import { UilShoppingCartAlt } from "@iconscout/react-unicons";
 
 import { connect } from "react-redux";
 import { searchFilterChanged } from "../../react-redux/actions/filterActions";
+import { fetchCartList } from "../../react-redux/actions/cartActions";
+import { cartSelector } from "../../react-redux/selectors";
 
 const Header = (props) => {
   const [searchText, setSearchText] = useState("");
-  const searchFilterChanged = props.searchFilterChanged;
+  const { fetchCartList, searchFilterChanged } = props;
 
+  // useEffect(() => {
+  //   fetchCartList()
+  // }, [])
+  // let quantity = localStorage.getItem('quantity') || props.quantity;
+  let quantity = props.quantity;
+
+  // useEffect(() => {
+  //   fetchCartList()
+  // })
   const handleSearchTextChanged = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setSearchText(e.target.value);
     searchFilterChanged(e.target.value);
   };
@@ -64,17 +75,17 @@ const Header = (props) => {
           </button>
         </ul>
       </div>
-      <Link to="/user/order" className={styles.headerNav}>
+      {/* <Link to="/user/order" className={styles.headerNav}>
         <span className={styles.headerNavTextFirst}>Returns</span>
         <span className={styles.headerNavTextSecond}>&amp; Order</span>
-      </Link>
+      </Link> */}
       <Link
         to="/cart"
         className={styles.headerNav}
         style={{ flexDirection: "row" }}
       >
         <div style={{ position: "relative" }}>
-          <span className={styles.quantity}>10</span>
+          <span className={styles.quantity}>{quantity}</span>
           <UilShoppingCartAlt size="30" color="#fff" />
         </div>
         <span className={styles.cartText}>Cart</span>
@@ -83,11 +94,18 @@ const Header = (props) => {
   );
 };
 
+const mapStateToPropss = (state) => {
+  // const quantity = cartSelector(state).cartTotalQuantity;
+  // return {quantity: quantity};
+  return {};
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     searchFilterChanged: (searchText) =>
       dispatch(searchFilterChanged(searchText)),
+    fetchCartList: () => dispatch(fetchCartList()),
   };
 };
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToPropss, mapDispatchToProps)(Header);
