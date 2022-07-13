@@ -9,7 +9,7 @@ const connectDB = require("./config/db/index");
 
 const authRouter = require("./routes/auth");
 const productRouter = require("./routes/product");
-const userRouter = require("./routes/userRoutes");
+const userRouter = require("./routes/user");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 
 connectDB.connectDB();

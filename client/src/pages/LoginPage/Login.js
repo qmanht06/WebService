@@ -1,29 +1,43 @@
 import React, { useRef, useState } from "react";
-//import { useAuth } from "../contexts/AuthContext";
+import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 
 const Login = () => {
-  // const emailRef = useRef();
-  // const passwordRef = useRef();
-  // const { login } = useAuth();
-  // const [error, setError] = useState("");
-  // const [loading, setLoading] = useState(false);
-  // const history = useHistory();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
+  const submitHandler = async (e) => {
+    e.preventDefault();
 
-  //   try {
-  //     setError("");
-  //     setLoading(true);
-  //     await login(emailRef.current.value, passwordRef.current.value);
-  //     history.push("/");
-  //   } catch {
-  //     setError("Failed to log in");
-  //   }
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
 
-  //   setLoading(false);
-  // }
+      setLoading(true);
+      const { data } = await axios.post(
+        "/api/users/login",
+        {
+          email,
+          password,
+        },
+        config
+      );
+
+      console.log(data);
+      localStorage.setItem("userInfo", JSON.stringify(data));
+
+      setLoading(false);
+    } catch (error) {
+      console.log(error.response.data);
+      console.log(error.response);
+      setError(error.response.data.message);
+    }
+  };
 
   return (
     <div>
@@ -41,14 +55,27 @@ const Login = () => {
           <div className="card ">
             <div className="card-body ">
               <h2 className="text-center mb-4 font-300">Log In</h2>
-              <form className="align-item-center justify-content-center text-center">
+              <form
+                onSubmit={submitHandler}
+                className="align-item-center justify-content-center text-center"
+              >
                 <div className="form-group">
                   <label className="text-left font-200">Email</label>
-                  <input className="form-control"></input>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="form-control"
+                  />
                 </div>
                 <div className="form-group">
                   <label className="text-left font-200">Password</label>
-                  <input className="form-control"></input>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="form-control"
+                  />
                 </div>
                 <button type="submit" className="w-100 btn">
                   Log In
