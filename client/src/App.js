@@ -6,6 +6,8 @@ import Signup from "./pages/SignupPage/Signup";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import Login from "./pages/LoginPage/Login";
 import CartPage from "./pages/CartPage/CartPage";
+import AdminHomePage from "./pages/admin/HomePage";
+
 function App() {
   return (
     <Switch>
@@ -24,6 +26,7 @@ function App() {
       <Route exact path="/cart">
         <CartPage />
       </Route>
+      <Route path="/admin/home" component={AdminHomePage} />
     </Switch>
   );
 }
