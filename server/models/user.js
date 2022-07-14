@@ -7,6 +7,7 @@ const UserSchema = new Schema(
     userName: {
       type: String,
       required: true,
+      default: "Anonymous",
     },
     password: {
       type: String,

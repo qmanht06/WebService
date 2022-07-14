@@ -1,18 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import styles from "./Header.module.scss";
 import { UilSearch } from "@iconscout/react-unicons";
 import { UilShoppingCartAlt } from "@iconscout/react-unicons";
 
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { searchFilterChanged } from "../../react-redux/actions/filterActions";
 import { fetchCartList } from "../../react-redux/actions/cartActions";
 import { cartSelector } from "../../react-redux/selectors";
+import { logout } from "../../react-redux/actions/userActions";
 
 const Header = (props) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const [searchText, setSearchText] = useState("");
   const { fetchCartList, searchFilterChanged } = props;
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    history.push("/login");
+  };
 
   // useEffect(() => {
   //   fetchCartList()
@@ -68,6 +80,7 @@ const Header = (props) => {
             Change password
           </Link>
           <button
+            onClick={logoutHandler}
             className={styles.headerUserSubnav}
             style={{ textAlign: "left" }}
           >
