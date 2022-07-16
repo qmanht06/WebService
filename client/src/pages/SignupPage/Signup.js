@@ -21,24 +21,23 @@ const Signup = () => {
   const { loading, error, userInfo } = userRegister;
 
   const history = useHistory();
-  //If registr ation success then redirect to homepage
- 
+  //If register action success then redirect to homepage
 
   const submitHandler = async (e) => {
     e.preventDefault();
     if (password !== confirmpassword) {
       setMessage("Password do not match!");
     } else {
-      setMessage("Sign Up Success!");
       dispatch(register(userName, email, password));
+      //setMessage("Sign Up Success!");
     }
   };
-   useEffect(() => {
-     const userInfo = localStorage.getItem("userInfo");
-     if (userInfo) {
-       history.push("/");
-     }
-   }, [history, userInfo]);
+  useEffect(() => {
+    const userInfo = localStorage.getItem("userInfo");
+    if (userInfo) {
+      history.push("/");
+    }
+  }, [history, userInfo]);
   return (
     <div>
       <div className="d-flex align-item-center justify-content-center container">
