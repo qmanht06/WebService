@@ -9,13 +9,32 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:5000/api/product
+POST http://localhost:5000/api/product/create
 Content-Type: application/json
 
 {
-    "productName": "productName",
-    "productImage": "productImage",
-    "productDescription": "productPrice",
-    "productPrice": "productCategory",
-    "productCategory": "productCategory"
+    "productName": "productName2",
+    "productImage": "productImage2",
+    "productDescription": "productPrice2",
+    "productPrice": "productCategory2",
+    "productCategory": "productCategory2"
+}
+
+###
+GET http://localhost:5000/api/product/
+
+
+###
+GET http://localhost:5000/api/product/62c67c9aa71b8fe59013830e
+
+###
+PATCH http://localhost:5000/api/product/62c67c9aa71b8fe59013830e
+Content-Type: application/json
+
+{
+    "productName": "productName2",
+    "productImage": "",
+    "productDescription": "productPrice2",
+    "productPrice": "productCategory2",
+    "productCategory": "productCategory2"
 }
