@@ -37,11 +37,10 @@ const Profile = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
-      dispatch(updateProfile({ userName, email, fullName, password }));
-      setMessage("Update Successfully!");
-    } else {
+    if (password !== confirmPassword) {
       setMessage("Password confirmation do not match!");
+    } else {
+      dispatch(updateProfile({ userName, email, fullName, password }));
     }
   };
   return (
@@ -89,7 +88,8 @@ const Profile = () => {
                   <input
                     type="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    // onChange={(e) => setEmail(e.target.value)}
+                    readOnly
                     className="form-control"
                   />
                 </div>
