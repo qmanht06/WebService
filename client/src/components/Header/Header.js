@@ -81,7 +81,7 @@ const Header = (props) => {
         </Link>
         {userInfo && (
           <ul className={styles.userSubNav}>
-            <Link to="/user/profile" className={styles.headerUserSubnav}>
+            <Link to="/profile" className={styles.headerUserSubnav}>
               Manage Acount
             </Link>
             <Link to="/user/order" className={styles.headerUserSubnav}>

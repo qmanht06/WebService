@@ -6,6 +6,7 @@ import Signup from "./pages/SignupPage/Signup";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import Login from "./pages/LoginPage/Login";
 import CartPage from "./pages/CartPage/CartPage";
+import Profile from "./pages/ProfilePage/ProfilePage";
 import PostManagePage from "./pages/PostManagePage/PostManagePage";
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
       </Route>
       <Route exact path="/login">
         <Login />
+      </Route>
+      <Route exact path="/profile">
+        <Profile />
       </Route>
       <Route exact path="/cart">
         <CartPage />
