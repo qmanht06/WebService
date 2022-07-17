@@ -3,7 +3,7 @@ const Category = require('../models/categoryModel')
 
 const router = express.Router()
 
-const getAllCategory = (req, res, next) => {
+const getAllCategory = async (req, res, next) => {
     const query = Category.find({})
     const docs = await query
     // if (!docs) return next(new Error('No documents found'))
@@ -17,7 +17,7 @@ const getAllCategory = (req, res, next) => {
     })
 }
 
-const getOneCategory = (req, res, next) => {
+const getOneCategory = async (req, res, next) => {
     const id = req.params.id
     const query = Category.findById(id)
     const doc = await query
@@ -31,8 +31,8 @@ const getOneCategory = (req, res, next) => {
     })
 }
 
-const createCategory = (req, res, next) => {
-    const doc = Category.create(req.body)
+const createCategory = async (req, res, next) => {
+    const doc = await Category.create(req.body)
     // if (!doc) return next(new Error('No documents found'))
 
     res.status(200).json({
@@ -43,9 +43,9 @@ const createCategory = (req, res, next) => {
     })
 }
 
-const updateCategory = (req, res, next) => {
+const updateCategory = async (req, res, next) => {
     const id = req.params.id
-    const doc = Category.findByIdAndUpdate(id, req.body)
+    const doc = await Category.findByIdAndUpdate(id, req.body)
     // if (!doc) return next(new Error('No documents found'))
     
     res.status(200).json({
@@ -56,9 +56,9 @@ const updateCategory = (req, res, next) => {
     })
 }
 
-const deleteCategory = (req, res, next) => {
+const deleteCategory = async (req, res, next) => {
     const id = req.params.id
-    const doc = Category.findByIdAndDelete(id)
+    const doc = await Category.findByIdAndDelete(id)
     // if (!doc) return next(new Error('No documents found'))
 
     res.status(200).json({
