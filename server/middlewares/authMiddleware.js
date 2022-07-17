@@ -1,6 +1,6 @@
-import jwt from "jsonwebtoken";
-import User from "../models/userModel.js";
-import asyncHandler from "express-async-handler";
+const jwt = require("jsonwebtoken");
+const User = require("../models/user.js");
+const asyncHandler = require("express-async-handler");
 
 //Middleware to protect API from unauthorize access
 //Whenever user log in, pass this function before they can get access to specific API
@@ -21,6 +21,7 @@ const protect = asyncHandler(async (req, res, next) => {
 
       //if success, find information of user by Id EXCEPT the password, user pass through middleware and get sent to APIs
       req.user = await User.findById(decoded.id).select("-password");
+      //const updatingUser = await User.findById(decoded.id).select("-password");
 
       next();
     } catch (error) {
@@ -36,4 +37,4 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 });
 
-export { protect };
+module.exports = { protect };
