@@ -41,6 +41,7 @@ const Profile = () => {
       setMessage("Password confirmation do not match!");
     } else {
       dispatch(updateProfile({ userName, email, fullName, password }));
+      setMessage("Updated Successfully!");
     }
   };
   return (
@@ -52,7 +53,7 @@ const Profile = () => {
             <div className="card-body ">
               <h2 className="text-center mb-4 font-300">User Profile</h2>
               {error && <ErrorMessage variant="danger">{error} </ErrorMessage>}
-              {message && (
+              {!loading && message && (
                 <ErrorMessage variant="danger">{message}</ErrorMessage>
               )}
               {loading && <Loading />}

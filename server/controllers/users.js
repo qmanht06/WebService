@@ -57,6 +57,7 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
+//Update Profile controller
 const updateUserProfile = asyncHandler(async (req, res) => {
   //Information in req.body
   const { userName, email, password, fullName } = req.body;

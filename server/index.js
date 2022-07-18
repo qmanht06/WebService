@@ -4,17 +4,22 @@ const dotenv = require("dotenv");
 const app = express();
 app.use(express.json());
 dotenv.config();
-const authRouter = require("./routes/auth");
+//const authRouter = require("./routes/auth");
 const categoryRouter = require("./routes/categoryRouter");
 const connectDB = require("./config/db/index");
 const productRouter = require("./routes/product");
+const userRouter = require("./routes/user");
+const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 connectDB.connectDB();
 
-//app.use("/api/auth", authRouter);
+app.use("/api/users", userRouter);
 app.use("/api/categories", categoryRouter);
 
 //app.use("/api/auth", authRouter);
 app.use("/api/product", productRouter);
+
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
