@@ -26,11 +26,7 @@ const UserSchema = new Schema(
     permission: {
       type: String,
       enum: ["User", "Admin"],
-    },
-    isAdmin: {
-      type: Boolean,
-      required: true,
-      default: false,
+      default: "User"
     },
   },
   {
