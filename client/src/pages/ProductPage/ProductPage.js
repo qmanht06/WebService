@@ -102,7 +102,7 @@ const ProductPage = (props) => {
             </div>
             <button
               type="button"
-              className="add-to-cart-btn"
+              className="add-btn"
               onClick={handleAddToCartClicked}
             >
               ADD TO CART

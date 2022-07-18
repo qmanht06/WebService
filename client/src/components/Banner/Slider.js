@@ -41,15 +41,15 @@ const Slider = () => {
     return () => {
       clearInterval(slideInterval);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slideIndex]);
 
   return (
     <div className="container-slider">
       {DataSlider.map((item, index) => {
         return (
-          <Link to={`/product/${item.id}`}>
+          <Link to={`/product/${slideIndex}`} key={item.id}>
             <div
-              key={item.id}
               className={
                 slideIndex === index + 1 ? "slide active-anim" : "slide"
               }
