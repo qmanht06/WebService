@@ -3,7 +3,7 @@ const User = require("../models/user");
 const asyncHandler = require("express-async-handler");
 const jwt = require("jsonwebtoken");
 const { protect } = require("../middlewares/authMiddleware");
-
+const bcrypt = require("bcryptjs");
 const router = express.Router();
 
 const generateToken = (id) => {
@@ -23,6 +23,8 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("User Already Exists");
   }
 
+  //   const salt = await bcrypt.genSalt(10);
+  //   password = await bcrypt.hash(password, salt);
   const user = await User.create({
     userName,
     email,
@@ -37,6 +39,7 @@ const registerUser = asyncHandler(async (req, res) => {
       email: user.email,
       //password: user.password,
       fullName: user.fullName,
+      permission: user.permission,
       token: generateToken(user._id),
     });
   } else {
@@ -51,7 +54,7 @@ const authUser = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({ email });
 
-  if (user && (await user.matchPassword(password))) {
+  if (user && (await bcrypt.compare(password, user.password))) {
     res.json({
       _id: user._id,
       userName: user.userName,
@@ -88,6 +91,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       userName: updatedUser.userName,
       email: updatedUser.email,
       fullName: updatedUser.fullName,
+      permission: user.permission,
       token: generateToken(updatedUser._id),
     });
   } else {

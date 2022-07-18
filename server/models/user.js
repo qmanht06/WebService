@@ -34,10 +34,6 @@ const UserSchema = new Schema(
   }
 );
 
-//decrypt password
-UserSchema.methods.matchPassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
-};
 
 //Encrypt password when write in database
 UserSchema.pre("save", async function (next) {
