@@ -1,11 +1,12 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import { Switch, Route } from "react-router-dom";
 import Home from "./pages/HomePage/Home";
 import Signup from "./pages/SignupPage/Signup";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import Login from "./pages/LoginPage/Login";
 import CartPage from "./pages/CartPage/CartPage";
+import Profile from "./pages/ProfilePage/ProfilePage";
 import AdminHomePage from "./pages/admin/HomePage";
 import PostManagePage from "./pages/PostManagePage/PostManagePage";
 
@@ -23,6 +24,9 @@ function App() {
       </Route>
       <Route exact path="/login">
         <Login />
+      </Route>
+      <Route exact path="/profile">
+        <Profile />
       </Route>
       <Route exact path="/cart">
         <CartPage />

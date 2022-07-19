@@ -7,6 +7,7 @@ const UserSchema = new Schema(
     userName: {
       type: String,
       required: true,
+      default: "Anonymous",
     },
     password: {
       type: String,
@@ -25,11 +26,14 @@ const UserSchema = new Schema(
     permission: {
       type: String,
       enum: ["User", "Admin"],
+      default: "User"
     },
   },
   {
     timestamps: true,
   }
 );
+
+
 
 module.exports = mongoose.model("user", UserSchema);

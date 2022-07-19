@@ -1,42 +1,32 @@
-import React, { useRef, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import Loading from "../../components/Loading/Loading";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import { login } from "../../react-redux/actions/userActions";
 
-const Login = () => {
+const Login = ({}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
+  const history = useHistory();
+
+  //if login then redirect to home page
+  useEffect(() => {
+    const userInfo = localStorage.getItem("userInfo");
+    if (userInfo) {
+      history.push("/");
+    }
+  }, [history, userInfo]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    try {
-      const config = {
-        headers: {
-          "Content-type": "application/json",
-        },
-      };
-
-      setLoading(true);
-      const { data } = await axios.post(
-        "/api/users/login",
-        {
-          email,
-          password,
-        },
-        config
-      );
-
-      console.log(data);
-      localStorage.setItem("userInfo", JSON.stringify(data));
-
-      setLoading(false);
-    } catch (error) {
-      console.log(error.response.data);
-      console.log(error.response);
-      setError(error.response.data.message);
-    }
+    dispatch(login(email, password));
   };
 
   return (
@@ -55,6 +45,9 @@ const Login = () => {
           <div className="card ">
             <div className="card-body ">
               <h2 className="text-center mb-4 font-300">Log In</h2>
+              {error && <ErrorMessage variant="danger">{error} </ErrorMessage>}
+              {loading && <Loading />}
+
               <form
                 onSubmit={submitHandler}
                 className="align-item-center justify-content-center text-center"

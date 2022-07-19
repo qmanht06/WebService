@@ -1,18 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import styles from "./Header.module.scss";
 import { UilSearch } from "@iconscout/react-unicons";
 import { UilShoppingCartAlt } from "@iconscout/react-unicons";
 
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { searchFilterChanged } from "../../react-redux/actions/filterActions";
 import { fetchCartList } from "../../react-redux/actions/cartActions";
 import { cartSelector } from "../../react-redux/selectors";
+import { logout } from "../../react-redux/actions/userActions";
 
 const Header = (props) => {
+  //const [userName, setUserName] = useState("");
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const [searchText, setSearchText] = useState("");
   const { fetchCartList, searchFilterChanged } = props;
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    history.push("/login");
+  };
 
   // useEffect(() => {
   //   fetchCartList()
@@ -55,25 +69,36 @@ const Header = (props) => {
       <div className={styles.userNav}>
         <Link to="/login" className={styles.headerNav}>
           <span className={styles.headerNavTextFirst}>Hello,</span>
-          <span className={styles.headerNavTextSecond}>User Name</span>
+          <div>
+            {userInfo ? (
+              <span
+                className={styles.headerNavTextSecond}
+              >{`${userInfo?.userName} `}</span>
+            ) : (
+              <span className={styles.headerNavTextSecond}>Sign In</span>
+            )}
+          </div>
         </Link>
-        <ul className={styles.userSubNav}>
-          <Link to="/user/profile" className={styles.headerUserSubnav}>
-            Manage Acount
-          </Link>
-          <Link to="/user/order" className={styles.headerUserSubnav}>
-            Your order
-          </Link>
-          <Link to="/user/changepassword" className={styles.headerUserSubnav}>
-            Change password
-          </Link>
-          <button
-            className={styles.headerUserSubnav}
-            style={{ textAlign: "left" }}
-          >
-            Log out
-          </button>
-        </ul>
+        {userInfo && (
+          <ul className={styles.userSubNav}>
+            <Link to="/profile" className={styles.headerUserSubnav}>
+              Manage Acount
+            </Link>
+            <Link to="/user/order" className={styles.headerUserSubnav}>
+              Your order
+            </Link>
+            <Link to="/user/changepassword" className={styles.headerUserSubnav}>
+              Change password
+            </Link>
+            <button
+              onClick={logoutHandler}
+              className={styles.headerUserSubnav}
+              style={{ textAlign: "left" }}
+            >
+              Log out
+            </button>
+          </ul>
+        )}
       </div>
       {/* <Link to="/user/order" className={styles.headerNav}>
         <span className={styles.headerNavTextFirst}>Returns</span>

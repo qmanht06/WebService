@@ -1,9 +1,43 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import "./Signup.scss";
-
+import Loading from "../../components/Loading/Loading";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../../react-redux/actions/userActions";
 const Signup = () => {
-  
+  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
+  //const [usename, setName] = useState("");
+  // const [fullname, setFullname] = useState("Anonymous");
+  const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmpassword] = useState("");
+  const [message, setMessage] = useState(null);
+  // const [error, setError] = useState(false);
+  // const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  const userRegister = useSelector((state) => state.userRegister);
+  const { loading, error, userInfo } = userRegister;
+
+  const history = useHistory();
+  //If register action success then redirect to homepage
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    if (password !== confirmpassword) {
+      setMessage("Password do not match!");
+    } else {
+      dispatch(register(userName, email, password));
+      //setMessage("Sign Up Success!");
+    }
+  };
+  useEffect(() => {
+    const userInfo = localStorage.getItem("userInfo");
+    if (userInfo) {
+      history.push("/");
+    }
+  }, [history, userInfo]);
   return (
     <div>
       <div className="d-flex align-item-center justify-content-center container">
@@ -20,20 +54,52 @@ const Signup = () => {
           <div className="card ">
             <div className="card-body ">
               <h2 className="text-center mb-4 font-300">Sign Up</h2>
-              <form className="align-item-center justify-content-center text-center">
+              {error && <ErrorMessage variant="danger">{error} </ErrorMessage>}
+              {message && (
+                <ErrorMessage variant="danger">{message}</ErrorMessage>
+              )}
+              {loading && <Loading />}
+              <form
+                onSubmit={submitHandler}
+                className="align-item-center justify-content-center text-center"
+              >
+                <div className="form-group">
+                  <label className="text-left font-200">User Name</label>
+                  <input
+                    type="username"
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                    className="form-control"
+                  />
+                </div>
                 <div className="form-group">
                   <label className="text-left font-200">Email</label>
-                  <input className="form-control"></input>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="form-control"
+                  />
                 </div>
                 <div className="form-group">
                   <label className="text-left font-200">Password</label>
-                  <input className="form-control"></input>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="form-control"
+                  />
                 </div>
                 <div className="form-group">
                   <label className="text-left font-200">
                     Password Confirmation
                   </label>
-                  <input className="form-control"></input>
+                  <input
+                    type="confirmpassword"
+                    value={confirmpassword}
+                    onChange={(e) => setConfirmpassword(e.target.value)}
+                    className="form-control"
+                  />
                 </div>
                 <button type="submit" className="w-100 btn">
                   Sign Up

@@ -10,10 +10,9 @@ const connectDB = require("./config/db/index");
 const productRouter = require("./routes/product");
 connectDB.connectDB();
 
-//app.use("/api/auth", authRouter);
 app.use("/api/categories", categoryRouter);
 
-//app.use("/api/auth", authRouter);
+app.use("/api/users", authRouter);
 app.use("/api/product", productRouter);
 
 const PORT = process.env.PORT || 5000;
