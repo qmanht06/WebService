@@ -1,9 +1,9 @@
-POST  http://localhost:5000/api/auth/login
+POST  http://localhost:5000/api/users/login
 Content-Type: application/json
 
 {
-    "userName": "qmanh02",
-    "password": "qmanh"
+    "email": "quangmanhtest@gmail",
+      "password": "matkhautest"
 
 }
 
