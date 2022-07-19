@@ -19,10 +19,13 @@ const registerUser = asyncHandler(async (req, res) => {
   const userExists = await User.findOne({ email });
 
   if (userExists) {
-    res.status(400);
-    throw new Error("User Already Exists");
+    res
+      .status(400)
+      .json({ success: false, message: "This email already exist!" });
   }
-
+  if (!userName || !email || !password) {
+    res.status(500).json({ success: false, message: "Enter missing field!" });
+  }
   const salt = await bcrypt.genSalt(10);
   hashPassword = await bcrypt.hash(password, salt);
   const user = await User.create({
@@ -43,8 +46,7 @@ const registerUser = asyncHandler(async (req, res) => {
       token: generateToken(user._id),
     });
   } else {
-    res.status(400);
-    throw new Error("Error Occured");
+    res.status(400).json({ success: false, message: "Error occurred" });
   }
 });
 
@@ -64,8 +66,9 @@ const authUser = asyncHandler(async (req, res) => {
       token: generateToken(user._id),
     });
   } else {
-    res.status(400);
-    throw new Error("Invalid Email or Password!");
+    res
+      .status(400)
+      .json({ success: false, message: "Invalid Email or Password!" });
   }
 });
 
@@ -97,8 +100,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       token: generateToken(updatedUser._id),
     });
   } else {
-    res.status(404);
-    throw new Error("User not found!");
+    res.status(404).json({ success: false, message: "User not found!" });
   }
 });
 

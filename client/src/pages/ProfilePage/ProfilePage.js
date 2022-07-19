@@ -108,7 +108,7 @@ const Profile = () => {
                     New Password Confirmation
                   </label>
                   <input
-                    type="confirmpassword"
+                    type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     className="form-control"

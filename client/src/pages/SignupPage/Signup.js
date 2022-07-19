@@ -95,7 +95,7 @@ const Signup = () => {
                     Password Confirmation
                   </label>
                   <input
-                    type="confirmpassword"
+                    type="password"
                     value={confirmpassword}
                     onChange={(e) => setConfirmpassword(e.target.value)}
                     className="form-control"
