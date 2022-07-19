@@ -14,19 +14,25 @@ const CartItemSchema = new Schema(
     productImage: {
       type: String,
     },
-    // productDescription: {
-    //   type: String,
-    // },
+    productDescription: {
+      type: String,
+    },
     productPrice: {
+      type: String,
+    },
+    productColor: {
+      type: String,
+    },
+    productSize: {
       type: String,
     },
     productQuantity: {
       type: String,
     },
-    // user: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: "user",
-    // },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+    },
   },
   {
     timestamps: true,
