@@ -1,14 +1,13 @@
-import classNames from "classnames/bind";
-import style from "./PostManagePage.module.scss";
 import Headers from "../../components/Header/Header";
+import PageManage from "../../components/PageManage/PageManage";
 
-const cx = classNames.bind(style);
 
 function PostManagePost() {
   return (
     <>
       <Headers></Headers>
-      <div className={cx("grid", "body")}>
+      <PageManage></PageManage>
+      {/* <div className={cx("grid", "body")}>
         <h4 className={cx("body__title")}>Thêm sản phẩm</h4>
         <div className={cx("body__item")}>
           <p className={cx("body__item__title")}>Tên sản phẩm: </p>
@@ -51,7 +50,7 @@ function PostManagePost() {
             <option value="">--Thêm lựa chọn--</option>
           </select>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

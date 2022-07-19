@@ -8,7 +8,7 @@ import Login from "./pages/LoginPage/Login";
 import CartPage from "./pages/CartPage/CartPage";
 import Profile from "./pages/ProfilePage/ProfilePage";
 import AdminHomePage from "./pages/admin/HomePage";
-import PostManagePage from "./pages/PostManagePage/PostManagePage";
+import PageManage from "./pages/PageManage/PageManage";
 
 function App() {
   return (
@@ -32,8 +32,8 @@ function App() {
         <CartPage />
       </Route>
       <Route path="/admin/home" component={AdminHomePage} />
-      <Route exact path="/product-manage">
-        <PostManagePage />
+      <Route exact path="/page-manage">
+        <PageManage type='product'></PageManage>
       </Route>
     </Switch>
   );
