@@ -6,7 +6,8 @@ const router = express.Router()
 const getAllCategory = async (req, res, next) => {
     const query = Category.find({})
     const docs = await query
-    // if (!docs) return next(new Error('No documents found'))
+
+    if (!docs) res.status(404).json({ status: 'fail', message: 'No documents found' })
 
     res.status(200).json({
         status: 'success',
@@ -21,7 +22,7 @@ const getOneCategory = async (req, res, next) => {
     const id = req.params.id
     const query = Category.findById(id)
     const doc = await query
-    // if (!doc) return next(new Error('No documents found'))
+    if (!docs) res.status(404).json({ status: 'fail', message: 'No documents found' })
 
     res.status(200).json({
         status: 'success',
@@ -33,7 +34,7 @@ const getOneCategory = async (req, res, next) => {
 
 const createCategory = async (req, res, next) => {
     const doc = await Category.create(req.body)
-    // if (!doc) return next(new Error('No documents found'))
+    if (!docs) res.status(404).json({ status: 'fail', message: 'No documents found' })
 
     res.status(200).json({
         status: 'success',
@@ -46,8 +47,8 @@ const createCategory = async (req, res, next) => {
 const updateCategory = async (req, res, next) => {
     const id = req.params.id
     const doc = await Category.findByIdAndUpdate(id, req.body)
-    // if (!doc) return next(new Error('No documents found'))
-    
+    if (!docs) res.status(404).json({ status: 'fail', message: 'No documents found' })
+
     res.status(200).json({
         status: 'success',
         data: {
@@ -68,7 +69,6 @@ const deleteCategory = async (req, res, next) => {
         },
     })
 }
-
 
 router.route('/').get(getAllCategory).post(createCategory)
 router.route('/:id').get(getOneCategory).patch(updateCategory).delete(deleteCategory)
