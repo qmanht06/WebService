@@ -138,7 +138,7 @@ module.exports = router;
 //         await newUser.save()
 
 //         // return token
-//         const accessToken = jwt.sign({ userId: newUser._id }, process.env.ACCESS_TOKEN_SECRETE)
+//         const accessToken = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET)
 //         res.json({ success: true, message: "Register successfull", newUser })
 //     } catch (error) {
 //         console.log(error);
@@ -170,7 +170,7 @@ module.exports = router;
 //             return res.status(500).json({ success: false, message: "incorrect username or password" })
 
 //         // return token
-//         const accessToken = jwt.sign({ userId: user._id }, process.env.ACCESS_TOKEN_SECRETE)
+//         const accessToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET)
 //         res.json({ success: true, message: "Login successfull", accessToken })
 //     } catch (error) {
 //         console.log(error.message);
