@@ -1,6 +1,6 @@
 import * as types from "../actions/actionTypes";
 // import * as shoes from "../../data/ImageShoe";
-// import { Products } from "../../data/Products";
+import { Products } from "../../data/Products";
 
 // const initialState = {
 //   productList: [
@@ -22,9 +22,9 @@ import * as types from "../actions/actionTypes";
 // };
 
 const initialState = {
-  productList: [],
+  productList: Products || [],
   product: {},
-}
+};
 
 const productReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -42,7 +42,7 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         product: action.payload,
-      }
+      };
     default:
       return state;
   }

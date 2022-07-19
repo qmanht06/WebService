@@ -10,7 +10,7 @@ import { Products } from "../../data/Products";
 
 const ProductPage = (props) => {
   const [quantity, setQuantity] = useState(1);
-  // const { addProductToCart, getSingleProduct } = props;
+  const { addProductToCart, getSingleProduct } = props;
   const currency = { style: "currency", currency: "VND" };
 
   // useEffect(() => {
@@ -19,16 +19,16 @@ const ProductPage = (props) => {
   // }, []);
 
   const location = useLocation().pathname;
-  console.log("location: ", location);
+  // console.log("location: ", location);
 
   const shoeID = location.slice(9);
-  console.log("shoeId: ", shoeID);
+  // console.log("shoeId: ", shoeID);
 
   // props.data
   const { id, name, imageURL, price } = Products.find(
     (item) => item.id === shoeID
   );
-  console.log("id: ", id);
+  // console.log("id: ", id);
 
   const handleAddToCartClicked = () => {
     const cartItem = {
@@ -39,8 +39,8 @@ const ProductPage = (props) => {
       quantity: quantity,
     };
 
-    // addProductToCart(cartItem);
-    console.log(cartItem);
+    addProductToCart(cartItem);
+    // console.log(cartItem);
     setQuantity(1);
   };
 

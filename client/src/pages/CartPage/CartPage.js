@@ -11,17 +11,14 @@ const CartPage = (props) => {
   const { cartList, quantity, fetchCartList } = props;
   const init = 0;
   const total = cartList
-    ? cartList.reduce(
-      (prev, curr) => prev + curr.quantity * curr.price,
-      init
-    )
+    ? cartList.reduce((prev, curr) => prev + curr.quantity * curr.price, init)
     : 0;
 
-  // useEffect(() => {
-  //   fetchCartList();
-  // }, [])
+  useEffect(() => {
+    fetchCartList();
+  }, []);
 
-  // console.log(quantity);
+  console.log(quantity);
 
   return (
     <div>
@@ -46,11 +43,15 @@ const CartPage = (props) => {
             <span className="cart-total-price">{total}&nbsp;₫</span>
           </div>
           <div className="cart-btn">
-            <Link to={'/'}>
-              <button type="button" className="cart-btn back-btn">Tiếp tục mua hàng</button>
+            <Link to={"/"}>
+              <button type="button" className="cart-btn back-btn">
+                Tiếp tục mua hàng
+              </button>
             </Link>
-            <Link to={'/login'}>
-              <button type="button" className="cart-btn buy-btn">Tiến hành đặt hàng</button>
+            <Link to={"/login"}>
+              <button type="button" className="cart-btn buy-btn">
+                Tiến hành đặt hàng
+              </button>
             </Link>
           </div>
         </div>
@@ -64,16 +65,15 @@ const mapStateToProps = (state) => {
   // const test = selectors.productSelector(state);
   // console.log("product: ",test);
   console.log("cart: ", data);
-  // quantity: data.cartTotalQuantity
-  return { cartList: data };
+
+  return { cartList: data.cartList, quantity: data.cartTotalQuantity };
 };
 
 const mapDispatchToProps = (dispatch) => {
   console.log("ok");
   return {
     fetchCartList: (data) => dispatch(fetchCartList(data)),
-  }
-}
-
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartPage);

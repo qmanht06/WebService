@@ -8,7 +8,7 @@ import { UilShoppingCartAlt } from "@iconscout/react-unicons";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { searchFilterChanged } from "../../react-redux/actions/filterActions";
 import { fetchCartList } from "../../react-redux/actions/cartActions";
-import { cartSelector } from "../../react-redux/selectors";
+import * as selectors from "../../react-redux/selectors";
 import { logout } from "../../react-redux/actions/userActions";
 
 const Header = (props) => {
@@ -28,19 +28,22 @@ const Header = (props) => {
     history.push("/login");
   };
 
-  // useEffect(() => {
-  //   fetchCartList()
-  // }, [])
+  useEffect(() => {
+    fetchCartList();
+  }, []);
   // let quantity = localStorage.getItem('quantity') || props.quantity;
   let quantity = props.quantity;
 
-  // useEffect(() => {
-  //   fetchCartList()
-  // })
   const handleSearchTextChanged = (e) => {
     // console.log(e.target.value);
     setSearchText(e.target.value);
-    searchFilterChanged(e.target.value);
+  };
+
+  const handleEnterPressed = (e) => {
+    let keyCode = e.keyCode || e.which;
+    if (keyCode === 13) {
+      searchFilterChanged(searchText);
+    }
   };
 
   return (
@@ -58,10 +61,14 @@ const Header = (props) => {
         <input
           type="text"
           className={styles.searchInput}
-          onChange={handleSearchTextChanged}
+          onChange={(e) => handleSearchTextChanged(e)}
+          onKeyPress={(e) => handleEnterPressed(e)}
           value={searchText}
         />
-        <div className={styles.searchIcon}>
+        <div
+          className={styles.searchIcon}
+          onClick={() => searchFilterChanged(searchText)}
+        >
           <UilSearch size="24" color="#000" />
         </div>
       </div>
@@ -120,9 +127,8 @@ const Header = (props) => {
 };
 
 const mapStateToPropss = (state) => {
-  // const quantity = cartSelector(state).cartTotalQuantity;
-  // return {quantity: quantity};
-  return {};
+  const quantity = selectors.cartSelector(state).cartTotalQuantity;
+  return { quantity: quantity };
 };
 
 const mapDispatchToProps = (dispatch) => {

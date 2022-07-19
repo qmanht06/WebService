@@ -12,15 +12,15 @@ const ProductList = (props) => {
     totalRows: 21,
   });
   // props.productItemList
-  const productItemList = Products;
-  // const {fetchProductList} = props;
+  const productItemList = props.productItemList || Products;
+  const { fetchProductList } = props;
   // const containerStyle = {
   //   margin
   // }
 
-  // useEffect(() => {
-  //   fetchProductList();
-  // },[]);
+  useEffect(() => {
+    fetchProductList();
+  }, []);
 
   const handlePageChanged = (newPage) => {
     if (pagination.page !== newPage) {
@@ -57,7 +57,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  console.log("ok");
+  // console.log("ok");
   return {
     fetchProductList: (data) => dispatch(fetchProductList(data)),
   };

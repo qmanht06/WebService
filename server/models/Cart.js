@@ -14,20 +14,23 @@ const CartItemSchema = new Schema(
     productImage: {
       type: String,
     },
-    productDescription: {
-      type: String,
-    },
+    // productDescription: {
+    //   type: String,
+    // },
     productPrice: {
       type: String,
     },
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: "user",
+    productQuantity: {
+      type: String,
     },
+    // user: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "user",
+    // },
   },
   {
     timestamps: true,
   }
 );
 
-module.exports = mongoose.model("products", CartItemSchema);
+module.exports = mongoose.model("cart", CartItemSchema);
