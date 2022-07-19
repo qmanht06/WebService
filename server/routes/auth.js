@@ -23,12 +23,12 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("User Already Exists");
   }
 
-  //   const salt = await bcrypt.genSalt(10);
-  //   password = await bcrypt.hash(password, salt);
+  const salt = await bcrypt.genSalt(10);
+  hashPassword = await bcrypt.hash(password, salt);
   const user = await User.create({
     userName,
     email,
-    password,
+    password: hashPassword,
     fullName,
   });
 
@@ -81,7 +81,9 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     user.fullName = fullName || user.fullName;
 
     if (password) {
-      user.password = password;
+      const salt = await bcrypt.genSalt(10);
+      hashPassword = await bcrypt.hash(password, salt);
+      user.password = hashPassword;
     }
 
     const updatedUser = await user.save();
