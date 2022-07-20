@@ -37,7 +37,7 @@ const ProductList = (props) => {
       <div className="grid">
         <div className="row body">
           {productItemList.map((item) => (
-            <Product key={item.id} product={item} />
+            <Product key={item._id} product={item} />
           ))}
         </div>
       </div>
