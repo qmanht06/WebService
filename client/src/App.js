@@ -11,12 +11,16 @@ import AdminHomePage from "./pages/admin/HomePage";
 import PageManage from "./pages/PageManage/PageManage";
 import OrderManage from "./pages/OrderManagePage/OrderManage";
 import Category from "./components/Category/Category";
+import PostManagePage from "./pages/PostManagePage/PostManagePage";
 
 function App() {
   return (
     <Switch>
       <Route exact path="/">
         <Home />
+      </Route>
+      <Route exact path="/product/create">
+        <PostManagePage />
       </Route>
       <Route path="/product/:id">
         <ProductPage />
@@ -40,6 +44,10 @@ function App() {
       <Route exact path="/product">
         <PageManage type="product"></PageManage>
       </Route>
+
+      {/* <Route exact path="/admin/order">
+        <Category />
+      </Route> */}
     </Switch>
   );
 }

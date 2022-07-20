@@ -9,7 +9,7 @@ import * as selectors from "../../react-redux/selectors";
 const ProductList = (props) => {
   const [pagination, setPagination] = useState({
     page: 1,
-    limit: 10,
+    limit: 12,
     totalRows: 21,
   });
   // props.productItemList

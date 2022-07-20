@@ -1,13 +1,15 @@
 import Headers from "../../components/Header/Header";
-import PageManage from "../../components/PageManage/PageManage";
+import classNames from "classnames/bind";
+import style from "./PostManagePage.module.scss"
+
+const cx = classNames.bind(style)
 
 
-function PostManagePost() {
+function PostManagePage() {
   return (
     <>
       <Headers></Headers>
-      <PageManage></PageManage>
-      {/* <div className={cx("grid", "body")}>
+      <div className={cx("grid", "body")}>
         <h4 className={cx("body__title")}>Thêm sản phẩm</h4>
         <div className={cx("body__item")}>
           <p className={cx("body__item__title")}>Tên sản phẩm: </p>
@@ -21,7 +23,7 @@ function PostManagePost() {
           <p className={cx("body__item__title")}>Hình ảnh: </p>
           <input
             className={cx("body__item__input")}
-            type="file"
+            type="text"
             placeholder="Hình ảnh"
           />
         </div>
@@ -50,9 +52,9 @@ function PostManagePost() {
             <option value="">--Thêm lựa chọn--</option>
           </select>
         </div>
-      </div> */}
+      </div>
     </>
   );
 }
 
-export default PostManagePost;
+export default PostManagePage;
