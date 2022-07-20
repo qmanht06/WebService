@@ -27,20 +27,44 @@ const OrderList = () => {
       <div className="cart-container">
         <div className="cart-head">
           <div style={{ width: "19%" }}>Mã đơn hàng</div>
-          <div style={{ width: "28%" }}>Thời điểm đặt hàng</div>
-          <div style={{ width: "17%" }}>Đơn giá</div>
-          <div style={{ width: "18%" }}>Trạng thái đơn hàng</div>
-          <div style={{ width: "13%" }}>Thành tiền</div>
-          <div style={{ width: "5%" }}>Xóa/Update</div>
+          <div style={{ width: "20%" }}>Thời điểm đặt hàng</div>
+          <div style={{ width: "19%" }}>Trạng thái đơn hàng</div>
+          <div style={{ width: "30%" }}>Đơn giá</div>
+          <div style={{ width: "6%" }}>Xóa</div>
+          <div style={{ width: "6%" }}>Edit</div>
         </div>
-        <div className="cart-body">
+        <div className="cart-body ">
           {/* {orders.reverse().map((order) => (
             <h1>First order</h1>
           ))} */}
+          <div className="cart-item-container ">
+            <div style={{ width: "19%" }}>
+              <div>0b9238671c4f61f2b0n3</div>
+            </div>
+            <div style={{ width: "20%" }}>
+              <div>Time dat hang</div>
+            </div>
+            <div style={{ width: "19%" }}>
+              <div>Đang giao hàng</div>
+            </div>
+            <div style={{ width: "30%" }}>
+              <div className="cart-item-price">50000₫</div>
+            </div>
+            <div style={{ width: "6%" }} className="align-items-center">
+              <button type="button" className="item-remove-btn">
+                <i className="fa-solid fa-trash-can fa-xs"></i>
+              </button>
+            </div>
+            <div style={{ width: "6%" }} className="align-items-center">
+              <button type="button" className="item-remove-btn">
+                <i className="fa-solid fa-edit fa-xs"></i>
+              </button>
+            </div>
+          </div>
         </div>
         <div className="cart-footer">
           <div className="cart-info">
-            <span className="cart-footer-title">Total:&nbsp;&nbsp;&nbsp;</span>
+            {/* <span className="cart-footer-title">Total:&nbsp;&nbsp;&nbsp;</span> */}
             {/* <span className="cart-total-price">{total}&nbsp;₫</span> */}
           </div>
           <div className="cart-btn">
