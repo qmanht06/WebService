@@ -5,6 +5,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import Category from "../../components/Category/Category";
 import Order from "../../components/Order/Order";
 import ProductManage from "../../components/ProductManage/ProductManage";
+import PageManage from "../../pages/PageManage/PageManage"
 
 const HomePage = () => {
   let { path } = useRouteMatch();
@@ -18,7 +19,7 @@ const HomePage = () => {
             <Category />
           </Route>
           <Route exact path="/admin/products">
-            <ProductManage />
+            <PageManage type="product"></PageManage>
           </Route>
           <Route exact path="/admin/order">
             <Order />

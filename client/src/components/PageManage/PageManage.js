@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import style from "./PageManage.module.scss"
 import Button from "../common/Button/Button";
+import { Link } from "react-router-dom";
 
 const cx = classNames.bind(style)
 

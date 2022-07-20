@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const { protect } = require("../middlewares/authMiddleware");
 
 const Products = require("../models/Product");
 
 // routes POST api/product/create
 // desc create Product
 // access private
-router.post("/create", async (req, res) => {
+router.post("/create", protect, async (req, res) => {
     const {
         productName,
         productImage,
@@ -104,7 +105,7 @@ router.get("/:id", async (req, res) => {
 // routes PATCH api/product/:id
 // desc update one Product
 // access private
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", protect, async (req, res) => {
     try {
         const productID = req.params.id;
         const newData = req.body;
