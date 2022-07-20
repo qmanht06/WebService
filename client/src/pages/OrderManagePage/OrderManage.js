@@ -6,7 +6,10 @@ import { register, updateProfile } from "../../react-redux/actions/userActions";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Loading from "../../components/Loading/Loading";
-import { listOrders } from "../../react-redux/actions/ordersListAction";
+import {
+  deleteOrderAction,
+  listOrders,
+} from "../../react-redux/actions/ordersListAction";
 import { ORDERS_LIST_REQUEST } from "../../react-redux/constants/ordersConstants";
 
 const OrderList = () => {
@@ -15,20 +18,35 @@ const OrderList = () => {
   const orderList = useSelector((state) => state.orderList);
   const { loading, error, orders } = orderList;
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const orderDelete = useSelector((state) => state.orderDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = orderDelete;
+
+  const history = useHistory();
+
   useEffect(() => {
     dispatch(listOrders());
+    if (!userInfo) {
+      history.push("/login");
+    }
 
     return () => {};
-  }, [dispatch]);
+  }, [dispatch, history, userInfo, successDelete]);
 
   const deleteHandler = (id) => {
-    if (window.confirm("Are you sure?")) {
-      //dispatch(deleteOrderAction(id));
+    if (window.confirm("Are you sure? This action can't be reverse!")) {
+      dispatch(deleteOrderAction(id));
     }
   };
   return (
     <div>
-      {/* <Header /> */}
+      <Header />
       {console.log(orders)}
       <div className="cart-container">
         {error && <ErrorMessage variant="danger">{error} </ErrorMessage>}
@@ -60,7 +78,11 @@ const OrderList = () => {
                 <div className="cart-item-price">{order.total}đ</div>
               </div>
               <div style={{ width: "6%" }} className="align-items-center">
-                <button type="button" className="item-remove-btn">
+                <button
+                  type="button"
+                  className="item-remove-btn"
+                  onClick={() => deleteHandler(order._id)}
+                >
                   <i className="fa-solid fa-trash-can fa-xs"></i>
                 </button>
               </div>

@@ -62,7 +62,7 @@ export const deleteOrderAction = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/notes/${id}`, config);
+    const { data } = await axios.delete(`/api/orders/${id}`, config);
 
     //-----------------------------------
     dispatch({
