@@ -36,13 +36,13 @@ const cartReducer = (state = initialState, action) => {
       console.log("Increase!");
       let increaseTemp;
       state.cartList.forEach((item) => {
-        if (item.id === action.payload) increaseTemp = item.quantity;
+        if (item._id === action.payload) increaseTemp = item.quantity;
       });
       // localStorage.setItem('quantity', increaseTemp < 12 ? state.cartTotalQuantity + 1 : state.cartTotalQuantity);
       return {
         ...state,
         cartList: state.cartList.map((item) =>
-          item.id === action.payload
+          item._id === action.payload
             ? item.quantity < 12
               ? { ...item, quantity: item.quantity + 1 }
               : item
@@ -57,13 +57,13 @@ const cartReducer = (state = initialState, action) => {
       console.log("Decrease!");
       let decreaseTemp;
       state.cartList.forEach((item) => {
-        if (item.id === action.payload) decreaseTemp = item.quantity;
+        if (item._id === action.payload) decreaseTemp = item.quantity;
       });
       // localStorage.setItem('quantity', decreaseTemp > 1 ? state.cartTotalQuantity - 1 : state.cartTotalQuantity);
       return {
         ...state,
         cartList: state.cartList.map((item) =>
-          item.id === action.payload
+          item._id === action.payload
             ? item.quantity > 1
               ? { ...item, quantity: item.quantity - 1 }
               : item
@@ -76,13 +76,13 @@ const cartReducer = (state = initialState, action) => {
       };
     case types.ADD_TO_CART:
       let checkExist = state.cartList.find(
-        (item) => item.id === action.payload.id
+        (item) => item._id === action.payload._id
       );
       if (checkExist) {
         return {
           ...state,
           cartList: state.cartList.map((item) =>
-            item.id === checkExist.id
+            item._id === checkExist._id
               ? { ...item, quantity: item.quantity + action.payload.quantity }
               : item
           ),
@@ -95,7 +95,7 @@ const cartReducer = (state = initialState, action) => {
       }
     case types.REMOVE_FROM_CART:
       let tempIndex = state.cartList.findIndex(
-        (item) => item.id === action.payload
+        (item) => item._id === action.payload
       );
       let data =
         tempIndex < 0
@@ -106,7 +106,7 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         cartTotalQuantity: data,
-        cartList: state.cartList.filter((item) => item.id !== action.payload),
+        cartList: state.cartList.filter((item) => item._id !== action.payload),
       };
     case types.CHANGE_TOTAL_QUANTITY:
       // localStorage.setItem('quantity', action.payload);

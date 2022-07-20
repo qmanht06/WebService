@@ -1,14 +1,13 @@
 import React from "react";
-import { Switch, Route, useRouteMatch, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Statistics from "../../components/Admin/Statistics";
 import NavBar from "../../components/NavBar/NavBar";
 import Category from "../../components/Category/Category";
 import Order from "../../components/Order/Order";
-import ProductManage from "../../components/ProductManage/ProductManage";
-import PageManage from "../../pages/PageManage/PageManage"
+import PageManage from "../../pages/PageManage/PageManage";
 
 const HomePage = () => {
-  let { path } = useRouteMatch();
+  // let { path } = useRouteMatch();
   //   console.log(path);
   return (
     <div>

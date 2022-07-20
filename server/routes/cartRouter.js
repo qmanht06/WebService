@@ -102,7 +102,7 @@ router.put("/:check/:id", (req, res) => {
     ? JSON.parse(req.cookies.cartTotalQuantity)
     : 0;
 
-  let index = cartList.findIndex((item) => item.id === req.params.id);
+  let index = cartList.findIndex((item) => item._id === req.params.id);
   let checkAmount = cartList[index].quantity;
   switch (req.params.check) {
     case "increase":

@@ -34,7 +34,7 @@ const CartPage = (props) => {
         </div>
         <div className="cart-body">
           {cartList.map((item) => (
-            <CartItem key={item.id} product={item} />
+            <CartItem key={item._id} product={item} />
           ))}
         </div>
         <div className="cart-footer">
