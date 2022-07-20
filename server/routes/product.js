@@ -7,14 +7,14 @@ const Products = require('../models/Product')
 // desc create Product
 // access private
 router.post('/create', async (req, res) => {
-    const { productName, productImage, productDescription, productPrice, productCategory } = req.body
+    const { productName, productImage, productOldPrice, productPrice, productSale, productDescription, productCategory, productCountInStock, productRating, productNumReviews } = req.body
 
     // simple validation
-    if (!productName || !productImage || !productDescription || !productPrice || !productCategory)
+    if (!productName || !productImage || !productOldPrice || !productDescription || !productPrice || !productCategory || !productSale || !productCountInStock || !productRating || !productNumReviews)
         return res.status(400).json({ success: false, message: 'All is requires' })
 
     try {
-        const newProduct = new Products({ productName, productImage, productDescription, productPrice, productCategory, user: '6296db51a2628ee670ae2a59' })
+        const newProduct = new Products({ productName, productImage, productOldPrice, productPrice, productSale, productDescription, productCategory, productCountInStock, productRating, productNumReviews })
 
         await newProduct.save()
         return res.status(500).json({
@@ -33,7 +33,7 @@ router.post('/create', async (req, res) => {
 // access private
 router.get('/', async (req, res) => {
     try {
-        const data = Products.find({})
+        const data = Products.find().limit(10).skip(10 * req.body.pagination)
         const result = await data
 
         return res.status(200).json({

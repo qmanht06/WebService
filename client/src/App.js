@@ -32,7 +32,7 @@ function App() {
         <CartPage />
       </Route>
       <Route path="/admin/home" component={AdminHomePage} />
-      <Route exact path="/page-manage">
+      <Route exact path="/product">
         <PageManage type='product'></PageManage>
       </Route>
     </Switch>

@@ -9,18 +9,29 @@ const Products = new Schema(
     productImage: {
       type: String,
     },
-    productDescription: {
+    productOldPrice: {
       type: String,
     },
     productPrice: {
       type: String,
     },
+    productSale: {
+      type: String,
+    },
+    productDescription: {
+      type: String,
+    },
     productCategory: {
       type: String,
     },
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: "user",
+    productCountInStock: {
+      type: String,
+    },
+    productRating: {
+      type: String,
+    },
+    productNumReviews: {
+      type: String,
     },
   },
   {
