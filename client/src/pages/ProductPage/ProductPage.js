@@ -13,29 +13,30 @@ const ProductPage = (props) => {
   const { addProductToCart, getSingleProduct } = props;
   const currency = { style: "currency", currency: "VND" };
 
-  // useEffect(() => {
-  //   getSingleProduct(shoeID);
-  //   console.log("ok");
-  // }, []);
+  useEffect(() => {
+    getSingleProduct(shoeID);
+    console.log("ok");
+  }, []);
 
   const location = useLocation().pathname;
   // console.log("location: ", location);
 
   const shoeID = location.slice(9);
-  // console.log("shoeId: ", shoeID);
+  console.log("shoeId: ", shoeID);
 
-  // props.data
-  const { id, name, imageURL, price } = Products.find(
-    (item) => item.id === shoeID
-  );
-  // console.log("id: ", id);
+  //
+  const { _id, productName, productImage, productPrice } = props.data;
+  // Products.find(
+  //   (item) => item._id === shoeID
+  // );
+  console.log("id: ", productImage);
 
   const handleAddToCartClicked = () => {
     const cartItem = {
-      id: id,
-      url: imageURL,
-      name: name,
-      price: price,
+      _id,
+      productImage,
+      productName,
+      productPrice,
       quantity: quantity,
     };
 
@@ -49,10 +50,10 @@ const ProductPage = (props) => {
       <Header />
       <div className="container-wrapper">
         <div className="image-container">
-          <img className="image-shoe" src={imageURL} alt="Error" />
+          <img className="image-shoe" src={productImage} alt="Error" />
         </div>
         <div className="info-container">
-          <div className="title">{name}</div>
+          <div className="title">{productName}</div>
           <div className="introduction">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
@@ -66,7 +67,7 @@ const ProductPage = (props) => {
           </div>
           <br />
           <span className="price">
-            {Number(price).toLocaleString("en-US", currency)}
+            {Number(productPrice).toLocaleString("en-US", currency)}
           </span>
           <div className="filter-container">
             <div className="filter">

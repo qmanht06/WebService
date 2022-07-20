@@ -73,6 +73,14 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
+//Logout controller
+const logOutUser = asyncHandler(async (req, res) => {
+  res.clearCookie("userEmail");
+  res.cookie("cartList", JSON.stringify([]));
+  res.cookie("cartTotalQuantity", 0);
+  res.json({ success: true, message: "OK!" });
+});
+
 //Update Profile controller
 const updateUserProfile = asyncHandler(async (req, res) => {
   //Information in req.body
@@ -107,6 +115,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
 router.route("/").post(registerUser);
 router.route("/login").post(authUser);
+router.route("/logout").post(logOutUser);
 router.route("/profile").post(protect, updateUserProfile);
 module.exports = router;
 

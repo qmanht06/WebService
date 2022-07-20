@@ -1,6 +1,6 @@
 import React from "react";
 
-const Order = () => {
+const ProductManage = () => {
   console.log("Order");
   return (
     <div className="grid">
@@ -10,4 +10,4 @@ const Order = () => {
   );
 };
 
-export default Order;
+export default ProductManage;

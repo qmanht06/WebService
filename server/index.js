@@ -1,5 +1,5 @@
-var bodyParser = require("body-parser");
-var cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const express = require("express");
 const dotenv = require("dotenv");
 
@@ -8,7 +8,7 @@ app.use(express.json());
 dotenv.config();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const authRouter = require("./routes/auth");

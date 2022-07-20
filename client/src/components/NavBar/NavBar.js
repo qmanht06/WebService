@@ -12,6 +12,9 @@ const NavBar = () => {
       <NavLink to={`${url}/category`} activeClassName="active">
         Category
       </NavLink>
+      <NavLink to={`${url}/products`} activeClassName="active">
+        Products
+      </NavLink>
       <NavLink to={`${url}/order`} activeClassName="active">
         Order
       </NavLink>

@@ -4,6 +4,7 @@ import Statistics from "../../components/Admin/Statistics";
 import NavBar from "../../components/NavBar/NavBar";
 import Category from "../../components/Category/Category";
 import Order from "../../components/Order/Order";
+import ProductManage from "../../components/ProductManage/ProductManage";
 
 const HomePage = () => {
   let { path } = useRouteMatch();
@@ -15,6 +16,9 @@ const HomePage = () => {
         <Switch>
           <Route exact path="/admin/category">
             <Category />
+          </Route>
+          <Route exact path="/admin/products">
+            <ProductManage />
           </Route>
           <Route exact path="/admin/order">
             <Order />

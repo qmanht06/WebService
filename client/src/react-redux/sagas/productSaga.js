@@ -3,12 +3,12 @@ import * as types from "../actions/actionTypes";
 import axios from "axios";
 
 //Async functions
-async function fetchData() {
+async function fetchData(pagination) {
   try {
-    const response = await axios.get("/api/product");
+    const response = await axios.post("api/product", { pagination });
     console.log("axios res: ", response);
-    if (response && response.data) {
-      return response.data;
+    if (response && response.data.products) {
+      return response.data.products;
     } else return [];
   } catch (err) {
     console.log("err");
@@ -19,9 +19,9 @@ async function fetchData() {
 
 async function getSingleProduct(productId) {
   try {
-    const response = await axios.get(`/api/products/${productId}`);
-    if (response && response.data) {
-      return response.data;
+    const response = await axios.get(`/api/product/${productId}`);
+    if (response && response.data.products[0]) {
+      return response.data.products[0];
     } else return {};
   } catch (err) {
     console.log("err");
@@ -31,16 +31,16 @@ async function getSingleProduct(productId) {
 }
 
 //Workers
-export function* fetchProductList() {
-  //   console.log("Worker!");
-  const response = yield call(fetchData);
+export function* fetchProductList(action) {
+  console.log("Payload: ", action.payload);
+  const response = yield call(fetchData, action.payload);
   console.log("fetch data: ", response);
-  // yield put({ type: types.SET_PRODUCT_LIST, payload: response });
+  yield put({ type: types.SET_PRODUCT_LIST, payload: response });
 }
 
 export function* getProductDetail(action) {
   const response = yield call(getSingleProduct, action.payload);
-  //   console.log("fetch data: ", response);
+  console.log("fetch data: ", response);
   yield put({ type: types.SET_SINGLE_PRODUCT, payload: response });
 }
 

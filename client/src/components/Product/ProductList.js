@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Paginaiton from "../Pagination/Pagination";
 import { fetchProductList } from "../../react-redux/actions/productActions";
 import { Products } from "../../data/Products";
+import * as selectors from "../../react-redux/selectors";
 
 const ProductList = (props) => {
   const [pagination, setPagination] = useState({
@@ -19,8 +20,8 @@ const ProductList = (props) => {
   // }
 
   useEffect(() => {
-    fetchProductList();
-  }, []);
+    fetchProductList(pagination);
+  }, [pagination]);
 
   const handlePageChanged = (newPage) => {
     if (pagination.page !== newPage) {
@@ -46,11 +47,12 @@ const ProductList = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  const dataSource = state.products.productList;
+  const dataSource = selectors.productSelector(state).productList;
+  console.log(dataSource);
   const searchText = state.filters.searchText.toLowerCase();
 
   const productItemList = dataSource.filter((product) => {
-    return product.name.toLowerCase().includes(searchText);
+    return product.productName.toLowerCase().includes(searchText);
   });
 
   return { productItemList: productItemList };

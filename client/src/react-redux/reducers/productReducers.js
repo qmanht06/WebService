@@ -22,7 +22,7 @@ import { Products } from "../../data/Products";
 // };
 
 const initialState = {
-  productList: Products || [],
+  productList: [],
   product: {},
 };
 

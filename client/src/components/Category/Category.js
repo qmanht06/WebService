@@ -4,7 +4,8 @@ const Category = () => {
   console.log("Category");
   return (
     <div className="grid">
-      <div>Hello World</div>
+      <h1>Hello World!!!</h1>
+      <h1>We are still developing .....</h1>
     </div>
   );
 };

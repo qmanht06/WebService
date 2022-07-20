@@ -10,16 +10,17 @@ export const setProductList = (data) => ({
   payload: data,
 });
 
-export const fetchProductList = () => ({
+export const fetchProductList = (pagination) => ({
   type: types.FETCH_PRODUCT_LIST,
-})
+  payload: pagination,
+});
 
 export const getSingleProduct = (productId) => ({
   type: types.GET_SINGLE_PRODUCT,
   payload: productId,
-})
+});
 
 export const setSingleProduct = (product) => ({
   type: types.GET_SINGLE_PRODUCT,
   payload: product,
-})
+});

@@ -36,9 +36,6 @@ function App() {
       <Route exact path="/product">
         <PageManage type="product"></PageManage>
       </Route>
-      {/* <Route exact path="/admin/order">
-        <Category />
-      </Route> */}
     </Switch>
   );
 }
