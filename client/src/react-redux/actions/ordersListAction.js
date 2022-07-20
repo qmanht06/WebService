@@ -1,5 +1,8 @@
 import axios from "axios";
 import {
+  ORDERS_DELETE_FAIL,
+  ORDERS_DELETE_REQUEST,
+  ORDERS_DELETE_SUCCESS,
   ORDERS_LIST_FAIL,
   ORDERS_LIST_REQUEST,
   ORDERS_LIST_SUCCESS,
@@ -37,6 +40,42 @@ export const listOrders = () => async (dispatch, getState) => {
         : error.message;
     dispatch({
       type: ORDERS_LIST_FAIL,
+      payload: message,
+    });
+  }
+};
+
+export const deleteOrderAction = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ORDERS_DELETE_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    //Passing to API
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.delete(`/api/notes/${id}`, config);
+
+    //-----------------------------------
+    dispatch({
+      type: ORDERS_DELETE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({
+      type: ORDERS_DELETE_FAIL,
       payload: message,
     });
   }
