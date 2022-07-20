@@ -1,12 +1,16 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import { Switch, Route } from "react-router-dom";
 import Home from "./pages/HomePage/Home";
 import Signup from "./pages/SignupPage/Signup";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import Login from "./pages/LoginPage/Login";
 import CartPage from "./pages/CartPage/CartPage";
+import Profile from "./pages/ProfilePage/ProfilePage";
 import AdminHomePage from "./pages/admin/HomePage";
+import PageManage from "./pages/PageManage/PageManage";
+import OrderManage from "./pages/OrderManagePage/OrderManage";
+import Category from "./components/Category/Category";
 import PostManagePage from "./pages/PostManagePage/PostManagePage";
 
 function App() {
@@ -14,6 +18,9 @@ function App() {
     <Switch>
       <Route exact path="/">
         <Home />
+      </Route>
+      <Route exact path="/product/create">
+        <PostManagePage />
       </Route>
       <Route path="/product/:id">
         <ProductPage />
@@ -24,13 +31,23 @@ function App() {
       <Route exact path="/login">
         <Login />
       </Route>
+      <Route exact path="/profile">
+        <Profile />
+      </Route>
+      <Route exact path="/user/order">
+        <OrderManage />
+      </Route>
       <Route exact path="/cart">
         <CartPage />
       </Route>
-      <Route path="/admin/home" component={AdminHomePage} />
-      <Route exact path="/product-manage">
-        <PostManagePage />
+      <Route path="/admin" component={AdminHomePage} />
+      <Route exact path="/product">
+        <PageManage type="product"></PageManage>
       </Route>
+
+      {/* <Route exact path="/admin/order">
+        <Category />
+      </Route> */}
     </Switch>
   );
 }

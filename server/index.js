@@ -1,22 +1,30 @@
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const express = require("express");
 const dotenv = require("dotenv");
 
 const app = express();
 app.use(express.json());
 dotenv.config();
-const authRouter = require('./routes/auth')
+
+app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+const authRouter = require('./routes/users')
 const categoryRouter = require('./routes/categoryRouter')
 const orderRouter = require('./routes/orderRouter')
 const connectDB = require("./config/db/index");
-
 const productRouter = require("./routes/product");
 
-app.use('/api/auth', authRouter)
-app.use('/api/categories', categoryRouter)
-app.use('/api/orders', orderRouter)
 connectDB.connectDB();
 
+app.use('/api/categories', categoryRouter)
+app.use('/api/orders', orderRouter)
+
+app.use("/api/users", authRouter);
 app.use("/api/product", productRouter);
+app.use("/api/cart", cartRouter);
 
 const PORT = process.env.PORT || 5000;
 

@@ -1,21 +1,50 @@
-POST  http://localhost:5000/api/auth/login
+POST  http://localhost:5000/api/users/login
 Content-Type: application/json
 
 {
-    "userName": "qmanh02",
-    "password": "qmanh"
+    "email": "quangmanhtest@gmail",
+      "password": "matkhautest"
 
 }
 
 ###
 
-POST http://localhost:5000/api/product
+POST http://localhost:5000/api/product/create
 Content-Type: application/json
 
 {
-    "productName": "productName",
-    "productImage": "productImage",
-    "productDescription": "productPrice",
-    "productPrice": "productCategory",
-    "productCategory": "productCategory"
+    "productName": "Sleek Sof Shoe",
+    "productImage": "https://media.istockphoto.com/photos/white-sneaker-on-a-blue-gradient-background-mens-fashion-sport-shoe-picture-id1303978937?b=1&k=20&m=1303978937&s=170667a&w=0&h=az5Y96agxAdHt3XAv7PP9pThdiDpcQ3otWWn9YuJQRc=",
+    "productOldPrice": "99914",
+    "productPrice": "82300",
+    "productSale": "sale 14",
+    "productDescription": "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support",
+    "productCategory": "Koss - Mitchell",
+    "productCountInStock": "6895",
+    "productRating": "39276",
+    "productNumReviews": "69400"
+}
+
+###
+GET http://localhost:5000/api/product/
+Content-Type: application/json
+
+{
+    "pagination": "1"
+}
+
+
+###
+GET http://localhost:5000/api/product/62c67c9aa71b8fe59013830e
+
+###
+PATCH http://localhost:5000/api/product/62c67c9aa71b8fe59013830e
+Content-Type: application/json
+
+{
+    "productName": "productName2",
+    "productImage": "",
+    "productDescription": "productPrice2",
+    "productPrice": "productCategory2",
+    "productCategory": "productCategory2"
 }

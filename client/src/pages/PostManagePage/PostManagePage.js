@@ -1,10 +1,11 @@
-import classNames from "classnames/bind";
-import style from "./PostManagePage.module.scss";
 import Headers from "../../components/Header/Header";
+import classNames from "classnames/bind";
+import style from "./PostManagePage.module.scss"
 
-const cx = classNames.bind(style);
+const cx = classNames.bind(style)
 
-function PostManagePost() {
+
+function PostManagePage() {
   return (
     <>
       <Headers></Headers>
@@ -22,7 +23,7 @@ function PostManagePost() {
           <p className={cx("body__item__title")}>Hình ảnh: </p>
           <input
             className={cx("body__item__input")}
-            type="file"
+            type="text"
             placeholder="Hình ảnh"
           />
         </div>
@@ -56,4 +57,4 @@ function PostManagePost() {
   );
 }
 
-export default PostManagePost;
+export default PostManagePage;

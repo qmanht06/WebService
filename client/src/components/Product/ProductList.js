@@ -4,23 +4,24 @@ import { connect } from "react-redux";
 import Paginaiton from "../Pagination/Pagination";
 import { fetchProductList } from "../../react-redux/actions/productActions";
 import { Products } from "../../data/Products";
+import * as selectors from "../../react-redux/selectors";
 
 const ProductList = (props) => {
   const [pagination, setPagination] = useState({
     page: 1,
-    limit: 10,
+    limit: 12,
     totalRows: 21,
   });
   // props.productItemList
-  const productItemList = Products;
-  // const {fetchProductList} = props;
+  const productItemList = props.productItemList || Products;
+  const { fetchProductList } = props;
   // const containerStyle = {
   //   margin
   // }
 
-  // useEffect(() => {
-  //   fetchProductList();
-  // },[]);
+  useEffect(() => {
+    fetchProductList(pagination);
+  }, [pagination]);
 
   const handlePageChanged = (newPage) => {
     if (pagination.page !== newPage) {
@@ -36,7 +37,7 @@ const ProductList = (props) => {
       <div className="grid">
         <div className="row body">
           {productItemList.map((item) => (
-            <Product key={item.id} product={item} />
+            <Product key={item._id} product={item} />
           ))}
         </div>
       </div>
@@ -46,18 +47,19 @@ const ProductList = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  const dataSource = state.products.productList;
+  const dataSource = selectors.productSelector(state).productList;
+  console.log(dataSource);
   const searchText = state.filters.searchText.toLowerCase();
 
   const productItemList = dataSource.filter((product) => {
-    return product.name.toLowerCase().includes(searchText);
+    return product.productName.toLowerCase().includes(searchText);
   });
 
   return { productItemList: productItemList };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  console.log("ok");
+  // console.log("ok");
   return {
     fetchProductList: (data) => dispatch(fetchProductList(data)),
   };

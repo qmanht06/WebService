@@ -60,37 +60,54 @@
 
 
 .add-container {
-  width: 50%;
+  // width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  // justify-content: space-between;
+  background-color: white;
 
   .quantity-container {
     display: flex;
     align-items: flex-end;
+    margin-right: 5px;
     /* justify-content: space-around; */
     font-weight: 700;
-  }
-  
-  .quantity {
-    width: 40px;
-    height: 30px;
-    border-radius: 10px;
-    border: 1px solid teal;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0px 5px;
-  }
-  
-  .add-to-cart-btn {
-    padding: 15px;
-    border: 2px solid teal;
-    background-color: white;
-    cursor: pointer;
-    font-weight: 500;
+    border: 2px solid black;
+    border-radius: 5px;
 
+    button {
+      width: 30px;
+      height: 30px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #f8f4f4;
+      }
+    }
+
+    .quantity {
+      width: 35px;
+      height: 30px;
+      // border-radius: 10px;
+      border-right: 1px solid teal;
+      border-left: 1px solid teal;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // margin: 0px 5px;
+    }
+  }
+
+  .add-btn {
+    width: fit-content;
+    height: 40px;
+    padding: 5px;
+    border: 2px solid teal;
+    border-radius: 4px;
+    font-weight: 500;
+  
     &:hover {
+      cursor: pointer;
       background-color: #f8f4f4;
     }
   }

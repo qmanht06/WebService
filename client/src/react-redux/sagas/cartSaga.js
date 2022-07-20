@@ -57,15 +57,16 @@ async function productQuantityChanged(id, check) {
 
 //Workers
 export function* getCartData() {
-  console.log("Worker!");
+  // console.log("Worker!");
   const response = yield call(fetchCartData);
   console.log("fetch data: ", response);
   yield put({ type: types.SET_CART_LIST, payload: response });
 }
 
 export function* addProductToCart(action) {
-  console.log("payload: ", action.payload);
+  // console.log("payload: ", action.payload);
   const response = yield call(postCartItem, action.payload);
+  // const response = action.payload;
   console.log("fetch data: ", response || 0);
   yield put({ type: types.CHANGE_TOTAL_QUANTITY, payload: response.quantity });
 }
