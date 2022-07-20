@@ -41,9 +41,7 @@ function App() {
         <CartPage />
       </Route>
       <Route path="/admin" component={AdminHomePage} />
-      <Route exact path="/product">
-        <PageManage type="product"></PageManage>
-      </Route>
+
 
       {/* <Route exact path="/admin/order">
         <Category />
