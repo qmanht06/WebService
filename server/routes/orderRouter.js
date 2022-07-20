@@ -1,10 +1,8 @@
 const express = require('express')
-const Category = require('../models/categoryModel')
+const Order = require('../models/orderModel')
 
-const router = express.Router()
-
-const getAllCategory = async (req, res, next) => {
-    const query = Category.find({})
+const getAllOrders = async (req, res, next) => {
+    const query = Order.find(req.query)
     const docs = await query
 
     if (!docs) res.status(404).json({ status: 'fail', message: 'No documents found' })
@@ -18,9 +16,9 @@ const getAllCategory = async (req, res, next) => {
     })
 }
 
-const getOneCategory = async (req, res, next) => {
+const getOneOrder = async (req, res, next) => {
     const id = req.params.id
-    const query = Category.findById(id)
+    const query = Order.findById(id)
     const doc = await query
     if (!doc) res.status(404).json({ status: 'fail', message: 'No documents found' })
 
@@ -32,8 +30,8 @@ const getOneCategory = async (req, res, next) => {
     })
 }
 
-const createCategory = async (req, res, next) => {
-    const doc = await Category.create(req.body)
+const createOrder = async (req, res, next) => {
+    const doc = await Order.create(req.body)
     if (!doc) res.status(404).json({ status: 'fail', message: 'No documents found' })
 
     res.status(200).json({
@@ -44,9 +42,9 @@ const createCategory = async (req, res, next) => {
     })
 }
 
-const updateCategory = async (req, res, next) => {
+const updateOrder = async (req, res, next) => {
     const id = req.params.id
-    const doc = await Category.findByIdAndUpdate(id, req.body)
+    const doc = await Order.findByIdAndUpdate(id, req.body)
     if (!doc) res.status(404).json({ status: 'fail', message: 'No documents found' })
 
     res.status(200).json({
@@ -57,9 +55,9 @@ const updateCategory = async (req, res, next) => {
     })
 }
 
-const deleteCategory = async (req, res, next) => {
+const deleteOrder = async (req, res, next) => {
     const id = req.params.id
-    const doc = await Category.findByIdAndDelete(id)
+    const doc = await Order.findByIdAndDelete(id)
     // if (!doc) return next(new Error('No documents found'))
 
     res.status(200).json({
@@ -70,7 +68,10 @@ const deleteCategory = async (req, res, next) => {
     })
 }
 
-router.route('/').get(getAllCategory).post(createCategory)
-router.route('/:id').get(getOneCategory).patch(updateCategory).delete(deleteCategory)
+const router = express.Router()
+
+router.route('/').post(createOrder).get(getAllOrders)
+
+router.route('/:id').get(getOneOrder).delete(deleteOrder).patch(updateOrder)
 
 module.exports = router
