@@ -9,6 +9,7 @@ import CartPage from "./pages/CartPage/CartPage";
 import Profile from "./pages/ProfilePage/ProfilePage";
 import AdminHomePage from "./pages/admin/HomePage";
 import PageManage from "./pages/PageManage/PageManage";
+import OrderManage from "./pages/OrderManagePage/OrderManage";
 import Category from "./components/Category/Category";
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
       </Route>
       <Route exact path="/profile">
         <Profile />
+      </Route>
+      <Route exact path="/user/order">
+        <OrderManage />
       </Route>
       <Route exact path="/cart">
         <CartPage />
