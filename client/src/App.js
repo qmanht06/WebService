@@ -10,6 +10,8 @@ import Profile from "./pages/ProfilePage/ProfilePage";
 import AdminHomePage from "./pages/admin/HomePage";
 import PageManage from "./pages/PageManage/PageManage";
 import OrderManage from "./pages/OrderManagePage/OrderManage";
+import Category from "./components/Category/Category";
+
 function App() {
   return (
     <Switch>
@@ -34,10 +36,13 @@ function App() {
       <Route exact path="/cart">
         <CartPage />
       </Route>
-      <Route path="/admin/home" component={AdminHomePage} />
+      <Route path="/admin" component={AdminHomePage} />
       <Route exact path="/product">
         <PageManage type="product"></PageManage>
       </Route>
+      {/* <Route exact path="/admin/order">
+        <Category />
+      </Route> */}
     </Switch>
   );
 }
