@@ -92,7 +92,7 @@ const Header = (props) => {
               Manage Acount
             </Link>
             <Link to="/user/order" className={styles.headerUserSubnav}>
-              Manage Orders
+              Your Orders
             </Link>
             {/* <Link to="/user/changepassword" className={styles.headerUserSubnav}>
               Change password
