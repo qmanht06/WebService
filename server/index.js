@@ -11,14 +11,16 @@ app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-const authRouter = require("./routes/auth");
-const categoryRouter = require("./routes/categoryRouter");
+const authRouter = require('./routes/users')
+const categoryRouter = require('./routes/categoryRouter')
+const orderRouter = require('./routes/orderRouter')
 const connectDB = require("./config/db/index");
 const productRouter = require("./routes/product");
-const cartRouter = require("./routes/cartRouter");
+
 connectDB.connectDB();
 
-app.use("/api/categories", categoryRouter);
+app.use('/api/categories', categoryRouter)
+app.use('/api/orders', orderRouter)
 
 app.use("/api/users", authRouter);
 app.use("/api/product", productRouter);

@@ -69,7 +69,7 @@ const Statistics = () => {
 
   return (
     <>
-      <h3>Statistics</h3>
+      <h1>Statistics</h1>
       <div className={styles.barWrapper}>
         <div className={styles.bar}>
           <Bar data={barData} options={{ maintainAspectRatio: false }} />
