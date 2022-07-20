@@ -1,5 +1,6 @@
 import axios from "axios";
 import {
+  ORDERS_DELETE_FAIL,
   ORDERS_DELETE_REQUEST,
   ORDERS_DELETE_SUCCESS,
   ORDERS_LIST_FAIL,
@@ -74,7 +75,7 @@ export const deleteOrderAction = (id) => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: ORDERS_LIST_FAIL,
+      type: ORDERS_DELETE_FAIL,
       payload: message,
     });
   }
