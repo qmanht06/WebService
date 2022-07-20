@@ -22,11 +22,11 @@ export const listOrders = () => async (dispatch, getState) => {
     //Sent request to get all note belong to this token to server
     const config = {
       header: {
-        Authorization: `Bearer ${userInfo.token}`,
+        "Content-type": "application/json",
       },
     };
 
-    const { data } = await axios.get(`/api/orders`, config);
+    const { data } = await axios.get(`/api/orders?userID=${userInfo._id}`);
 
     //-----------------------
     dispatch({
