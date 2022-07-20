@@ -9,7 +9,7 @@ import CartPage from "./pages/CartPage/CartPage";
 import Profile from "./pages/ProfilePage/ProfilePage";
 import AdminHomePage from "./pages/admin/HomePage";
 import PageManage from "./pages/PageManage/PageManage";
-
+import OrderManage from "./pages/OrderManagePage/OrderManage";
 function App() {
   return (
     <Switch>
@@ -28,12 +28,15 @@ function App() {
       <Route exact path="/profile">
         <Profile />
       </Route>
+      <Route exact path="/user/order">
+        <OrderManage />
+      </Route>
       <Route exact path="/cart">
         <CartPage />
       </Route>
       <Route path="/admin/home" component={AdminHomePage} />
       <Route exact path="/product">
-        <PageManage type='product'></PageManage>
+        <PageManage type="product"></PageManage>
       </Route>
     </Switch>
   );

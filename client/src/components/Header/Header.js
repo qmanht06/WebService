@@ -92,11 +92,11 @@ const Header = (props) => {
               Manage Acount
             </Link>
             <Link to="/user/order" className={styles.headerUserSubnav}>
-              Your order
+              Manage Orders
             </Link>
-            <Link to="/user/changepassword" className={styles.headerUserSubnav}>
+            {/* <Link to="/user/changepassword" className={styles.headerUserSubnav}>
               Change password
-            </Link>
+            </Link> */}
             <button
               onClick={logoutHandler}
               className={styles.headerUserSubnav}
