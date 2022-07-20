@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-const connectDB = require("./config/db/index");
+const connectDB = require("./config/db");
 const authRouter = require('./routes/auth')
 const categoryRouter = require('./routes/categoryRouter')
 const orderRouter = require('./routes/orderRouter')
