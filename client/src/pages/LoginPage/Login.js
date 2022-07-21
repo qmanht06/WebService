@@ -17,9 +17,12 @@ const Login = ({}) => {
 
   //if login then redirect to home page
   useEffect(() => {
-    const userInfo = localStorage.getItem("userInfo");
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    console.log(userInfo);
     if (userInfo) {
-      history.push("/");
+      if (userInfo.permission === "Admin") {
+        history.push("/admin");
+      } else history.push("/");
     }
   }, [history, userInfo]);
 
