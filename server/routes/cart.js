@@ -23,13 +23,13 @@ router.get("/", async (req, res) => {
       message: "Cart found",
       cart: cart,
     });
-  } catch (error) {}
+  } catch (error) { }
 });
 
 // @route POST api/cart/create
 // @desc Create cart
 // @access public
-router.post("/create", protect, async (req, res) => {
+router.post("/create", async (req, res) => {
   try {
     const {
       productId,
