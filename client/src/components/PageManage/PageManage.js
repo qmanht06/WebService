@@ -33,12 +33,14 @@ function PageManage(props) {
     </tr>
   );
   const TableItem = (props) => {
-    const { productName, productImage, productDescription, productPrice } =
+    const { productName, productImage, productDescription, productPrice, _id } =
       props.item;
     return (
       <tr className={cx("item")}>
         <td className={cx("title__contents")}>#</td>
-        <td className={cx("title__contents")}>{productName}</td>
+
+        <td className={cx("title__contents")}><Link to={"/admin/product/" + _id}>{productName}</Link></td>
+
         <td className={cx("title__contents")}>{productImage}</td>
         <td className={cx("title__contents")}>{productDescription}</td>
         <td className={cx("title__contents")}>{productPrice}</td>

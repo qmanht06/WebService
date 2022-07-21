@@ -35,28 +35,37 @@
 
     .title__contents {
         text-align: left;
-        padding-right: 1rem;
+        margin-right: 2rem;
         padding-top: 1rem;
     }
 
     .title__contents:first-child {
         width: 3rem;
+        overflow: hidden;
     }
 
     .title__contents:nth-child(2) {
-        width: 45rem;
+        width: 30rem;
+        max-width: 30rem;
+        overflow: hidden;
     }
 
     .title__contents:nth-child(3) {
-        width: 15rem;
+        width: 30rem;
+        max-width: 30rem;
+        overflow: hidden;
     }
 
     .title__contents:nth-child(4) {
         width: 25rem;
+        max-width: 25rem;
+        overflow: hidden;
     }
 
     .title__contents:nth-child(5) {
         width: 20rem;
+        max-width: 20rem;
+        overflow: hidden;
     }
 
 }
