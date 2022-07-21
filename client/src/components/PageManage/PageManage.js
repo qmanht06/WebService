@@ -51,7 +51,7 @@ function PageManage(props) {
   if (types === "product") {
     headerComponent = (
       <>
-        <h4 className={cx("header")}>Quản lý bài viết</h4>
+        <h4 className={cx("header")}>Quản lý sản phẩm</h4>
         <Link to="/product/create">
           <Button size="big" status="primary" title="Thêm bài viết"></Button>
         </Link>
