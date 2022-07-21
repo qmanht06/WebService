@@ -20,8 +20,8 @@ async function fetchCartFromDB(userId) {
   try {
     const response = await axios.post("/api/dbb", { userId });
     console.log("axios res: ", response);
-    if (response && response.data.message) {
-      return response.data.message;
+    if (response && response.data.cartList) {
+      return response.data.cartList;
     } else return [];
   } catch (err) {
     console.log("err: ");
@@ -68,6 +68,20 @@ async function productQuantityChanged(id, check) {
   }
 }
 
+async function postCart(cartItem) {
+  const userID = JSON.parse(localStorage.getItem('userInfo'))._id;
+  try {
+    const response = await axios.post('/api/dbb/create', { cartItem, userID });
+    console.log("axios res: ", response);
+    if (response && response.data) {
+      return response.data;
+    } else return [];
+  } catch (err) {
+    console.log("err: ", err);
+    return "Failed";
+  }
+}
+
 //Workers
 export function* getCartData() {
   // console.log("Worker!");
@@ -79,6 +93,7 @@ export function* getCartData() {
 export function* addProductToCart(action) {
   // console.log("payload: ", action.payload);
   const response = yield call(postCartItem, action.payload);
+  // yield call(postCart, action.payload);
   // const response = action.payload;
   console.log("fetch data: ", response || 0);
   yield put({ type: types.CHANGE_TOTAL_QUANTITY, payload: response.quantity });

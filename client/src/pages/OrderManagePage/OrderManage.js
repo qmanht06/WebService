@@ -36,7 +36,7 @@ const OrderList = () => {
       history.push("/login");
     }
 
-    return () => {};
+    return () => { };
   }, [dispatch, history, userInfo, successDelete]);
 
   const deleteHandler = (id) => {
@@ -87,9 +87,11 @@ const OrderList = () => {
                 </button>
               </div>
               <div style={{ width: "5%" }} className="align-items-center">
-                <button type="button" className="item-remove-btn">
-                  <i className="fa-solid fa-edit fa-xs"></i>
-                </button>
+                <Link to={"/user/order" + order._id}>
+                  <button type="button" className="item-remove-btn">
+                    <i className="fa-solid fa-edit fa-xs"></i>
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
@@ -113,7 +115,7 @@ const OrderList = () => {
           </div>
         </div>
       </div>
-      
+
     </div>
   );
 };

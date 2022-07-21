@@ -12,6 +12,7 @@ import PageManage from "./pages/PageManage/PageManage";
 import OrderManage from "./pages/OrderManagePage/OrderManage";
 import Category from "./components/Category/Category";
 import PostManagePage from "./pages/PostManagePage/PostManagePageCreate";
+import Payment from "./pages/Payment/Payment"
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
       </Route>
       <Route exact path="/user/order">
         <OrderManage />
+      </Route>
+      <Route exact path="/user/payment">
+        <Payment />
       </Route>
       <Route exact path="/cart">
         <CartPage />

@@ -9,7 +9,7 @@ const { protect } = require("../middlewares/authMiddleware");
 // @route POST api/cart/create
 // @desc Create cart
 // @access public
-router.post("/", protect, async (req, res) => {
+router.post("/", async (req, res) => {
   console.log(req.body);
   try {
     const cart = await Cart.find({ user: req.body.userId });
@@ -33,10 +33,12 @@ router.post("/", protect, async (req, res) => {
 // @route POST api/cart/create
 // @desc Create cart
 // @access public
-router.post("/create", protect, async (req, res) => {
+router.post("/create", async (req, res) => {
+  // console.log(req.body.cartItem);
+  console.log(req.body);
   try {
     const {
-      productId,
+      _id,
       productName,
       productImage,
       productDescription,
@@ -44,17 +46,17 @@ router.post("/create", protect, async (req, res) => {
       color,
       size,
       quantity,
-    } = req.body;
-    const userID = req.userId;
+    } = req.body.cartItem;
+    const userID = req.body.userID;
     const cartItem = await Cart.findOne({
-      productId,
+      productId: _id,
       color,
       size,
       user: userID,
     });
     if (!cartItem) {
       const newCart = new Cart({
-        productId,
+        productId: _id,
         productName,
         productImage,
         productDescription,
@@ -67,9 +69,9 @@ router.post("/create", protect, async (req, res) => {
       await newCart.save();
     } else {
       await Cart.updateOne(
-        { productId, color, size, user: userID },
+        { _id, color, size, user: userID },
         {
-          productId,
+          productId: _id,
           productName,
           productImage,
           productDescription,
@@ -90,5 +92,7 @@ router.post("/create", protect, async (req, res) => {
     console.log(error.message);
   }
 });
+
+
 
 module.exports = router;

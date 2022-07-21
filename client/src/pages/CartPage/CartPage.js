@@ -12,9 +12,9 @@ const CartPage = (props) => {
   const init = 0;
   const total = cartList
     ? cartList.reduce(
-        (prev, curr) => prev + curr.quantity * curr.productPrice,
-        init
-      )
+      (prev, curr) => prev + curr.quantity * curr.productPrice,
+      init
+    )
     : 0;
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const CartPage = (props) => {
         </div>
         <div className="cart-body">
           {cartList.map((item) => (
-            <CartItem key={item._id} product={item} />
+            <CartItem key={item._id} product={item} editable={true} />
           ))}
         </div>
         <div className="cart-footer">
@@ -51,7 +51,7 @@ const CartPage = (props) => {
                 Tiếp tục mua hàng
               </button>
             </Link>
-            <Link to={"/login"}>
+            <Link to={"/user/payment"}>
               <button type="button" className="cart-btn buy-btn">
                 Tiến hành đặt hàng
               </button>

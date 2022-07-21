@@ -7,6 +7,7 @@ import Order from "../OrderManagePage/AdminOrderManage";
 import PageManage from "../../pages/PageManage/PageManage";
 import PostManagePageCreate from "../PostManagePage/PostManagePageCreate";
 import PostManagePageUpdate from "../PostManagePage/PostManagePageUpdate";
+import AdminOrderManage from "../OrderManagePage/AdminOrderManage"
 
 const HomePage = () => {
   // let { path } = useRouteMatch();
@@ -29,7 +30,7 @@ const HomePage = () => {
             <PostManagePageUpdate></PostManagePageUpdate>
           </Route>
           <Route exact path="/admin/order">
-            <PageManage type="order"></PageManage>
+            <AdminOrderManage></AdminOrderManage>
           </Route>
           <Route exact path="/admin/order/create">
             <PostManagePageCreate></PostManagePageCreate>
