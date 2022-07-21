@@ -59,12 +59,12 @@ const OrderList = () => {
           <div style={{ width: "20%" }}>Thời điểm đặt hàng</div>
           <div style={{ width: "28%" }}>Trạng thái đơn hàng</div>
           <div style={{ width: "14%" }}>Đơn giá</div>
-          <div style={{ width: "5%" }}>Xóa</div>
-          <div style={{ width: "5%" }}>Chi tiết</div>
+          {/* <div style={{ width: "5%" }}>Xóa</div> */}
+          <div style={{ width: "10%" }}>Chi tiết</div>
         </div>
         <div className="cart-body ">
-          {orders?.map((order) => (
-            <div className="cart-item-container ">
+          {orders?.map((order, index) => (
+            <div className="cart-item-container" key={index}>
               <div style={{ width: "28%" }}>
                 <div>{order._id}</div>
               </div>
@@ -77,7 +77,7 @@ const OrderList = () => {
               <div style={{ width: "14%" }}>
                 <div className="cart-item-price">{order.total}đ</div>
               </div>
-              <div style={{ width: "5%" }} className="align-items-center">
+              {/* <div style={{ width: "5%" }} className="align-items-center">
                 <button
                   type="button"
                   className="item-remove-btn"
@@ -85,8 +85,8 @@ const OrderList = () => {
                 >
                   <i className="fa-solid fa-trash-can fa-xs"></i>
                 </button>
-              </div>
-              <div style={{ width: "5%" }} className="align-items-center">
+              </div> */}
+              <div style={{ width: "10%" }} className="align-items-center">
                 <Link to={`/user/order/${order._id}`}>
                   <button type="button" className="item-remove-btn">
                     <i className="fa-solid fa-edit fa-xs"></i>
