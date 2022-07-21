@@ -71,7 +71,7 @@ router.delete("/:id", (req, res) => {
     : 0;
 
   //   console.log("delete request body: ", req.params);
-  cartList = cartList.filter((item) => item.id !== req.params.id);
+  cartList = cartList.filter((item) => item._id !== req.params.id);
   cartTotalQuantity = cartList.reduce((prev, curr) => prev + curr.quantity, 0);
   res.cookie("cartList", JSON.stringify(cartList));
   res.cookie("cartTotalQuantity", cartTotalQuantity);
