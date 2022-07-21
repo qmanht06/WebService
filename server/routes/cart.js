@@ -9,7 +9,8 @@ const { protect } = require("../middlewares/authMiddleware");
 // @route POST api/cart/create
 // @desc Create cart
 // @access public
-router.get("/", async (req, res) => {
+router.get("/", protect, async (req, res) => {
+  console.log(req.body);
   try {
     const cart = await Cart.find({ user: req.userId });
     if (!cart) {
@@ -19,17 +20,17 @@ router.get("/", async (req, res) => {
       });
     }
     return res.status(500).json({
-      success: true,
-      message: "Cart found",
+      success: false,
+      message: "Cart not found",
       cart: cart,
     });
-  } catch (error) { }
+  } catch (error) {}
 });
 
 // @route POST api/cart/create
 // @desc Create cart
 // @access public
-router.post("/create", async (req, res) => {
+router.post("/create", protect, async (req, res) => {
   try {
     const {
       productId,

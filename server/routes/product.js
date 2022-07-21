@@ -68,7 +68,7 @@ router.post("/create", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const { page, limit } = req.body.pagination;
-    console.log(page, limit);
+    // console.log(page, limit);
     const data = Products.find()
       .limit(limit)
       .skip(limit * (page - 1));

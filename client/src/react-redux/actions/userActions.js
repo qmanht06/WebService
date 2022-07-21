@@ -33,9 +33,8 @@ export const login = (email, password) => async (dispatch) => {
     );
 
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
-    // const response = await axios.get("/api/db/cart/");
-    // console.log(response.data.message);
     localStorage.setItem("userInfo", JSON.stringify(data));
+    dispatch({ type: "GET_CART_FROM_DB", payload: data._id }, config);
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,

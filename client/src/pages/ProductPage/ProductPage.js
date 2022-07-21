@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import "./ProductPage.scss";
-import { useParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import * as selectors from "../../react-redux/selectors";
 import { connect } from "react-redux";
 import { addProductToCart } from "../../react-redux/actions/cartActions";
 import { getSingleProduct } from "../../react-redux/actions/productActions";
-import { Products } from "../../data/Products";
+// import { Products } from "../../data/Products";
 
 const ProductPage = (props) => {
   const [quantity, setQuantity] = useState(1);

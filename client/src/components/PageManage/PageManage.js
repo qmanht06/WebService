@@ -39,9 +39,13 @@ function PageManage(props) {
       <tr className={cx("item")}>
         <td className={cx("title__contents")}>#</td>
 
-        <td className={cx("title__contents")}><Link to={"/admin/product/" + _id}>{productName}</Link></td>
+        <td className={cx("title__contents")}>
+          <Link to={"/admin/product/" + _id}>{productName}</Link>
+        </td>
 
-        <td className={cx("title__contents")}>{productImage}</td>
+        <td className={cx("title__contents")}>
+          <img src={productImage} alt="Loading Error!" />
+        </td>
         <td className={cx("title__contents")}>{productDescription}</td>
         <td className={cx("title__contents")}>{productPrice}</td>
         <td className={cx("title__contents")}>

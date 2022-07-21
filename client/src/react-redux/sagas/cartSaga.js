@@ -6,9 +6,22 @@ import axios from "axios";
 async function fetchCartData() {
   try {
     const response = await axios.get("/api/cart");
-    console.log("axios res: ", response);
+    // console.log("axios res: ", response);
     if (response && response.data) {
       return response.data;
+    } else return [];
+  } catch (err) {
+    console.log("err: ");
+    return "Failed";
+  }
+}
+
+async function fetchCartFromDB(userId) {
+  try {
+    const response = await axios.get("/api/db/cart", { userId: userId });
+    console.log("axios res: ", response);
+    if (response && response.data.message) {
+      return response.data.message;
     } else return [];
   } catch (err) {
     console.log("err: ");
@@ -19,7 +32,7 @@ async function fetchCartData() {
 async function postCartItem(cartItem) {
   try {
     const response = await axios.post(`/api/cart`, { cartItem });
-    console.log("axios res: ", response);
+    // console.log("axios res: ", response);
     if (response && response.data) {
       return response.data;
     } else return [];
@@ -32,7 +45,7 @@ async function postCartItem(cartItem) {
 async function deleteCartItem(id) {
   try {
     const response = await axios.delete(`/api/cart/${id}`);
-    console.log("axios res: ", response);
+    // console.log("axios res: ", response);
     if (response && response.data) {
       return response.data;
     } else return [];
@@ -102,6 +115,13 @@ export function* handleTotalQuantityChanged(action) {
   }
 }
 
+export function* getCartFromDB(action) {
+  console.log("Testing!: ", action.payload);
+  const response = yield call(fetchCartFromDB, action.payload);
+  console.log("fetch data: ", response);
+  // yield put({ type: types.SET_CART_LIST, payload: response });
+}
+
 //Watchers
 function* watchFetchCartList() {
   yield takeLatest(types.FETCH_CART_LIST, getCartData);
@@ -118,6 +138,9 @@ function* watchTotalQuantityChanged() {
     handleTotalQuantityChanged
   );
 }
+function* watchGetCartFromDB() {
+  yield takeLatest("GET_CART_FROM_DB", getCartFromDB);
+}
 
 export default function* cartSaga() {
   yield all([
@@ -125,5 +148,6 @@ export default function* cartSaga() {
     watchAddProductToCartList(),
     watchRemoveProductFromCart(),
     watchTotalQuantityChanged(),
+    watchGetCartFromDB(),
   ]);
 }

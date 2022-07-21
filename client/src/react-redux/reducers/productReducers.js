@@ -1,6 +1,6 @@
 import * as types from "../actions/actionTypes";
 // import * as shoes from "../../data/ImageShoe";
-import { Products } from "../../data/Products";
+// import { Products } from "../../data/Products";
 
 // const initialState = {
 //   productList: [
