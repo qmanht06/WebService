@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { protect2 } = require("../middlewares/authMiddleware");
+const {protect, protect2 } = require("../middlewares/authMiddleware");
 
 const Products = require("../models/Product");
 
