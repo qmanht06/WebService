@@ -4,7 +4,7 @@ import PageManages from "../../components/PageManage/PageManage"
 function PageManage({ type }) {
     return (
         <>
-            <Header></Header>
+            {/* <Header></Header> */}
             <PageManages types={type}></PageManages>
         </>
     );

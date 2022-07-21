@@ -12,7 +12,7 @@ const NavBar = () => {
       <NavLink to={`${url}/category`} activeClassName="active">
         Category
       </NavLink>
-      <NavLink to={`${url}/products`} activeClassName="active">
+      <NavLink to={`${url}/product`} activeClassName="active">
         Products
       </NavLink>
       <NavLink to={`${url}/order`} activeClassName="active">

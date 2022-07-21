@@ -8,7 +8,7 @@ const cx = classNames.bind(style)
 function PostManagePage() {
   return (
     <>
-      <Headers></Headers>
+      {/* <Headers></Headers> */}
       <div className={cx("grid", "body")}>
         <h4 className={cx("body__title")}>Thêm sản phẩm</h4>
         <div className={cx("body__item")}>
