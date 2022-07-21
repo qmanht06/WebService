@@ -37,6 +37,10 @@
         text-align: left;
         margin-right: 2rem;
         padding-top: 1rem;
+
+        img {
+            max-height: 10rem;
+        }
     }
 
     .title__contents:first-child {
