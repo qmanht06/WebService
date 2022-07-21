@@ -29,20 +29,25 @@ const getOneOrder = async (req, res, next) => {
 };
 
 const createOrder = async (req, res, next) => {
-  console.log(req.body);
-  const doc = await Order.create(req.body);
-
-  if (!doc)
-    res.status(404).json({ status: "fail", message: "No documents found" });
-
-  res.status(200).json({
-    status: "success",
-    data: {
-      data: doc,
-    },
-  });
-  // res.cookie("cartList", JSON.stringify([]));
-  // res.cookie("cartTotalQuantity", 0);
+  // console.log("test here");
+  // console.log(req.body.products);
+  try {
+    const doc = await Order.create(req.body);
+    if (!doc) {
+      res.status(404).json({ status: "fail", message: "No documents found" });
+    } else {
+      res.cookie("cartList", JSON.stringify([]));
+      res.cookie("cartTotalQuantity", 0);
+      res.status(200).json({
+        status: "success",
+        data: {
+          data: doc,
+        },
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const updateOrder = async (req, res, next) => {
@@ -74,7 +79,7 @@ const deleteOrder = async (req, res, next) => {
 
 const router = express.Router();
 
-router.route("/").post(createOrder).get(getAllOrders);
+router.route("/").post(createOrder);
 
 router.route("/:id").get(getOneOrder).delete(deleteOrder).patch(updateOrder);
 
