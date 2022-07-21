@@ -9,14 +9,15 @@ import Loading from "../../components/Loading/Loading";
 import {
   deleteOrderAction,
   listOrders,
+  listOrdersAdmin,
 } from "../../react-redux/actions/ordersListAction";
 import { ORDERS_LIST_REQUEST } from "../../react-redux/constants/ordersConstants";
 
 const OrderList = () => {
   const dispatch = useDispatch();
 
-  const orderList = useSelector((state) => state.orderList);
-  const { loading, error, orders } = orderList;
+  const orderListAdmin = useSelector((state) => state.orderListAdmin);
+  const { loading, error, orders } = orderListAdmin;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -31,7 +32,7 @@ const OrderList = () => {
   const history = useHistory();
 
   useEffect(() => {
-    dispatch(listOrders());
+    dispatch(listOrdersAdmin());
     if (!userInfo) {
       history.push("/login");
     }
@@ -46,18 +47,17 @@ const OrderList = () => {
   };
   return (
     <div>
-      <Header />
       {console.log(orders)}
       <div className="cart-container">
-        {error && <ErrorMessage variant="danger">{error} </ErrorMessage>}
+        {/* {error && <ErrorMessage variant="danger">{error} </ErrorMessage>} */}
         {/* {!loading && message && (
           <ErrorMessage variant="danger">{message}</ErrorMessage>
         )} */}
-        {loading && <Loading />}
+        {/* {loading && <Loading />} */}
         <div className="cart-head">
-          <div style={{ width: "28%" }}>Mã đơn hàng</div>
+          <div style={{ width: "36%" }}>Mã đơn hàng</div>
           <div style={{ width: "20%" }}>Thời điểm đặt hàng</div>
-          <div style={{ width: "28%" }}>Trạng thái đơn hàng</div>
+          <div style={{ width: "20%" }}>Trạng thái đơn hàng</div>
           <div style={{ width: "14%" }}>Đơn giá</div>
           <div style={{ width: "5%" }}>Xóa</div>
           <div style={{ width: "5%" }}>Edit</div>
@@ -65,13 +65,13 @@ const OrderList = () => {
         <div className="cart-body ">
           {orders?.map((order) => (
             <div className="cart-item-container ">
-              <div style={{ width: "28%" }}>
+              <div style={{ width: "36%" }}>
                 <div>{order._id}</div>
               </div>
               <div style={{ width: "20%" }}>
                 <div>{order.createdAt}</div>
               </div>
-              <div style={{ width: "28%" }}>
+              <div style={{ width: "20%" }}>
                 <div>{order.status}</div>
               </div>
               <div style={{ width: "14%" }}>
@@ -113,7 +113,6 @@ const OrderList = () => {
           </div>
         </div>
       </div>
-      
     </div>
   );
 };

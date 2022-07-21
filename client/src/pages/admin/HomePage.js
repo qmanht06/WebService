@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Statistics from "../../components/Admin/Statistics";
 import NavBar from "../../components/NavBar/NavBar";
 import Category from "../../components/Category/Category";
-import Order from "../../components/Order/Order";
+import Order from "../OrderManagePage/AdminOrderManage";
 import PageManage from "../../pages/PageManage/PageManage";
 import PostManagePage from "../PostManagePage/PostManagePage";
 

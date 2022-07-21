@@ -4,8 +4,11 @@ import {
   ORDERS_DELETE_REQUEST,
   ORDERS_DELETE_SUCCESS,
   ORDERS_LIST_FAIL,
+  ORDERS_LIST_FAIL_ADMIN,
   ORDERS_LIST_REQUEST,
+  ORDERS_LIST_REQUEST_ADMIN,
   ORDERS_LIST_SUCCESS,
+  ORDERS_LIST_SUCCESS_ADMIN,
 } from "../constants/ordersConstants";
 
 export const listOrders = () => async (dispatch, getState) => {
@@ -76,6 +79,33 @@ export const deleteOrderAction = (id) => async (dispatch, getState) => {
         : error.message;
     dispatch({
       type: ORDERS_DELETE_FAIL,
+      payload: message,
+    });
+  }
+};
+
+export const listOrdersAdmin = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ORDERS_LIST_REQUEST_ADMIN,
+    });
+
+    //Sent request to get all note belong to this token to server
+
+    const { data } = await axios.get(`/api/orders`);
+
+    //-----------------------
+    dispatch({
+      type: ORDERS_LIST_SUCCESS_ADMIN,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({
+      type: ORDERS_LIST_FAIL_ADMIN,
       payload: message,
     });
   }
