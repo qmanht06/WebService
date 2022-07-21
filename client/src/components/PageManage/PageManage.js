@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames/bind";
 import style from "./PageManage.module.scss";
 import Button from "../common/Button/Button";
@@ -32,6 +32,22 @@ function PageManage(props) {
       <th className={cx("title__contents")}>Thêm</th>
     </tr>
   );
+  const TableItem = (props) => {
+    const { productName, productImage, productDescription, productPrice } =
+      props.item;
+    return (
+      <tr className={cx("item")}>
+        <td className={cx("title__contents")}>#</td>
+        <td className={cx("title__contents")}>{productName}</td>
+        <td className={cx("title__contents")}>{productImage}</td>
+        <td className={cx("title__contents")}>{productDescription}</td>
+        <td className={cx("title__contents")}>{productPrice}</td>
+        <td className={cx("title__contents")}>
+          <i className="fa-solid fa-trash-can fa-xs"></i>
+        </td>
+      </tr>
+    );
+  };
   if (types === "product") {
     headerComponent = (
       <>
@@ -44,10 +60,10 @@ function PageManage(props) {
     tableTitle = (
       <tr className={cx("item")}>
         <th className={cx("title__contents")}>#</th>
-        <th className={cx("title__contents")}>Tên bài viết</th>
-        <th className={cx("title__contents")}>Chủ đề</th>
-        <th className={cx("title__contents")}>Tên tác giả</th>
-        <th className={cx("title__contents")}>Ngày xuất bản</th>
+        <th className={cx("title__contents")}>Tên sản phẩm</th>
+        <th className={cx("title__contents")}>Ảnh</th>
+        <th className={cx("title__contents")}>Description</th>
+        <th className={cx("title__contents")}>Price</th>
         <th className={cx("title__contents")}>Thêm</th>
       </tr>
     );
@@ -68,7 +84,7 @@ function PageManage(props) {
         <th className={cx("title__contents")}>Số điện thoại</th>
         <th className={cx("title__contents")}>Địa chỉ</th>
         <th className={cx("title__contents")}>Giá trị đơn hàng</th>
-        <th className={cx("title__contents")}>Thêm</th>
+        <th className={cx("title__contents")}>Xoá</th>
       </tr>
     );
   }
@@ -80,40 +96,9 @@ function PageManage(props) {
       <table className={cx("wrapper")}>
         <thead className={cx("table__title")}>{tableTitle}</thead>
         <tbody className={cx("table__item")}>
-          <tr className={cx("item")}>
-            <td className={cx("title__contents")}>#</td>
-            <td className={cx("title__contents")}>
-              Tên bài viết tdhair thaatj laf daif ddeer cos theer test dduwocj
-              heets toanf booj caaus trucs
-            </td>
-            <td className={cx("title__contents")}>Chủ đềt</td>
-            <td className={cx("title__contents")}>
-              Tên tác giảtdhair thaatj laf daif ddeer cos theer test dduwocj
-              heets toanf booj caaus trucs
-            </td>
-            <td className={cx("title__contents")}>
-              Ngày xuất bảntdhair thaatj laf daif ddeer cos theer test dduwocj
-              heets toanf booj caaus trucs
-            </td>
-            <td className={cx("title__contents")}>Thêm</td>
-          </tr>
-          <tr className={cx("item")}>
-            <td className={cx("title__contents")}>#</td>
-            <td className={cx("title__contents")}>
-              Tên bài viết tdhair thaatj laf daif ddeer cos theer test dduwocj
-              heets toanf booj caaus trucs
-            </td>
-            <td className={cx("title__contents")}>Chủ đềt</td>
-            <td className={cx("title__contents")}>
-              Tên tác giảtdhair thaatj laf daif ddeer cos theer test dduwocj
-              heets toanf booj caaus trucs
-            </td>
-            <td className={cx("title__contents")}>
-              Ngày xuất bảntdhair thaatj laf daif ddeer cos theer test dduwocj
-              heets toanf booj caaus trucs
-            </td>
-            <td className={cx("title__contents")}>Thêm</td>
-          </tr>
+          {productItemList.map((item) => (
+            <TableItem key={item._id} item={item} />
+          ))}
         </tbody>
       </table>
     </div>

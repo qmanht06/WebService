@@ -12,20 +12,22 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 const connectDB = require("./config/db");
-const authRouter = require('./routes/auth')
-const categoryRouter = require('./routes/categoryRouter')
-const orderRouter = require('./routes/orderRouter')
+const authRouter = require("./routes/auth");
+const categoryRouter = require("./routes/categoryRouter");
+const orderRouter = require("./routes/orderRouter");
 const productRouter = require("./routes/product");
-const cartRouter = require("./routes/cartRouter")
+const cartRouter = require("./routes/cartRouter");
+const cart = require("./routes/cart");
 
 connectDB.connectDB();
 
-app.use('/api/categories', categoryRouter)
-app.use('/api/orders', orderRouter)
+app.use("/api/categories", categoryRouter);
+app.use("/api/orders", orderRouter);
 
 app.use("/api/users", authRouter);
 app.use("/api/product", productRouter);
 app.use("/api/cart", cartRouter);
+app.use("/api/db/cart", cart);
 
 const PORT = process.env.PORT || 5000;
 
