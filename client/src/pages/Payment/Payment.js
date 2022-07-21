@@ -127,23 +127,10 @@ function PostManagePage(props) {
                 placeholder="Ghi chú"
               ></textarea>
             </div>
-            <div>
-              <button
-                style={{
-                  padding: "12px 30px",
-                  borderRadius: "6px",
-                  color: "#fff",
-                  backgroundColor: "#dc6540",
-                  margin: "0 auto",
-                  fontSize: "18px",
-                  fontWeight: "600",
-                  display: "block",
-                }}
-                onClick={submitHandler}
-              >
-                Đặt hàng
-              </button>
-            </div>
+
+            <button className={cx("btn_order")} onClick={submitHandler}>
+              Đặt hàng
+            </button>
           </div>
           <div style={{ marginTop: "60px" }}>
             <h1 className={cx("body__title")}>Products</h1>

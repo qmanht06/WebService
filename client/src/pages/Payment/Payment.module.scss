@@ -8,7 +8,6 @@
     margin: 2rem 0;
   }
 
-  
   .body__item {
     margin: 2rem 5rem;
     display: flex;
@@ -55,6 +54,26 @@
       }
     }
   }
+
+  .btn_order {
+    border-radius: 6px;
+    margin: auto;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #d3180f; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    transition-duration: 0.1s;
+  }
+
+  .btn_order:hover {
+    background-color: #af2c15; /* Green */
+    color: white;
+  }
 }
 
 .total {
@@ -62,7 +81,7 @@
   text-align: end;
 }
 
-.button:hover {
-  background-color: #4caf50; /* Green */
-  color: white;
-}
+// .button:hover {
+//   background-color: #4caf50; /* Green */
+//   color: white;
+// }
