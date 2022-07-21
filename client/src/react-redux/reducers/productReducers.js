@@ -25,6 +25,7 @@ const initialState = {
   productList: [],
   product: {},
   allProducts: [],
+  productOrder: [],
 };
 
 const productReducer = (state = initialState, action) => {
@@ -48,6 +49,12 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         allProducts: action.payload,
+      };
+    }
+    case types.SET_PRODUCT_FOR_ORDER: {
+      return {
+        ...state,
+        productOrder: action.payload,
       };
     }
     default:
