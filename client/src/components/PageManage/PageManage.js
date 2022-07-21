@@ -58,7 +58,7 @@ function PageManage(props) {
     headerComponent = (
       <>
         <h4 className={cx("header")}>Quản lý sản phẩm</h4>
-        <Link to="/product/create">
+        <Link to="/admin/product/create">
           <Button size="big" status="primary" title="Thêm bài viết"></Button>
         </Link>
       </>
@@ -73,12 +73,27 @@ function PageManage(props) {
         <th className={cx("title__contents")}>Thêm</th>
       </tr>
     );
+    return (
+      <div className={cx("grid", "post-manage")}>
+        <div className={cx("wrapper", "post-manage__header")}>
+          {headerComponent}
+        </div>
+        <table className={cx("wrapper")}>
+          <thead className={cx("table__title")}>{tableTitle}</thead>
+          <tbody className={cx("table__item")}>
+            {productItemList.map((item) => (
+              <TableItem key={item._id} item={item} />
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
   }
   if (types === "order") {
     headerComponent = (
       <>
         <h4 className={cx("header")}>Quản lý đặt hàng</h4>
-        <Link to="/product/create">
+        <Link to="/admin/product/create">
           <Button size="big" status="primary" title="Thêm đặt hàng"></Button>
         </Link>
       </>
@@ -93,22 +108,22 @@ function PageManage(props) {
         <th className={cx("title__contents")}>Xoá</th>
       </tr>
     );
-  }
-  return (
-    <div className={cx("grid", "post-manage")}>
-      <div className={cx("wrapper", "post-manage__header")}>
-        {headerComponent}
+    return (
+      <div className={cx("grid", "post-manage")}>
+        <div className={cx("wrapper", "post-manage__header")}>
+          {headerComponent}
+        </div>
+        <table className={cx("wrapper")}>
+          <thead className={cx("table__title")}>{tableTitle}</thead>
+          <tbody className={cx("table__item")}>
+            {productItemList.map((item) => (
+              <TableItem key={item._id} item={item} />
+            ))}
+          </tbody>
+        </table>
       </div>
-      <table className={cx("wrapper")}>
-        <thead className={cx("table__title")}>{tableTitle}</thead>
-        <tbody className={cx("table__item")}>
-          {productItemList.map((item) => (
-            <TableItem key={item._id} item={item} />
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+    );
+  }
 }
 
 const mapStateToProps = (state) => {

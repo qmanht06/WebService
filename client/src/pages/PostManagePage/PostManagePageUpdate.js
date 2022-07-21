@@ -48,7 +48,7 @@ function PostManagePage(props) {
               className={cx("body__item__input")}
               type="text"
               placeholder="Tên sản phẩm"
-              value={productName}
+              defaultValue={productName}
               id="productName"
               name="productName"
             />
@@ -59,7 +59,7 @@ function PostManagePage(props) {
               className={cx("body__item__input")}
               type="text"
               placeholder="Hình ảnh"
-              value={productImage}
+              defaultValue={productImage}
               name="productImage"
               id="productImage"
             />
@@ -70,7 +70,7 @@ function PostManagePage(props) {
               className={cx("body__item__text-area")}
               cols="100"
               rows="10"
-              value={productDescription}
+              defaultValue={productDescription}
               placeholder="Mô tả sản phẩm"
               id="productDescription"
               name="productDescription"
@@ -82,7 +82,7 @@ function PostManagePage(props) {
               className={cx("body__item__input")}
               type="text"
               placeholder="Giá tiền"
-              value={productPrice}
+              defaultValue={productPrice}
               name="productPrice"
               id="productPrice"
             />
@@ -94,7 +94,7 @@ function PostManagePage(props) {
               className={cx("body__item__input")}
               type="text"
               placeholder="Giá tiền cũ"
-              value={productOldPrice}
+              defaultValue={productOldPrice}
               name="productOldPrice"
               id="productOldPrice"
             />
@@ -106,7 +106,7 @@ function PostManagePage(props) {
               className={cx("body__item__input")}
               type="text"
               placeholder="Sale"
-              value={productSale}
+              defaultValue={productSale}
               name="productSale"
               id="productSale"
             />
@@ -117,7 +117,7 @@ function PostManagePage(props) {
               className={cx("body__item__input")}
               type="text"
               placeholder="Danh mục"
-              value={productCategory}
+              defaultValue={productCategory}
               name="productCategory"
               id="productCategory"
             />

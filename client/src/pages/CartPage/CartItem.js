@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const CartItem = (props) => {
   const { productImage, productName, productPrice, quantity, _id } =
     props.product;
-  const { increaseQuantity, decreaseQuantity, removeProductFromCart } = props;
+  const { increaseQuantity, decreaseQuantity, removeProductFromCart, editable } = props;
 
   // const handleIncreaseClicked = ()
 
@@ -31,21 +31,21 @@ const CartItem = (props) => {
       </div>
       <div style={{ width: "18%" }}>
         <div className="cart-item-quantity">
-          <button
+          {editable && <button
             type="button"
             className="item-quantity-btn decrease"
             onClick={() => decreaseQuantity(_id)}
           >
             -
-          </button>
+          </button>}
           <div className="item-quantity">{quantity}</div>
-          <button
+          {editable && <button
             type="button"
             className="item-quantity-btn increase"
             onClick={() => increaseQuantity(_id)}
           >
             +
-          </button>
+          </button>}
         </div>
       </div>
       <div style={{ width: "13%" }}>
@@ -55,13 +55,13 @@ const CartItem = (props) => {
       </div>
       <div style={{ width: "5%" }}>
         <div className="cart-item-remove">
-          <button
+          {editable && <button
             type="button"
             className="item-remove-btn"
             onClick={() => removeProductFromCart(_id)}
           >
             <i className="fa-solid fa-trash-can fa-xs"></i>
-          </button>
+          </button>}
         </div>
       </div>
     </div>

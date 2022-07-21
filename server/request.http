@@ -48,3 +48,6 @@ Content-Type: application/json
     "productPrice": "productCategory2",
     "productCategory": "productCategory2"
 }
+
+###
+GET http://localhost:5000/api/cart/
