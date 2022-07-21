@@ -4,13 +4,17 @@ const asyncHandler = require("express-async-handler");
 
 const getAllOrders = asyncHandler(async (req, res, next) => {
   const query = Order.find(req.query);
-  const docs = await query;
+  try {
+    const docs = await query;
 
-  //   const docs = await Order.find(req);
-  if (!docs)
-    res.status(404).json({ status: "fail", message: "No documents found" });
+    //   const docs = await Order.find(req);
+    if (!docs)
+      res.status(404).json({ status: "fail", message: "No documents found" });
 
-  res.status(200).json(docs);
+    res.status(200).json(docs);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 const getOneOrder = async (req, res, next) => {
@@ -79,7 +83,7 @@ const deleteOrder = async (req, res, next) => {
 
 const router = express.Router();
 
-router.route("/").post(createOrder);
+router.route("/").post(createOrder).get(getAllOrders);
 
 router.route("/:id").get(getOneOrder).delete(deleteOrder).patch(updateOrder);
 

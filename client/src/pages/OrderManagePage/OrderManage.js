@@ -36,7 +36,7 @@ const OrderList = () => {
       history.push("/login");
     }
 
-    return () => { };
+    return () => {};
   }, [dispatch, history, userInfo, successDelete]);
 
   const deleteHandler = (id) => {
@@ -115,7 +115,6 @@ const OrderList = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };
