@@ -8,7 +8,7 @@ app.use(express.json());
 dotenv.config();
 
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const connectDB = require("./config/db");
@@ -27,7 +27,7 @@ app.use("/api/orders", orderRouter);
 app.use("/api/users", authRouter);
 app.use("/api/product", productRouter);
 app.use("/api/cart", cartRouter);
-app.use("/api/db/cart", cart);
+app.use("/api/dbb", cart);
 
 const PORT = process.env.PORT || 5000;
 

@@ -34,7 +34,10 @@ export const login = (email, password) => async (dispatch) => {
 
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     localStorage.setItem("userInfo", JSON.stringify(data));
-    dispatch({ type: "GET_CART_FROM_DB", payload: data._id }, config);
+    dispatch(
+      { type: "GET_CART_FROM_DB", payload: { userId: data._id } },
+      config
+    );
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,

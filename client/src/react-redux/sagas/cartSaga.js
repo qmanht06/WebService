@@ -18,7 +18,7 @@ async function fetchCartData() {
 
 async function fetchCartFromDB(userId) {
   try {
-    const response = await axios.get("/api/db/cart", { userId: userId });
+    const response = await axios.post("/api/dbb", { userId });
     console.log("axios res: ", response);
     if (response && response.data.message) {
       return response.data.message;
