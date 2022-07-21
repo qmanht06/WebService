@@ -9,6 +9,9 @@ import {
   ORDERS_LIST_REQUEST_ADMIN,
   ORDERS_LIST_SUCCESS,
   ORDERS_LIST_SUCCESS_ADMIN,
+  ORDERS_UPDATE_REQUEST,
+  ORDERS_UPDATE_FAIL,
+  ORDERS_UPDATE_SUCCESS,
 } from "../constants/ordersConstants";
 
 export const listOrders = () => async (dispatch, getState) => {
@@ -113,3 +116,46 @@ export const listOrdersAdmin = () => async (dispatch, getState) => {
     });
   }
 };
+
+export const updateOrderAction =
+  (id, status, phone, address, note) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: ORDERS_UPDATE_REQUEST,
+      });
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const updatedOrder = {
+        shippingDetails: {
+          phone,
+          address,
+          note,
+        },
+        status,
+      };
+      const { data } = await axios.patch(
+        `/api/orders/${id}`,
+        updatedOrder,
+        config
+      );
+
+      dispatch({
+        type: ORDERS_UPDATE_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      dispatch({
+        type: ORDERS_UPDATE_FAIL,
+        payload: message,
+      });
+    }
+  };

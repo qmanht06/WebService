@@ -12,8 +12,8 @@ import PageManage from "./pages/PageManage/PageManage";
 import OrderManage from "./pages/OrderManagePage/OrderManage";
 import Category from "./components/Category/Category";
 import PostManagePage from "./pages/PostManagePage/PostManagePageCreate";
-import Payment from "./pages/Payment/Payment"
-
+import Payment from "./pages/Payment/Payment";
+import OrderManageDetail from "./pages/OrderManagePage/OrderManageDetail";
 function App() {
   return (
     <Switch>
@@ -35,9 +35,14 @@ function App() {
       <Route exact path="/profile">
         <Profile />
       </Route>
+      <Route exact path="/user/order/:id">
+        <OrderManageDetail />
+      </Route>
+
       <Route exact path="/user/order">
         <OrderManage />
       </Route>
+
       <Route exact path="/user/payment">
         <Payment />
       </Route>
@@ -45,7 +50,6 @@ function App() {
         <CartPage />
       </Route>
       <Route path="/admin" component={AdminHomePage} />
-
 
       {/* <Route exact path="/admin/order">
         <Category />

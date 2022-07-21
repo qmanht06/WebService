@@ -1,14 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useSelector, useState, useRef } from "react";
 import Headers from "../../components/Header/Header";
 import classNames from "classnames/bind";
 import style from "./Payment.module.scss";
 import { connect } from "react-redux";
 import { fetchCartList } from "../../react-redux/actions/cartActions";
+import { Link, useHistory } from "react-router-dom";
 import * as selectors from "../../react-redux/selectors";
 import CartItem from "../CartPage/CartItem";
+import Button from "../../components/common/Button/Button";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 // import Button from "../../components/common/Button/Button";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
 
 const cx = classNames.bind(style);
 
@@ -31,7 +33,6 @@ function PostManagePage(props) {
       (prev, curr) => prev + curr.quantity * +curr.productPrice,
       0
     ) || 0;
-  console.log(total);
   const userInfomation = JSON.parse(localStorage.getItem("userInfo"));
 
   const submitHandler = async (e) => {
@@ -136,26 +137,14 @@ function PostManagePage(props) {
                 placeholder="Ghi chú"
               ></textarea>
             </div>
-            <div>
-              <button
-                style={{
-                  padding: "12px 30px",
-                  borderRadius: "6px",
-                  color: "#fff",
-                  backgroundColor: "#dc6540",
-                  margin: "0 auto",
-                  fontSize: "18px",
-                  fontWeight: "600",
-                  display: "block",
-                }}
-                onClick={submitHandler}
-              >
-                Đặt hàng
-              </button>
-            </div>
+
+            <button className={cx("btn_order")} onClick={submitHandler}>
+              Đặt hàng
+            </button>
           </div>
           <div style={{ marginTop: "60px" }}>
             <h1 className={cx("body__title")}>Products</h1>
+            
             <div>
               {cartList.map((item) => (
                 <CartItem key={item._id} product={item} editable={false} />
