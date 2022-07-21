@@ -8,6 +8,7 @@ const Products = require("../models/Product");
 // desc create Product
 // access private
 router.post("/create", async (req, res) => {
+<<<<<<< Updated upstream
   console.log(req.body);
   const {
     productName,
@@ -36,6 +37,36 @@ router.post("/create", async (req, res) => {
   //     !productNumReviews
   // )
   //     return res.status(400).json({ success: false, message: "All is requires" });
+=======
+    console.log(req.body);
+    const {
+        productName,
+        productImage,
+        productOldPrice,
+        productPrice,
+        productSale,
+        productDescription,
+        productCategory,
+        productCountInStock,
+        productRating,
+        productNumReviews,
+    } = req.body;
+
+    // simple validation
+    // if (
+    //     !productName ||
+    //     !productImage ||
+    //     !productOldPrice ||
+    //     !productDescription ||
+    //     !productPrice ||
+    //     !productCategory ||
+    //     !productSale ||
+    //     !productCountInStock ||
+    //     !productRating ||
+    //     !productNumReviews
+    // )
+    //     return res.status(400).json({ success: false, message: "All is requires" });
+>>>>>>> Stashed changes
 
   try {
     const newProduct = new Products({
@@ -51,6 +82,7 @@ router.post("/create", async (req, res) => {
       productNumReviews,
     });
 
+<<<<<<< Updated upstream
     await newProduct.save();
     // res.status(500).json({
     //     success: true,
@@ -61,6 +93,18 @@ router.post("/create", async (req, res) => {
   } catch (error) {
     console.log(error.message);
   }
+=======
+        await newProduct.save();
+        // res.status(500).json({
+        //     success: true,
+        //     message: "Create new product success",
+        //     product: newProduct,
+        return res.redirect('/admin/product')
+        // });
+    } catch (error) {
+        console.log(error.message);
+    }
+>>>>>>> Stashed changes
 });
 
 // routes GET api/product/
@@ -125,12 +169,29 @@ router.get("/:id", async (req, res) => {
 // desc update one Product
 // access private
 router.patch("/:id", protect2, async (req, res) => {
+<<<<<<< Updated upstream
   try {
     const productID = req.params.id;
     const newData = req.body;
     const oldData = await Products.findById(productID);
     for (key in newData) {
       if (newData[key] === "") newData[key] = oldData[key];
+=======
+    try {
+        const productID = req.params.id;
+        const newData = req.body;
+        const oldData = await Products.findById(productID);
+        for (key in newData) {
+            if (newData[key] === "") newData[key] = oldData[key];
+        }
+        return res.status(200).json({
+            success: true,
+            message: "Update products success",
+            products: newData,
+        });
+    } catch (error) {
+        console.log(error.message);
+>>>>>>> Stashed changes
     }
     return res.status(200).json({
       success: true,
