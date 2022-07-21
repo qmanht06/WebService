@@ -21,7 +21,7 @@ function PageManage({ types }) {
     if (types === 'product') {
         headerComponent = <>
             <h4 className={cx('header')}>Quản lý bài viết</h4>
-            <Link to="/product/create"><Button size='big' status='primary' title='Thêm bài viết'></Button></Link>
+            <Link to="/admin/product/create"><Button size='big' status='primary' title='Thêm bài viết'></Button></Link>
 
         </>
         tableTitle = <tr className={cx('item')}>
@@ -36,7 +36,6 @@ function PageManage({ types }) {
     if (types === 'order') {
         headerComponent = <>
             <h4 className={cx('header')}>Quản lý đặt hàng</h4>
-            <Link to="/product/create"><Button size='big' status='primary' title='Thêm đặt hàng'></Button></Link>
 
         </>
         tableTitle = <tr className={cx('item')}>

@@ -124,7 +124,7 @@ router.get("/:id", async (req, res) => {
 // routes PATCH api/product/:id
 // desc update one Product
 // access private
-router.patch("/:id", protect2, async (req, res) => {
+router.patch("/:id", async (req, res) => {
     try {
         const productID = req.params.id;
         const newData = req.body;

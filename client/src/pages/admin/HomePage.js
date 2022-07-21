@@ -5,7 +5,8 @@ import NavBar from "../../components/NavBar/NavBar";
 import Category from "../../components/Category/Category";
 import Order from "../OrderManagePage/AdminOrderManage";
 import PageManage from "../../pages/PageManage/PageManage";
-import PostManagePage from "../PostManagePage/PostManagePage";
+import PostManagePageCreate from "../PostManagePage/PostManagePageCreate";
+import PostManagePageUpdate from "../PostManagePage/PostManagePageUpdate";
 
 const HomePage = () => {
   // let { path } = useRouteMatch();
@@ -22,10 +23,19 @@ const HomePage = () => {
             <PageManage type="product"></PageManage>
           </Route>
           <Route exact path="/admin/product/create">
-            <PostManagePage></PostManagePage>
+            <PostManagePageCreate></PostManagePageCreate>
+          </Route>
+          <Route exact path="/admin/product/:id">
+            <PostManagePageUpdate></PostManagePageUpdate>
           </Route>
           <Route exact path="/admin/order">
             <PageManage type="order"></PageManage>
+          </Route>
+          <Route exact path="/admin/order/create">
+            <PostManagePageCreate></PostManagePageCreate>
+          </Route>
+          <Route exact path="/admin/order/:id">
+            <PostManagePageUpdate></PostManagePageUpdate>
           </Route>
           <Route exact path="/admin/home">
             <Statistics />
