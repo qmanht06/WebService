@@ -7,7 +7,8 @@ const Products = require("../models/Product");
 // routes POST api/product/create
 // desc create Product
 // access private
-router.post("/create", protect2, async (req, res) => {
+router.post("/create", async (req, res) => {
+    console.log(req.body);
     const {
         productName,
         productImage,
@@ -22,19 +23,19 @@ router.post("/create", protect2, async (req, res) => {
     } = req.body;
 
     // simple validation
-    if (
-        !productName ||
-        !productImage ||
-        !productOldPrice ||
-        !productDescription ||
-        !productPrice ||
-        !productCategory ||
-        !productSale ||
-        !productCountInStock ||
-        !productRating ||
-        !productNumReviews
-    )
-        return res.status(400).json({ success: false, message: "All is requires" });
+    // if (
+    //     !productName ||
+    //     !productImage ||
+    //     !productOldPrice ||
+    //     !productDescription ||
+    //     !productPrice ||
+    //     !productCategory ||
+    //     !productSale ||
+    //     !productCountInStock ||
+    //     !productRating ||
+    //     !productNumReviews
+    // )
+    //     return res.status(400).json({ success: false, message: "All is requires" });
 
     try {
         const newProduct = new Products({
@@ -51,11 +52,12 @@ router.post("/create", protect2, async (req, res) => {
         });
 
         await newProduct.save();
-        return res.status(500).json({
-            success: true,
-            message: "Create new product success",
-            product: newProduct,
-        });
+        // res.status(500).json({
+        //     success: true,
+        //     message: "Create new product success",
+        //     product: newProduct,
+        return res.redirect('/admin/product')
+        // });
     } catch (error) {
         console.log(error.message);
     }
@@ -105,7 +107,7 @@ router.get("/:id", async (req, res) => {
 // routes PATCH api/product/:id
 // desc update one Product
 // access private
-router.patch("/:id", protect, async (req, res) => {
+router.patch("/:id", protect2, async (req, res) => {
     try {
         const productID = req.params.id;
         const newData = req.body;
