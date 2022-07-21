@@ -16,6 +16,8 @@ function PageManage(props) {
   }, []);
   console.log("Product list: ", productItemList);
 
+
+
   let headerComponent = (
     <>
       <h4 className={cx("header")}>Quản lý người dùng</h4>
@@ -49,7 +51,11 @@ function PageManage(props) {
         <td className={cx("title__contents")}>{productDescription}</td>
         <td className={cx("title__contents")}>{productPrice}</td>
         <td className={cx("title__contents")}>
-          <i className="fa-solid fa-trash-can fa-xs"></i>
+          <form method="POST" action={"/api/product/" + _id}>
+            <button type="submit">
+              <i className="fa-solid fa-trash-can fa-xs"></i>
+            </button>
+          </form>
         </td>
       </tr>
     );

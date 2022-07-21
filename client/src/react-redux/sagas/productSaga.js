@@ -79,12 +79,20 @@ export function* fetchAllProducts() {
   yield put({ type: types.SET_ALL_PRODUCTS, payload: response });
 }
 
-// export function* fetchSingleProduct(action) {
-//   // console.log("Payload: ", action.payload);
-//   const response = yield call(fetchSingle, action.payload);
-//   console.log("fetch data: ", response);
-//   yield put({ type: types.SET_SINGLE_PRODUCT_ADMIN, payload: response });
-// }
+export function* fetchProductForOrder(action) {
+  // console.log("Payload: ", action.payload);
+  const fetchListTemp = action.payload;
+  let tempProductList = [];
+  let tempItem;
+  for (const item of fetchListTemp) {
+    tempItem = yield call(getSingleProduct, item.product);
+    tempProductList.push({ ...tempItem, quantity: item.quantity });
+  }
+  console.log("proLis: ", tempProductList);
+  // const response = yield call(fetchSingle, action.payload);
+  // console.log("fetch data: ", response);
+  yield put({ type: types.SET_PRODUCT_FOR_ORDER, payload: tempProductList });
+}
 
 //Watchers
 function* watchFetchProductList() {
@@ -99,9 +107,9 @@ function* watchFetchAllProducts() {
   yield takeLatest(types.FETCH_ALL_PRODUCTS, fetchAllProducts);
 }
 
-// function* watchFetchSingleProduct() {
-//   yield takeLatest(types.FETCH_SINGLE_PRODUCT, fetchSingleProduct);
-// }
+function* watchFetchProductForOrder() {
+  yield takeLatest(types.FETCH_PRODUCT_FOR_ORDER, fetchProductForOrder);
+}
 
 //rootSaga
 export default function* productSaga() {
@@ -109,5 +117,6 @@ export default function* productSaga() {
     watchFetchProductList(),
     watchGetProductDetail(),
     watchFetchAllProducts(),
+    watchFetchProductForOrder(),
   ]);
 }

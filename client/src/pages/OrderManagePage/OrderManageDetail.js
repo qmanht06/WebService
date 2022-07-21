@@ -4,24 +4,55 @@ import classNames from "classnames/bind";
 import style from "./OrderManageDetail.scss";
 import { connect } from "react-redux";
 import { fetchCartList } from "../../react-redux/actions/cartActions";
+import { fetchProductForOrder } from "../../react-redux/actions/productActions";
 import { Link, useHistory } from "react-router-dom";
 import * as selectors from "../../react-redux/selectors";
 import CartItem from "../CartPage/CartItem";
 import Button from "../../components/common/Button/Button";
 import { useRef } from "react";
 import axios from "axios";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+// import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import { useLocation } from "react-router-dom";
 
 const cx = classNames.bind(style);
-
+let name, note, phone, address, email;
 function PostManagePage(props) {
-  const { cartList, quantity, fetchCartList } = props;
-  const [message, setMessage] = useState(null);
-  const history = useHistory();
+  const { fetchProductForOrder, cartList } = props;
+  const [info, setInfo] = useState({
+    name: "",
+    note: "",
+    phone: "",
+    address: "",
+    email: "",
+  });
   useEffect(() => {
-    fetchCartList();
+    try {
+      axios.get(`/api/orders/${pathname}`).then((response) => {
+        console.log(response.data);
+        // let temp = response.data.shippingDetails;
+        // name = temp.name;
+        // note = temp.note;
+        // phone = temp.phone;
+        // address = temp.address;
+        // email = temp.email;
+        setInfo(response.data.shippingDetails);
+        setOrderItem(response.data);
+        fetchProductForOrder(response.data.products);
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
-  console.log(cartList);
+  console.log("productOrder: ", cartList);
+  // const { cartList, quantity, fetchCartList } = props;
+  const pathname = useLocation().pathname.slice(12);
+  const [orderItem, setOrderItem] = useState({});
+  console.log("path: ", pathname);
+  //   const history = useHistory();
+
+  console.log(orderItem);
+  // console.log(Object.keys(orderItem));
+  // const { name, note, phone, address, email } = orderItem.shippingDetails;
 
   const nameRef = useRef();
   const phoneRef = useRef();
@@ -34,47 +65,47 @@ function PostManagePage(props) {
       (prev, curr) => prev + curr.quantity * +curr.productPrice,
       0
     ) || 0;
-  const userInfomation = JSON.parse(localStorage.getItem("userInfo"));
+  // const userInfomation = JSON.parse(localStorage.getItem("userInfo"));
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    const name = nameRef.current.value;
-    const phone = phoneRef.current.value;
-    const email = emailRef.current.value;
-    const address = addressRef.current.value;
-    const note = noteRef.current.value;
-    const products = cartList.map((item) => ({
-      product: item._id,
-      quantity: item.quantity,
-    }));
-    if (!name || !phone || !email || !address) {
-      setMessage("Vui lòng nhập tất cả các trường cần thiết!");
-    } else {
-      const order = {
-        userID: userInfomation._id,
-        shippingDetails: {
-          name,
-          phone,
-          email,
-          address,
-          note,
-        },
-        products,
-        total,
-      };
+  // const submitHandler = async (e) => {
+  //   e.preventDefault();
+  //   const name = nameRef.current.value;
+  //   const phone = phoneRef.current.value;
+  //   const email = emailRef.current.value;
+  //   const address = addressRef.current.value;
+  //   const note = noteRef.current.value;
+  //   const products = cartList.map((item) => ({
+  //     product: item._id,
+  //     quantity: item.quantity,
+  //   }));
+  //   if (!name || !phone || !email || !address) {
+  //     setMessage("Vui lòng nhập tất cả các trường cần thiết!");
+  //   } else {
+  //     const order = {
+  //       userID: userInfomation._id,
+  //       shippingDetails: {
+  //         name,
+  //         phone,
+  //         email,
+  //         address,
+  //         note,
+  //       },
+  //       products,
+  //       total,
+  //     };
 
-      console.log("order", order);
+  //     console.log("order", order);
 
-      await axios.post("/api/orders", order);
-      history.push("/user/order");
-      setMessage(null);
-    }
-  };
+  //     await axios.post("/api/orders", order);
+  //     history.push("/user/order");
+  //     setMessage(null);
+  //   }
+  // };
   return (
     <>
       <Headers></Headers>
       <div className={cx("grid", "body")}>
-        {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
+        {/* {message && <ErrorMessage variant="danger">{message}</ErrorMessage>} */}
         <form>
           <div>
             <h4 className={cx("body__title")}>Đặt hàng</h4>
@@ -85,7 +116,7 @@ function PostManagePage(props) {
                 className={cx("body__item__input")}
                 type="text"
                 placeholder="Họ và tên"
-                defaultValue={userInfomation.fullName}
+                value={info.name}
                 readOnly
               />
             </div>
@@ -96,6 +127,8 @@ function PostManagePage(props) {
                 className={cx("body__item__input")}
                 type="text"
                 placeholder="Số điện thoại"
+                value={info.phone}
+                readOnly
               />
             </div>
             <div className={cx("body__item")}>
@@ -105,7 +138,7 @@ function PostManagePage(props) {
                 className={cx("body__item__input")}
                 type="text"
                 placeholder="Email"
-                defaultValue={userInfomation.email}
+                value={info.email}
                 readOnly
               />
             </div>
@@ -116,6 +149,8 @@ function PostManagePage(props) {
                 className={cx("body__item__input")}
                 type="text"
                 placeholder="Địa chỉ"
+                value={info.address}
+                readOnly
               />
             </div>
             <div className={cx("body__item")}>
@@ -146,6 +181,8 @@ function PostManagePage(props) {
                 cols="100"
                 rows="10"
                 placeholder="Ghi chú"
+                value={info.note}
+                readOnly
               ></textarea>
             </div>
 
@@ -155,14 +192,14 @@ function PostManagePage(props) {
           </div>
           <div style={{ marginTop: "60px" }}>
             <h1 className={cx("body__title")}>Products</h1>
-            {/* <div>
+            <div>
               {cartList.map((item) => (
                 <CartItem key={item._id} product={item} editable={false} />
               ))}
-            </div> */}
+            </div>
           </div>
           <div className={cx("total")}>
-            <h1>Tổng tiền: {total}</h1>
+            <h1>Tổng tiền: {total}₫</h1>
           </div>
         </form>
       </div>
@@ -170,19 +207,32 @@ function PostManagePage(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  const data = selectors.cartSelector(state);
-  // const test = selectors.productSelector(state);
-  // console.log("product: ",test);
-  console.log("cart: ", data);
+// const mapStateToProps = (state) => {
+//   const data = selectors.cartSelector(state);
+//   // const test = selectors.productSelector(state);
+//   // console.log("product: ",test);
+//   console.log("cart: ", data);
 
-  return { cartList: data.cartList, quantity: data.cartTotalQuantity };
+//   return { cartList: data.cartList, quantity: data.cartTotalQuantity };
+// };
+
+// const mapDispatchToProps = (dispatch) => {
+//   console.log("ok");
+//   return {
+//     fetchCartList: (data) => dispatch(fetchCartList(data)),
+//   };
+// };
+const mapStateToProps = (state) => {
+  const data = selectors.productSelector(state);
+  // console.log("dada: ", data);
+  return { cartList: data.productOrder };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  console.log("ok");
   return {
-    fetchCartList: (data) => dispatch(fetchCartList(data)),
+    // addProductToCart: (product) => dispatch(addProductToCart(product)),
+    fetchProductForOrder: (productId) =>
+      dispatch(fetchProductForOrder(productId)),
   };
 };
 

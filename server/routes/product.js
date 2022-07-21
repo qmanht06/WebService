@@ -141,4 +141,14 @@ router.patch("/:id", protect2, async (req, res) => {
   }
 });
 
+router.post('/:id', async (req, res) => {
+  console.log(req.params.id);
+  try {
+    await Products.deleteOne({ _id: req.params.id })
+    res.redirect('/admin/product')
+  } catch (error) {
+    console.log(error.message);
+  }
+})
+
 module.exports = router;

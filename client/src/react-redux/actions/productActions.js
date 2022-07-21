@@ -34,11 +34,12 @@ export const setAllProducts = (data) => ({
   payload: data,
 });
 
-// export const fetchSingleProduct = () => ({
-//   type: types.FETCH_SINGLE_PRODUCT,
-// });
+export const fetchProductForOrder = (products) => ({
+  type: types.FETCH_PRODUCT_FOR_ORDER,
+  payload: products,
+});
 
-// export const setSingleProductAdmin = (data) => ({
-//   type: types.SET_SINGLE_PRODUCT_ADMIN,
-//   payload: data,
-// });
+export const setProductForOrder = (data) => ({
+  type: types.SET_PRODUCT_FOR_ORDER,
+  payload: data,
+});
