@@ -4,13 +4,13 @@ const router = express.Router()
 const argon2 = require('argon2')
 const jwt = require('jsonwebtoken')
 const Cart = require('../models/Cart')
-const verifyToken = require('../')
+const { protect } = require('../middlewares/authMiddleware')
 
 
 // @route POST api/cart/create
 // @desc Create cart
 // @access public
-router.get('/', verifyToken, async (req, res) => {
+router.get('/', protect, async (req, res) => {
     try {
         const cart = await Cart.find({ user: req.userId })
         if (!cart) {
@@ -33,7 +33,7 @@ router.get('/', verifyToken, async (req, res) => {
 // @route POST api/cart/create
 // @desc Create cart
 // @access public
-router.post('/create', verifyToken, async (req, res) => {
+router.post('/create', protect, async (req, res) => {
     try {
         const { productId, productName, productImage, productDescription, productPrice, color, size, quantity } = req.body
         const userID = req.userId

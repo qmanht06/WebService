@@ -11,7 +11,10 @@ const CartPage = (props) => {
   const { cartList, quantity, fetchCartList } = props;
   const init = 0;
   const total = cartList
-    ? cartList.reduce((prev, curr) => prev + curr.quantity * curr.price, init)
+    ? cartList.reduce(
+        (prev, curr) => prev + curr.quantity * curr.productPrice,
+        init
+      )
     : 0;
 
   useEffect(() => {

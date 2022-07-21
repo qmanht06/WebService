@@ -23,6 +23,7 @@ router.get("/", (req, res) => {
   let cartTotalQuantity = req.cookies.cartTotalQuantity
     ? JSON.parse(req.cookies.cartTotalQuantity)
     : 0;
+  // console.log(cartList);
   let Cart = {
     cartList: cartList,
     cartTotalQuantity: cartTotalQuantity,
@@ -44,30 +45,11 @@ router.post("/", (req, res) => {
   let cartTotalQuantity = req.cookies.cartTotalQuantity
     ? JSON.parse(req.cookies.cartTotalQuantity)
     : 0;
-  //   console.log("request body: ", req.body);
+  // console.log("request body: ", req.body);
   let email = req.cookies.userEmail || 0;
 
-  //   if (email) {
-  //     const checkUser = mainCart.findIndex((item) => item.userEmail === email);
-  //     if (checkUser < 0) {
-  //         mainCart.push({
-  //             userEmail: email,
-  //             cart: { cartList: cartList, cartTotalQuantity: cartTotalQuantity },
-  //           });
-  //     };
-  //     mainCart.push({
-  //       userEmail: req.cookies.userEmail,
-  //       cart: { cartList: cartList, cartTotalQuantity: cartTotalQuantity },
-  //     });
-  //     cartList = [];
-  //     cartTotalQuantity = 0;
-  //   } else {
-  //     cartList = JSON.parse(req.cookies.cartItems);
-  //     cartTotalQuantity = req.cookies.cartTotalQuantity;
-  //   }
-
   let cartItem = req.body.cartItem;
-  let checkExist = cartList.findIndex((item) => item.id === cartItem.id);
+  let checkExist = cartList.findIndex((item) => item._id === cartItem._id);
 
   if (checkExist < 0) {
     cartList.push(cartItem);

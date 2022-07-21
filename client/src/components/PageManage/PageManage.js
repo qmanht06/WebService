@@ -21,7 +21,8 @@ function PageManage({ types }) {
     if (types === 'product') {
         headerComponent = <>
             <h4 className={cx('header')}>Quản lý bài viết</h4>
-            <Button size='big' status='primary' title='Thêm bài viết'></Button>
+            <Link to="/product/create"><Button size='big' status='primary' title='Thêm bài viết'></Button></Link>
+
         </>
         tableTitle = <tr className={cx('item')}>
             <th className={cx('title__contents')}>#</th>

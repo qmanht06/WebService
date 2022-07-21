@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const { protect } = require("../middlewares/authMiddleware");
+const { protect2 } = require("../middlewares/authMiddleware");
 
 const Products = require("../models/Product");
 
 // routes POST api/product/create
 // desc create Product
 // access private
-router.post("/create", protect, async (req, res) => {
+router.post("/create", protect2, async (req, res) => {
     const {
         productName,
         productImage,
