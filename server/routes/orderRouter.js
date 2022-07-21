@@ -4,13 +4,17 @@ const asyncHandler = require("express-async-handler");
 
 const getAllOrders = asyncHandler(async (req, res, next) => {
   const query = Order.find(req.query);
-  const docs = await query;
+  try {
+    const docs = await query;
 
-  //   const docs = await Order.find(req);
-  if (!docs)
-    res.status(404).json({ status: "fail", message: "No documents found" });
+    //   const docs = await Order.find(req);
+    if (!docs)
+      res.status(404).json({ status: "fail", message: "No documents found" });
 
-  res.status(200).json(docs);
+    res.status(200).json(docs);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 const getOneOrder = async (req, res, next) => {
@@ -24,20 +28,25 @@ const getOneOrder = async (req, res, next) => {
 };
 
 const createOrder = async (req, res, next) => {
-  console.log(req.body);
-  const doc = await Order.create(req.body);
-
-  if (!doc)
-    res.status(404).json({ status: "fail", message: "No documents found" });
-
-  res.status(200).json({
-    status: "success",
-    data: {
-      data: doc,
-    },
-  });
-  // res.cookie("cartList", JSON.stringify([]));
-  // res.cookie("cartTotalQuantity", 0);
+  // console.log("test here");
+  // console.log(req.body.products);
+  try {
+    const doc = await Order.create(req.body);
+    if (!doc) {
+      res.status(404).json({ status: "fail", message: "No documents found" });
+    } else {
+      res.cookie("cartList", JSON.stringify([]));
+      res.cookie("cartTotalQuantity", 0);
+      res.status(200).json({
+        status: "success",
+        data: {
+          data: doc,
+        },
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const updateOrder = async (req, res, next) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useSelector, useState } from "react";
+import React, { useEffect, useSelector, useState, useRef } from "react";
 import Headers from "../../components/Header/Header";
 import classNames from "classnames/bind";
 import style from "./Payment.module.scss";
@@ -8,15 +8,14 @@ import { Link, useHistory } from "react-router-dom";
 import * as selectors from "../../react-redux/selectors";
 import CartItem from "../CartPage/CartItem";
 import Button from "../../components/common/Button/Button";
-import { useRef } from "react";
-import axios from "axios";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+// import Button from "../../components/common/Button/Button";
+import axios from "axios";
 
 const cx = classNames.bind(style);
 
 function PostManagePage(props) {
   const { cartList, quantity, fetchCartList } = props;
-  const [message, setMessage] = useState(null);
   const history = useHistory();
   useEffect(() => {
     fetchCartList();
@@ -47,34 +46,45 @@ function PostManagePage(props) {
       product: item._id,
       quantity: item.quantity,
     }));
-    if (!name || !phone || !email || !address) {
-      setMessage("Vui lòng nhập tất cả các trường cần thiết!");
-    } else {
-      const order = {
-        userID: userInfomation._id,
-        shippingDetails: {
-          name,
-          phone,
-          email,
-          address,
-          note,
-        },
-        products,
-        total,
-      };
-
-      console.log("order", order);
-
-      await axios.post("/api/orders", order);
-      history.push("/user/order");
-      setMessage(null);
+    if (
+      !name ||
+      !phone ||
+      !email ||
+      !address ||
+      !userInfomation._id ||
+      !products
+    ) {
+      alert("Vui lòng nhập đầy đủ thông tin");
+      return;
     }
+
+    const order = {
+      userID: userInfomation._id,
+      shippingDetails: {
+        name,
+        phone,
+        email,
+        address,
+        note,
+      },
+      products,
+      total,
+    };
+
+    console.log("order", order);
+
+    try {
+      const response = await axios.post("/api/orders", order);
+      console.log("réponse: ", response);
+    } catch (err) {
+      console.log(err);
+    }
+    history.push("/user/order");
   };
   return (
     <>
       <Headers></Headers>
       <div className={cx("grid", "body")}>
-        {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
         <form>
           <div>
             <h4 className={cx("body__title")}>Đặt hàng</h4>

@@ -32,7 +32,10 @@ export const listOrders = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/orders?userID=${userInfo._id}`);
+    const { data } = await axios.get(
+      `/api/orders?userID=${userInfo._id}`,
+      config
+    );
 
     //-----------------------
     dispatch({
