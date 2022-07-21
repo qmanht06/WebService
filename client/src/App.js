@@ -11,7 +11,7 @@ import AdminHomePage from "./pages/admin/HomePage";
 import PageManage from "./pages/PageManage/PageManage";
 import OrderManage from "./pages/OrderManagePage/OrderManage";
 import Category from "./components/Category/Category";
-import PostManagePage from "./pages/PostManagePage/PostManagePage";
+import PostManagePage from "./pages/PostManagePage/PostManagePageCreate";
 
 function App() {
   return (
@@ -19,9 +19,9 @@ function App() {
       <Route exact path="/">
         <Home />
       </Route>
-      <Route exact path="/product/create">
+      {/* <Route exact path="/product/create">
         <PostManagePage />
-      </Route>
+      </Route> */}
       <Route path="/product/:id">
         <ProductPage />
       </Route>
