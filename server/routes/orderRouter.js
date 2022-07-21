@@ -2,11 +2,11 @@ const express = require("express");
 const Order = require("../models/orderModel");
 const asyncHandler = require("express-async-handler");
 
-const getAllOrders = asyncHandler (async (req, res, next) => {
+const getAllOrders = asyncHandler(async (req, res, next) => {
   const query = Order.find(req.query);
   const docs = await query;
 
-//   const docs = await Order.find(req);
+  //   const docs = await Order.find(req);
   if (!docs)
     res.status(404).json({ status: "fail", message: "No documents found" });
 
@@ -29,7 +29,9 @@ const getOneOrder = async (req, res, next) => {
 };
 
 const createOrder = async (req, res, next) => {
+  console.log(req.body);
   const doc = await Order.create(req.body);
+
   if (!doc)
     res.status(404).json({ status: "fail", message: "No documents found" });
 
@@ -39,6 +41,8 @@ const createOrder = async (req, res, next) => {
       data: doc,
     },
   });
+  // res.cookie("cartList", JSON.stringify([]));
+  // res.cookie("cartTotalQuantity", 0);
 };
 
 const updateOrder = async (req, res, next) => {
