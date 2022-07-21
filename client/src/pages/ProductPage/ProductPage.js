@@ -10,6 +10,8 @@ import { Products } from "../../data/Products";
 
 const ProductPage = (props) => {
   const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState("Green");
+  const [size, setSize] = useState("30");
   const { addProductToCart, getSingleProduct } = props;
   const currency = { style: "currency", currency: "VND" };
 
@@ -30,7 +32,7 @@ const ProductPage = (props) => {
   // Products.find(
   //   (item) => item._id === shoeID
   // );
-  console.log("id: ", productImage);
+  // console.log("id: ", productImage);
 
   const handleAddToCartClicked = () => {
     const cartItem = {
@@ -38,6 +40,9 @@ const ProductPage = (props) => {
       productImage,
       productName,
       productPrice,
+      productDescription,
+      color,
+      size,
       quantity: quantity,
     };
 
@@ -45,6 +50,16 @@ const ProductPage = (props) => {
     // console.log(cartItem);
     setQuantity(1);
   };
+
+  // const handleColorChanged = (e) => {
+  //   // console.log(e.target.value);
+  //   setColor(e.target.value);
+  // };
+
+  // const handleSizeChanged = (e) => {
+  //   // console.log(e.target.value);
+  //   setSize(e.target.value);
+  // };
 
   return (
     <div>
@@ -63,7 +78,11 @@ const ProductPage = (props) => {
           <div className="filter-container">
             <div className="filter">
               <div className="filter-title">Color</div>
-              <select className="select" defaultValue="Green">
+              <select
+                className="select"
+                defaultValue={color}
+                onChange={(e) => setColor(e.target.value)}
+              >
                 <option>Red</option>
                 <option>Blue</option>
                 <option>Green</option>
@@ -73,7 +92,11 @@ const ProductPage = (props) => {
             </div>
             <div className="filter">
               <div className="filter-title">Size</div>
-              <select className="select" defaultValue="30">
+              <select
+                className="select"
+                defaultValue={size}
+                onChange={(e) => setSize(e.target.value)}
+              >
                 <option>28</option>
                 <option>29</option>
                 <option>30</option>

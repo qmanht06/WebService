@@ -24,6 +24,7 @@ import { Products } from "../../data/Products";
 const initialState = {
   productList: [],
   product: {},
+  allProducts: [],
 };
 
 const productReducer = (state = initialState, action) => {
@@ -43,6 +44,12 @@ const productReducer = (state = initialState, action) => {
         ...state,
         product: action.payload,
       };
+    case types.SET_ALL_PRODUCTS: {
+      return {
+        ...state,
+        allProducts: action.payload,
+      };
+    }
     default:
       return state;
   }

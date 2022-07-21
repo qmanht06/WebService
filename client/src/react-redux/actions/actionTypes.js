@@ -14,5 +14,7 @@ export const SET_PRODUCT_LIST = "products/SET_PRODUCT_LIST";
 export const FETCH_PRODUCT_LIST = "products/FETCH_PRODUCT_LIST";
 export const GET_SINGLE_PRODUCT = "products/GET_SINGLE_PRODUCT";
 export const SET_SINGLE_PRODUCT = "products/SET_SINGLE_PRODUCT";
+export const FETCH_ALL_PRODUCTS = "products/FETCH_ALL_PRODUCTS";
+export const SET_ALL_PRODUCTS = "products/SET_ALL_PRODUCTS";
 
 export const CHANGE_TOTAL_QUANTITY = "cart/CHANGE_TOTAL_QUANTITY";

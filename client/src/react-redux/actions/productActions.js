@@ -24,3 +24,12 @@ export const setSingleProduct = (product) => ({
   type: types.GET_SINGLE_PRODUCT,
   payload: product,
 });
+
+export const fetchAllProducts = () => ({
+  type: types.FETCH_ALL_PRODUCTS,
+});
+
+export const setAllProducts = (data) => ({
+  type: types.SET_ALL_PRODUCTS,
+  payload: data,
+});

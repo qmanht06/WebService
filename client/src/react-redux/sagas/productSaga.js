@@ -3,9 +3,23 @@ import * as types from "../actions/actionTypes";
 import axios from "axios";
 
 //Async functions
+async function fetchAll() {
+  try {
+    const response = await axios.post("/api/product/all");
+    console.log("axios res: ", response);
+    if (response && response.data.products) {
+      return response.data.products;
+    } else return [];
+  } catch (err) {
+    console.log("err");
+    console.log();
+    return "Failed";
+  }
+}
+
 async function fetchData(pagination) {
   try {
-    const response = await axios.post("api/product", { pagination });
+    const response = await axios.post("/api/product", { pagination });
     console.log("axios res: ", response);
     if (response && response.data.products) {
       return response.data.products;
@@ -44,6 +58,13 @@ export function* getProductDetail(action) {
   yield put({ type: types.SET_SINGLE_PRODUCT, payload: response });
 }
 
+export function* fetchAllProducts() {
+  // console.log("Payload: ", action.payload);
+  const response = yield call(fetchAll);
+  console.log("fetch data: ", response);
+  yield put({ type: types.SET_ALL_PRODUCTS, payload: response });
+}
+
 //Watchers
 function* watchFetchProductList() {
   yield takeLatest(types.FETCH_PRODUCT_LIST, fetchProductList);
@@ -53,7 +74,15 @@ function* watchGetProductDetail() {
   yield takeLatest(types.GET_SINGLE_PRODUCT, getProductDetail);
 }
 
+function* watchFetchAllProducts() {
+  yield takeLatest(types.FETCH_ALL_PRODUCTS, fetchAllProducts);
+}
+
 //rootSaga
 export default function* productSaga() {
-  yield all([watchFetchProductList(), watchGetProductDetail()]);
+  yield all([
+    watchFetchProductList(),
+    watchGetProductDetail(),
+    watchFetchAllProducts(),
+  ]);
 }
