@@ -15,6 +15,7 @@ import {
 import {
   orderListReducer,
   orderDeleteReducer,
+  orderListReducerAdmin,
 } from "./reducers/orderListReducer";
 
 const rootReducer = combineReducers({
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   userUpdate: userUpdateReducer,
   orderList: orderListReducer,
   orderDelete: orderDeleteReducer,
+  orderListAdmin: orderListReducerAdmin,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

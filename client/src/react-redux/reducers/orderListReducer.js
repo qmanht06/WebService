@@ -5,6 +5,9 @@ import {
   ORDERS_DELETE_REQUEST,
   ORDERS_DELETE_SUCCESS,
   ORDERS_DELETE_FAIL,
+  ORDERS_LIST_REQUEST_ADMIN,
+  ORDERS_LIST_SUCCESS_ADMIN,
+  ORDERS_LIST_FAIL_ADMIN,
 } from "../constants/ordersConstants";
 
 export const orderListReducer = (state = { orders: [] }, action) => {
@@ -29,6 +32,20 @@ export const orderDeleteReducer = (state = {}, action) => {
       return { loading: false, success: true };
     case ORDERS_DELETE_FAIL:
       return { loading: false, error: action.payload, success: false };
+
+    default:
+      return state;
+  }
+};
+
+export const orderListReducerAdmin = (state = { orders: [] }, action) => {
+  switch (action.type) {
+    case ORDERS_LIST_REQUEST_ADMIN:
+      return { loading: true };
+    case ORDERS_LIST_SUCCESS_ADMIN:
+      return { loading: false, orders: action.payload };
+    case ORDERS_LIST_FAIL_ADMIN:
+      return { loading: false, error: action.payload };
 
     default:
       return state;
