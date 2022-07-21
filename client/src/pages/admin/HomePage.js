@@ -25,7 +25,7 @@ const HomePage = () => {
             <PostManagePage></PostManagePage>
           </Route>
           <Route exact path="/admin/order">
-            <Order />
+            <PageManage type="order"></PageManage>
           </Route>
           <Route exact path="/admin/home">
             <Statistics />

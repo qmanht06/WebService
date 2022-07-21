@@ -33,6 +33,21 @@ function PageManage({ types }) {
             <th className={cx('title__contents')}>Thêm</th>
         </tr>
     }
+    if (types === 'order') {
+        headerComponent = <>
+            <h4 className={cx('header')}>Quản lý đặt hàng</h4>
+            <Link to="/product/create"><Button size='big' status='primary' title='Thêm đặt hàng'></Button></Link>
+
+        </>
+        tableTitle = <tr className={cx('item')}>
+            <th className={cx('title__contents')}>#</th>
+            <th className={cx('title__contents')}>Tên khách hàng</th>
+            <th className={cx('title__contents')}>Số điện thoại</th>
+            <th className={cx('title__contents')}>Địa chỉ</th>
+            <th className={cx('title__contents')}>Giá trị đơn hàng</th>
+            <th className={cx('title__contents')}>Thêm</th>
+        </tr>
+    }
     return (
         <div className={cx('grid', 'post-manage')}>
             <div className={cx('wrapper', 'post-manage__header')}>

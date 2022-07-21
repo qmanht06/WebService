@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {protect, protect2 } = require("../middlewares/authMiddleware");
+const { protect, protect2 } = require("../middlewares/authMiddleware");
 
 const Products = require("../models/Product");
 
@@ -73,6 +73,23 @@ router.post("/", async (req, res) => {
         const data = Products.find()
             .limit(limit)
             .skip(limit * (page - 1));
+        const result = await data;
+
+        return res.status(200).json({
+            success: true,
+            message: "Get all products success",
+            products: result,
+        });
+    } catch (error) {
+        console.log(error.message);
+    }
+});
+
+router.post("/all", async (req, res) => {
+    try {
+        const { page, limit } = req.body.pagination;
+        console.log(page, limit);
+        const data = Products.find()
         const result = await data;
 
         return res.status(200).json({
