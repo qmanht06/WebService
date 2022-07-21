@@ -119,6 +119,25 @@ function PostManagePage(props) {
               />
             </div>
             <div className={cx("body__item")}>
+              <p className={cx("body__item__title")}>Trạng thái: </p>
+              {/* <input
+                //ref={addressRef}
+                className={cx("body__item__input")}
+                type="text"
+                placeholder="Pending"
+              /> */}
+              <select
+                className={cx("body__item__input")}
+                defaultValue="pending"
+              >
+                <option value="pending">pending</option>
+                <option value="processing">processing</option>
+                <option value="shipped">shipped</option>
+                <option value="delivered">delivered</option>
+                <option value="decided">decided</option>
+              </select>
+            </div>
+            <div className={cx("body__item")}>
               <p className={cx("body__item__title")}>Ghi chú: </p>
               <textarea
                 ref={noteRef}
@@ -131,7 +150,7 @@ function PostManagePage(props) {
             </div>
 
             <button className={cx("btn_order")} onClick={submitHandler}>
-              Đặt hàng
+              UPDATE
             </button>
           </div>
           <div style={{ marginTop: "60px" }}>
