@@ -20,12 +20,7 @@ const getOneOrder = async (req, res, next) => {
   if (!doc)
     res.status(404).json({ status: "fail", message: "No documents found" });
 
-  res.status(200).json({
-    status: "success",
-    data: {
-      data: doc,
-    },
-  });
+  res.status(200).json(doc);
 };
 
 const createOrder = async (req, res, next) => {
@@ -47,16 +42,13 @@ const createOrder = async (req, res, next) => {
 
 const updateOrder = async (req, res, next) => {
   const id = req.params.id;
-  const doc = await Order.findByIdAndUpdate(id, req.body);
+  const doc = await Order.findByIdAndUpdate(id, req.body, {
+    new: true,
+  });
   if (!doc)
     res.status(404).json({ status: "fail", message: "No documents found" });
 
-  res.status(200).json({
-    status: "success",
-    data: {
-      data: doc,
-    },
-  });
+  res.status(200).json(doc);
 };
 
 const deleteOrder = async (req, res, next) => {

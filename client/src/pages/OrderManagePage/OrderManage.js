@@ -87,7 +87,7 @@ const OrderList = () => {
                 </button>
               </div>
               <div style={{ width: "5%" }} className="align-items-center">
-                <Link to={"/user/order" + order._id}>
+                <Link to={`/user/order/${order._id}`}>
                   <button type="button" className="item-remove-btn">
                     <i className="fa-solid fa-edit fa-xs"></i>
                   </button>

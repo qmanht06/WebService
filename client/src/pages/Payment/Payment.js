@@ -134,6 +134,7 @@ function PostManagePage(props) {
           </div>
           <div style={{ marginTop: "60px" }}>
             <h1 className={cx("body__title")}>Products</h1>
+            
             <div>
               {cartList.map((item) => (
                 <CartItem key={item._id} product={item} editable={false} />
