@@ -25,6 +25,8 @@ function PostManagePage(props) {
     address: "",
     email: "",
   });
+  const [total, setTotal] = useState("0");
+  const [state, setState] = useState("pending")
   useEffect(() => {
     try {
       axios.get(`/api/orders/${pathname}`).then((response) => {
@@ -38,6 +40,7 @@ function PostManagePage(props) {
         setInfo(response.data.shippingDetails);
         setOrderItem(response.data);
         fetchProductForOrder(response.data.products);
+        setTotal(response.data.total);
       });
     } catch (err) {
       console.log(err);
@@ -60,13 +63,14 @@ function PostManagePage(props) {
   const addressRef = useRef();
   const noteRef = useRef();
 
-  const total =
-    cartList?.reduce(
-      (prev, curr) => prev + curr.quantity * +curr.productPrice,
-      0
-    ) || 0;
+  // const total =
+  //   cartList?.reduce(
+  //     (prev, curr) => prev + curr.quantity * +curr.productPrice,
+  //     0
+  //   ) || 0;
   // const userInfomation = JSON.parse(localStorage.getItem("userInfo"));
 
+  const submitHandler = async (e) => {};
   // const submitHandler = async (e) => {
   //   e.preventDefault();
   //   const name = nameRef.current.value;
@@ -155,13 +159,15 @@ function PostManagePage(props) {
             </div>
             <div className={cx("body__item")}>
               <p className={cx("body__item__title")}>Trạng thái: </p>
-              {/* <input
+              <input
                 //ref={addressRef}
                 className={cx("body__item__input")}
                 type="text"
-                placeholder="Pending"
-              /> */}
-              <select
+                placeholder="Trạng thái"
+                value = {state}
+                readOnly
+              />
+              {/* <select
                 className={cx("body__item__input")}
                 defaultValue="pending"
               >
@@ -170,7 +176,7 @@ function PostManagePage(props) {
                 <option value="shipped">shipped</option>
                 <option value="delivered">delivered</option>
                 <option value="decided">decided</option>
-              </select>
+              </select> */}
             </div>
             <div className={cx("body__item")}>
               <p className={cx("body__item__title")}>Ghi chú: </p>
@@ -186,9 +192,9 @@ function PostManagePage(props) {
               ></textarea>
             </div>
 
-            <button className={cx("btn_order")} onClick={submitHandler}>
+            {/* <button className={cx("btn_order")} onClick={submitHandler}>
               UPDATE
-            </button>
+            </button> */}
           </div>
           <div style={{ marginTop: "60px" }}>
             <h1 className={cx("body__title")}>Products</h1>
