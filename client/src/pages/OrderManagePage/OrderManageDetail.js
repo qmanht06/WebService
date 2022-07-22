@@ -15,7 +15,7 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 
 const cx = classNames.bind(style);
-let name, note, phone, address, email;
+//let name, note, phone, address, email;
 function PostManagePage(props) {
   const { fetchProductForOrder, cartList } = props;
   const [info, setInfo] = useState({
@@ -26,7 +26,8 @@ function PostManagePage(props) {
     email: "",
   });
   const [total, setTotal] = useState("0");
-  const [state, setState] = useState("pending")
+  const [state, setState] = useState("pending");
+  const [createdAt, setCreatedAt] = useState(null);
   useEffect(() => {
     try {
       axios.get(`/api/orders/${pathname}`).then((response) => {
@@ -41,6 +42,8 @@ function PostManagePage(props) {
         setOrderItem(response.data);
         fetchProductForOrder(response.data.products);
         setTotal(response.data.total);
+        setState(response.data.state);
+        setCreatedAt(response.data.createdAt);
       });
     } catch (err) {
       console.log(err);
@@ -158,13 +161,24 @@ function PostManagePage(props) {
               />
             </div>
             <div className={cx("body__item")}>
+              <p className={cx("body__item__title")}>Ngày tạo đơn hàng: </p>
+              <input
+                //ref={addressRef}
+                className={cx("body__item__input")}
+                type="text"
+                placeholder="Date time"
+                value={createdAt}
+                readOnly
+              />
+            </div>
+            <div className={cx("body__item")}>
               <p className={cx("body__item__title")}>Trạng thái: </p>
               <input
                 //ref={addressRef}
                 className={cx("body__item__input")}
                 type="text"
                 placeholder="Trạng thái"
-                value = {state}
+                value={state}
                 readOnly
               />
               {/* <select
